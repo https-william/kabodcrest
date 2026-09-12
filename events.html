@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events & Experiences — Kabod Crest Limited</title>
+  <meta name="description" content="Kabod Crest Events & Experiences. Curated corporate gatherings, cultural celebrations, and intimate brand experiences built on aesthetic restraint and authentic hospitality." />
+
+  <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/events.css" />
+</head>
+<body>
+
+  <!-- Persistent Pre-order Announcement Banner -->
+  <aside class="preorder-banner" aria-label="Order status notification">
+    <div class="container">
+      <div class="preorder-banner-content">
+        <span class="preorder-pulse-dot" aria-hidden="true"></span>
+        <span class="preorder-banner-text">Commercial Pre-Orders Active &mdash; Nationwide & Worldwide Delivery</span>
+        <a href="shop.html" class="preorder-banner-link">Catalog &rarr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+        <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+          <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+          <path d="M 24 45 L 48 45 L 64 29" />
+          <path d="M 38 45 L 62 72" />
+        </svg>
+        <div class="brand-logo-text">
+          <span class="brand-name">KABOD CREST</span>
+          <span class="brand-subline">Excellence with Integrity</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link active" aria-current="page">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+          <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-btn-label">Pre-Orders</span>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn js-mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Pane -->
+  <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+    <div>
+      <div class="mobile-nav-header">
+        <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
+        <button type="button" class="cart-drawer-close-btn js-mobile-nav-close" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link active">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+    <div style="font-size: 0.75rem; color: var(--color-text-light-muted);">
+      &copy; 2026 Kabod Crest Limited<br />
+      Excellence with Integrity
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="events-hero">
+      <div class="container">
+        <div class="events-hero-inner">
+          <div class="events-hero-badge">Upcoming Vertical • Experiential Concepts</div>
+          <h1 class="events-hero-title">Events & Experiences</h1>
+          <p class="events-hero-lead">
+            Curated atmospheres, cultural resonance, and flawless execution.
+          </p>
+          <p class="events-hero-desc">
+            Kabod Crest Events is conceived to bridge disciplined executive organization with refined African aesthetics. While currently in strategic concept development, we invite forward-thinking enterprises and private hosts to initiate early conversations for milestone collaborations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiential Capabilities -->
+    <section class="events-pillars-section">
+      <div class="container">
+        <div class="events-pillars-header">
+          <div class="events-eyebrow">Strategic Expression</div>
+          <h2 class="events-section-title">Elevating Modern Gatherings</h2>
+          <p class="events-lead-text">
+            We approach event production not as sensory overload, but as spatial architecture—every moment, culinary touchpoint, and atmospheric cue deliberate and memorable.
+          </p>
+        </div>
+
+        <div class="events-pillars-grid">
+          <!-- Pillar 1 -->
+          <article class="event-pillar-card">
+            <div class="event-pillar-num">01 / CORPORATE</div>
+            <h3 class="event-pillar-title">Executive Summits & Dinners</h3>
+            <p class="event-pillar-desc">
+              Bespoke leadership retreats, strategic board conferences, and private stakeholder dinners held in quiet, distinguished atmospheres with complete discretion.
+            </p>
+            <ul class="event-pillar-features">
+              <li>Confidential stakeholder summits</li>
+              <li>Acoustic and spatial choreography</li>
+              <li>Premium hospitality coordination</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 2 -->
+          <article class="event-pillar-card">
+            <div class="event-pillar-num">02 / CULTURAL</div>
+            <h3 class="event-pillar-title">Milestone Celebrations</h3>
+            <p class="event-pillar-desc">
+              Honoring Nigerian heritage, family legacy, and significant milestones through restrained luxury, curated table settings, and authentic warmth.
+            </p>
+            <ul class="event-pillar-features">
+              <li>Ancestral and contemporary balance</li>
+              <li>Custom floral and architectural styling</li>
+              <li>Seamless guest-journey stewardship</li>
+            </ul>
+          </article>
+
+          <!-- Pillar 3 -->
+          <article class="event-pillar-card">
+            <div class="event-pillar-num">03 / BRAND</div>
+            <h3 class="event-pillar-title">Curated Brand Showcases</h3>
+            <p class="event-pillar-desc">
+              Intimate product unveilings, cultural exhibitions, and experiential showcases designed to leave an enduring impression on discerning audiences.
+            </p>
+            <ul class="event-pillar-features">
+              <li>Tactile brand storytelling</li>
+              <li>Immersive lighting and set craft</li>
+              <li>VIP media & partner engagement</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Kabod Experience Standard -->
+    <section class="experience-standard-section">
+      <div class="container">
+        <div style="max-width: 680px;">
+          <div class="events-eyebrow">Guiding Philosophy</div>
+          <h2 class="events-section-title">The Kabod Experience Standard</h2>
+          <p style="font-size: 0.9375rem; color: var(--color-text-muted);">
+            Four operational commitments that govern every concept we draft and every gathering we shape.
+          </p>
+        </div>
+
+        <div class="standard-quad-grid">
+          <div class="standard-item-card">
+            <div class="standard-item-num">I</div>
+            <h3 class="standard-item-title">Precision Logistics</h3>
+            <p class="standard-item-desc">
+              Calculated timing, seamless technical coordination, and calm contingency management that eliminates chaos for hosts.
+            </p>
+          </div>
+
+          <div class="standard-item-card">
+            <div class="standard-item-num">II</div>
+            <h3 class="standard-item-title">Atmospheric Restraint</h3>
+            <p class="standard-item-desc">
+              Understated elegance, purposeful lighting, and balanced acoustics that foster genuine connection over mere volume.
+            </p>
+          </div>
+
+          <div class="standard-item-card">
+            <div class="standard-item-num">III</div>
+            <h3 class="standard-item-title">Authentic Warmth</h3>
+            <p class="standard-item-desc">
+              Gracious, dignified hospitality grounded in deep African traditions of honoring the guest with sincerity.
+            </p>
+          </div>
+
+          <div class="standard-item-card">
+            <div class="standard-item-num">IV</div>
+            <h3 class="standard-item-title">Bespoke Distinction</h3>
+            <p class="standard-item-desc">
+              Zero cookie-cutter templates. Every environment is intentionally tailored to the vision and legacy of the occasion.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Inquiry Section -->
+    <section class="event-inquiry-section">
+      <div class="container">
+        <div class="event-inquiry-grid">
+          <!-- Left: Briefing Info -->
+          <div class="inquiry-editorial-pane">
+            <div class="events-eyebrow">Initiate Planning</div>
+            <h2 class="inquiry-editorial-title">Begin Your Event Consultation</h2>
+            <div class="inquiry-editorial-quote">
+              "Every great gathering is an act of deliberate architecture. We look forward to designing yours."
+            </div>
+            <p style="font-size: 0.9375rem; color: var(--color-text-muted); line-height: 1.65;">
+              Share your vision, anticipated timeline, and event nature. Our experiential team reviews each submission with strict commercial confidentiality and responds within 24 business hours.
+            </p>
+
+            <div class="event-quick-contacts-card">
+              <div style="font-family: var(--font-structural); font-size: 0.8125rem; font-weight: 700; text-transform: uppercase; color: var(--color-plum); margin-bottom: var(--space-xs);">
+                Direct Concierge Desk
+              </div>
+              <div class="contact-row-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>Tel / WhatsApp: <a href="tel:+2349053807722">+234 905 380 7722</a></span>
+              </div>
+              <div class="contact-row-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>Email: <a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Event Brief Form -->
+          <div class="event-form-card" id="event-form-card">
+            <form id="event-inquiry-form">
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="event-name" class="form-label">Full Name <span class="required-mark">*</span></label>
+                  <input type="text" id="event-name" class="form-input" placeholder="Your name" required />
+                </div>
+                <div class="form-group">
+                  <label for="event-org" class="form-label">Company / Family <span style="font-weight: 400; color: var(--color-text-subtle);">(Optional)</span></label>
+                  <input type="text" id="event-org" class="form-input" placeholder="Organization name" />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="event-email" class="form-label">Email Address <span class="required-mark">*</span></label>
+                  <input type="email" id="event-email" class="form-input" placeholder="name@domain.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="event-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
+                  <input type="tel" id="event-phone" class="form-input" placeholder="+234 ..." required />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="event-type" class="form-label">Event Nature <span class="required-mark">*</span></label>
+                  <select id="event-type" class="form-select" required>
+                    <option value="" disabled selected>Select event category...</option>
+                    <option value="Executive Summit">Executive Summit / Conference</option>
+                    <option value="Private Celebration">Private / Cultural Celebration</option>
+                    <option value="Brand Showcase">Brand Showcase / Product Launch</option>
+                    <option value="Stakeholder Dinner">Curated Stakeholder Dinner</option>
+                    <option value="Other">Other Bespoke Experience</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="event-guests" class="form-label">Estimated Guest Count</label>
+                  <select id="event-guests" class="form-select">
+                    <option value="Intimate (Under 50 guests)">Intimate (Under 50 guests)</option>
+                    <option value="Medium (50 - 150 guests)">Medium (50 - 150 guests)</option>
+                    <option value="Large (150 - 350 guests)">Large (150 - 350 guests)</option>
+                    <option value="Grand (350+ guests)">Grand (350+ guests)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="event-timeline" class="form-label">Target Date / Preferred Timeline</label>
+                <input type="text" id="event-timeline" class="form-input" placeholder="e.g. Q4 2026, November, or specific date" />
+              </div>
+
+              <div class="form-group">
+                <label for="event-notes" class="form-label">Brief Vision & Concept Notes <span class="required-mark">*</span></label>
+                <textarea id="event-notes" class="form-textarea" rows="4" placeholder="Briefly describe your desired atmosphere, venue preferences, or strategic objectives..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-event-submit" style="margin-top: var(--space-md);">
+                <span>Submit Event Inquiry</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Success Confirmation Card -->
+            <div class="inquiry-success-card" id="event-success-card">
+              <div class="success-icon-wrap" aria-hidden="true">&#10003;</div>
+              <h3 style="font-family: var(--font-structural); font-size: 1.375rem; color: var(--color-text-dark); margin-bottom: var(--space-xs);">
+                Event Brief Received
+              </h3>
+              <p style="font-size: 0.9375rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: var(--space-lg);">
+                Thank you, <strong id="success-host-name" style="color: var(--color-text-dark);">Host</strong>. Your event brief has been logged with our experiential team. We will review the parameters and initiate contact within 24 hours.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <a href="#" class="btn-primary-action btn-whatsapp-share" id="event-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                  <span>Connect with Concierge on WhatsApp</span>
+                </a>
+                <button type="button" class="btn-secondary-action" id="btn-event-reset">
+                  Submit another event brief
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">KABOD CREST LIMITED</div>
+          <div class="footer-tagline">Excellence with Integrity</div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-light-muted); line-height: 1.6; margin-top: var(--space-xs);">
+            A newly registered Nigerian enterprise committed to purposeful commercial development, ethical agro-processing, and enduring quality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Business Verticals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
+            <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="hospitality.html">Hospitality & Food Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="business-services.html">Business Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company & Contacts</h4>
+          <ul class="footer-nav-list">
+            <li><a href="about.html">About Kabod Crest</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></li>
+            <li><a href="tel:+2349053807722">+234 905 380 7722</a></li>
+            <li><span style="font-size: 0.75rem; color: var(--color-text-light-muted);">Lagos, Nigeria</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Page interaction script -->
+  <script>
+    (function() {
+      // Mobile menu toggle
+      const toggle = document.querySelector('.js-mobile-menu-toggle');
+      const pane = document.getElementById('mobile-nav-pane');
+      const backdrop = document.getElementById('mobile-nav-backdrop');
+      const close = document.querySelector('.js-mobile-nav-close');
+
+      function openMenu() {
+        if (pane && backdrop) {
+          pane.classList.add('open');
+          backdrop.classList.add('open');
+          pane.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeMenu() {
+        if (pane && backdrop) {
+          pane.classList.remove('open');
+          backdrop.classList.remove('open');
+          pane.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (toggle) toggle.addEventListener('click', openMenu);
+      if (close) close.addEventListener('click', closeMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      // Event Form Submission handling
+      const form = document.getElementById('event-inquiry-form');
+      const successCard = document.getElementById('event-success-card');
+      const clientNameSpan = document.getElementById('success-host-name');
+      const waLink = document.getElementById('event-whatsapp-link');
+      const resetBtn = document.getElementById('btn-event-reset');
+
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const name = document.getElementById('event-name').value.trim();
+          const org = document.getElementById('event-org').value.trim();
+          const email = document.getElementById('event-email').value.trim();
+          const phone = document.getElementById('event-phone').value.trim();
+          const type = document.getElementById('event-type').value;
+          const guests = document.getElementById('event-guests').value;
+          const timeline = document.getElementById('event-timeline').value.trim();
+          const notes = document.getElementById('event-notes').value.trim();
+
+          if (clientNameSpan) clientNameSpan.textContent = name || 'Host';
+
+          // Build pre-filled WhatsApp message
+          const waText = encodeURIComponent(
+            `*Kabod Crest Events Consultation Request*\n\n` +
+            `*Host:* ${name}\n` +
+            (org ? `*Organization:* ${org}\n` : '') +
+            `*Email:* ${email}\n` +
+            `*Phone:* ${phone}\n` +
+            `*Event Category:* ${type}\n` +
+            `*Guests:* ${guests}\n` +
+            (timeline ? `*Timeline:* ${timeline}\n` : '') +
+            `*Brief:* ${notes}`
+          );
+
+          if (waLink) {
+            waLink.href = `https://wa.me/2349053807722?text=${waText}`;
+          }
+
+          form.style.display = 'none';
+          if (successCard) successCard.style.display = 'block';
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+          if (form) {
+            form.reset();
+            form.style.display = 'block';
+          }
+          if (successCard) successCard.style.display = 'none';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

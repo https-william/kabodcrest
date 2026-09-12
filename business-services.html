@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business Services & Solutions — Kabod Crest Limited</title>
+  <meta name="description" content="Strategic enterprise and business solutions from Kabod Crest Limited. Grounded in purpose, distinction, and operational integrity." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/business-services.css" />
+</head>
+<body>
+
+  <!-- Persistent Pre-order Announcement Banner -->
+  <aside class="preorder-banner" aria-label="Order status notification">
+    <div class="container">
+      <div class="preorder-banner-content">
+        <span class="preorder-pulse-dot" aria-hidden="true"></span>
+        <span class="preorder-banner-text">Commercial Pre-Orders Active &mdash; Nationwide & Worldwide Delivery</span>
+        <a href="shop.html" class="preorder-banner-link">Catalog &rarr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+        <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+          <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+          <path d="M 24 45 L 48 45 L 64 29" />
+          <path d="M 38 45 L 62 72" />
+        </svg>
+        <div class="brand-logo-text">
+          <span class="brand-name">KABOD CREST</span>
+          <span class="brand-subline">Excellence with Integrity</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link active" aria-current="page">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+          <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-btn-label">Pre-Orders</span>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn js-mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Pane -->
+  <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+    <div>
+      <div class="mobile-nav-header">
+        <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
+        <button type="button" class="cart-drawer-close-btn js-mobile-nav-close" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link active">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+    <div style="font-size: 0.75rem; color: var(--color-text-light-muted);">
+      Kabod Crest Limited • Excellence with Integrity
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="services-hero">
+      <div class="container">
+        <div class="services-hero-inner">
+          <div class="services-hero-badge">Enterprise Solutions • Strategic Vertical</div>
+          <h1 class="services-hero-title">Building Enterprise with Purpose. Executing with Distinction.</h1>
+          <p class="services-hero-lead">"Excellence with Integrity."</p>
+          <p class="services-hero-desc">
+            Kabod Crest Limited is a diversified Nigerian enterprise engineered around disciplined execution, institutional credibility, and sustainable commercial value. As we expand across strategic industry verticals, our Business Services desk engages with institutional partners, corporate entities, and entrepreneurs seeking bespoke collaboration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capability Statement Section -->
+    <section class="capability-section" aria-labelledby="capability-heading">
+      <div class="container">
+        <div class="capability-intro">
+          <div class="capability-eyebrow">Enterprise Capability</div>
+          <h2 class="capability-heading" id="capability-heading">Quiet Authority in Commercial Execution</h2>
+          <p class="capability-lead-text">
+            Rather than offering a generic menu of off-the-shelf corporate services, Kabod Crest approaches commercial solutions as a collaborative enterprise partner. We align our multi-sector capabilities, supply relationships, and operational discipline with organizations seeking reliable Nigerian execution.
+          </p>
+          <p class="capability-sub-text">
+            Whether structuring bespoke supply arrangements, evaluating joint ventures, or executing cross-sector initiatives, our work is governed by an unyielding commitment to operational transparency and ethical governance.
+          </p>
+        </div>
+
+        <!-- Three Capability Pillars -->
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <span class="pillar-num">PILLAR 01</span>
+            <h3 class="pillar-title">Strategic Purpose & Governance</h3>
+            <p class="pillar-desc">
+              Establishing rigorous operating foundations anchored in long-term viability, ethical African enterprise, and clear stakeholder alignment.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-num">PILLAR 02</span>
+            <h3 class="pillar-title">Operational Distinction</h3>
+            <p class="pillar-desc">
+              Precision in project delivery, quality benchmarking, and supply chain accountability across our active and expanding commercial initiatives.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <span class="pillar-num">PILLAR 03</span>
+            <h3 class="pillar-title">Commercial Partnerships</h3>
+            <p class="pillar-desc">
+              Flexible, value-accretive engagement frameworks designed for institutional co-development, trade alliances, and enterprise collaboration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inquiry & Lead Capture Section -->
+    <section class="inquiry-section" id="partner" aria-labelledby="inquiry-heading">
+      <div class="container">
+        <div class="inquiry-grid">
+
+          <!-- Left: Narrative & Reassurance -->
+          <div class="inquiry-text-pane">
+            <div class="capability-eyebrow">Direct Engagement</div>
+            <h2 class="inquiry-heading" id="inquiry-heading">Begin a Strategic Conversation</h2>
+            <div class="inquiry-editorial-quote">
+              "We welcome inquiries from enterprises, investors, and trade collaborators whose standards match our dedication to integrity."
+            </div>
+            <p style="font-size: 0.9375rem; color: var(--color-text-muted); line-height: 1.6;">
+              Please complete this brief inquiry profile. A member of our executive directorate will review your requirement and initiate a confidential dialogue.
+            </p>
+
+            <ul class="inquiry-reassurance-list">
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Direct review by Kabod Crest leadership</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Strict commercial confidentiality guaranteed</span>
+              </li>
+              <li>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Timely exploratory response via official channels</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Inquiry Form Card -->
+          <div class="inquiry-form-card" id="inquiry-form-card">
+            <form id="business-inquiry-form">
+              <div class="form-group">
+                <label for="inq-name" class="form-label">Full Name <span class="required-mark">*</span></label>
+                <input type="text" id="inq-name" class="form-input" placeholder="Your name and title" required />
+              </div>
+
+              <div class="form-group">
+                <label for="inq-company" class="form-label">Company / Organization <span style="font-weight: 400; color: var(--color-text-muted);">(Optional)</span></label>
+                <input type="text" id="inq-company" class="form-input" placeholder="Enterprise or trade entity name" />
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="inq-email" class="form-label">Corporate Email <span class="required-mark">*</span></label>
+                  <input type="email" id="inq-email" class="form-input" placeholder="name@company.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="inq-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
+                  <input type="tel" id="inq-phone" class="form-input" placeholder="+234 ..." required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inq-message" class="form-label">What are you looking for? <span class="required-mark">*</span></label>
+                <textarea id="inq-message" class="form-textarea" rows="4" placeholder="Briefly describe your strategic interest, collaboration proposal, or business inquiry..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-partner-cta" style="margin-top: var(--space-md);">
+                <span>Partner With Us</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Success State View -->
+            <div class="inquiry-success-card" id="inquiry-success-card">
+              <div class="success-icon-wrap" aria-hidden="true">&#10003;</div>
+              <h3 style="font-family: var(--font-structural); font-size: 1.375rem; color: var(--color-obsidian); margin-bottom: var(--space-xs);">
+                Inquiry Successfully Logged
+              </h3>
+              <p style="font-size: 0.9375rem; color: var(--color-text-muted); line-height: 1.5; margin-bottom: var(--space-lg);">
+                Thank you, <strong id="success-client-name" style="color: var(--color-obsidian);">Partner</strong>. Your brief has been transmitted to our corporate desk. We will review your submission and initiate contact.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <a href="#" class="btn-primary-action btn-whatsapp-share" id="success-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                  <span>Connect Directly via WhatsApp</span>
+                </a>
+                <button type="button" class="btn-secondary-action" id="btn-submit-another">
+                  Submit another inquiry
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Pre-Order Allocation</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close pre-order drawer">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your pre-order allocation is empty.</p>
+        <p style="font-size: 0.8125rem;">Select products from the catalog to reserve your early batch dispatch.</p>
+      </div>
+      <ul class="cart-items-list" id="cart-items-list"></ul>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-policy-note">
+        <strong>Pre-Order Policy:</strong> Commercial unit prices are currently [TBC]. Reserving now guarantees priority dispatch.
+      </div>
+      <a href="cart.html" class="btn-cart-checkout">Review Pre-Order & Confirm</a>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">KABOD CREST LIMITED</div>
+          <p class="footer-brand-line">"Building with Purpose. Creating with Distinction."</p>
+          <div class="footer-tagline">Excellence with Integrity</div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-light-muted); margin-top: var(--space-xs);">
+            A diversified Nigerian enterprise committed to purposeful enterprise, ethical agro-processing, and enduring quality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Business Verticals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
+            <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="hospitality.html">Hospitality & Food Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="business-services.html">Business Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company & Legal</h4>
+          <ul class="footer-nav-list">
+            <li><a href="about.html">About Kabod Crest</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></li>
+            <li><a href="tel:+2349053807722">+234 905 380 7722</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/business-services.js"></script>
+
+  <!-- Mobile menu script -->
+  <script>
+    (function() {
+      const toggle = document.querySelector('.js-mobile-menu-toggle');
+      const pane = document.getElementById('mobile-nav-pane');
+      const backdrop = document.getElementById('mobile-nav-backdrop');
+      const close = document.querySelector('.js-mobile-nav-close');
+
+      function openMenu() {
+        if (pane && backdrop) {
+          pane.classList.add('open');
+          backdrop.classList.add('open');
+          pane.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeMenu() {
+        if (pane && backdrop) {
+          pane.classList.remove('open');
+          backdrop.classList.remove('open');
+          pane.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (toggle) toggle.addEventListener('click', openMenu);
+      if (close) close.addEventListener('click', closeMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+    })();
+  </script>
+</body>
+</html>

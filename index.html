@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kabod Crest Limited — Building with Purpose. Creating with Distinction.</title>
+  <meta name="description" content="Official homepage of Kabod Crest Limited. A newly registered Nigerian diversified enterprise. Pre-orders now active for premium Nigerian agro-produce." />
+
+  <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+  <!-- Persistent Pre-order Announcement Banner -->
+  <aside class="preorder-banner" aria-label="Order status notification">
+    <div class="container">
+      <div class="preorder-banner-content">
+        <span class="preorder-pulse-dot" aria-hidden="true"></span>
+        <span class="preorder-banner-text">Commercial Pre-Orders Active &mdash; Nationwide & Worldwide Delivery</span>
+        <a href="shop.html" class="preorder-banner-link">Catalog &rarr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+        <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+          <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+          <path d="M 24 45 L 48 45 L 64 29" />
+          <path d="M 38 45 L 62 72" />
+        </svg>
+        <div class="brand-logo-text">
+          <span class="brand-name">KABOD CREST</span>
+          <span class="brand-subline">Excellence with Integrity</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+          <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-btn-label">Pre-Orders</span>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn js-mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Pane -->
+  <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+    <div>
+      <div class="mobile-nav-header">
+        <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
+        <button type="button" class="cart-drawer-close-btn js-mobile-nav-close" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+    <div style="font-size: 0.75rem; color: var(--color-text-light-muted);">
+      Kabod Crest Limited • Excellence with Integrity
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Section 1: Hero -->
+    <section class="home-hero">
+      <div class="container">
+        <div class="home-hero-inner">
+          <div>
+            <div class="home-hero-badge">Commercial Launch Pre-Orders Active</div>
+            <h1 class="home-hero-title">
+              Building with Purpose. <br />
+              <span class="brand-accent">Creating with Distinction.</span>
+            </h1>
+            <p class="home-hero-desc">
+              Kabod Crest Limited is a newly registered Nigerian diversified enterprise. We are food-first for now—processing wholesome Nigerian agro-produce with disciplined hygiene and culinary integrity—anchored by an enduring, multi-sector vision.
+            </p>
+            <div class="home-hero-actions">
+              <a href="shop.html" class="btn-hero-primary">
+                <span>Shop Pre-Orders</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#who-we-are" class="btn-hero-secondary">
+                <span>Discover Kabod Crest</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Real Harvest Preview Cards -->
+          <div class="hero-visual-frame">
+            <div style="font-family: var(--font-structural); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-gold);">
+              Agro-Processing Harvest Preview
+            </div>
+
+            <div class="hero-visual-card">
+              <img src="assets/images/reference/cat-dehydrated-veg.png" alt="Dehydrated Nigerian Vegetables" class="hero-visual-thumb" />
+              <div class="hero-visual-info">
+                <span class="hero-visual-tag">Active Commercial Focus</span>
+                <span class="hero-visual-name">Dehydrated Ugwu (Fluted Pumpkin)</span>
+                <span class="hero-visual-note">Controlled dehydration preserving vital nutrients</span>
+              </div>
+            </div>
+
+            <div class="hero-visual-card">
+              <img src="assets/images/reference/cat-seeds-nuts.png" alt="Seeds & Nuts processing" class="hero-visual-thumb" />
+              <div class="hero-visual-info">
+                <span class="hero-visual-tag">Harvest Allocation</span>
+                <span class="hero-visual-name">Shelled Egusi & Ogbono Kernels</span>
+                <span class="hero-visual-note">Uniform caliber, double-cleaned and moisture-sealed</span>
+              </div>
+            </div>
+
+            <div class="hero-visual-card">
+              <img src="assets/images/reference/cat-spices.png" alt="Aromatic seasonings" class="hero-visual-thumb" />
+              <div class="hero-visual-info">
+                <span class="hero-visual-tag">Traditional Pantry</span>
+                <span class="hero-visual-name">Fermented Iru & Ashanti Pepper</span>
+                <span class="hero-visual-note">Unadulterated African pantry staples</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Who We Are -->
+    <section class="who-section" id="who-we-are" aria-labelledby="who-heading">
+      <div class="container">
+        <div class="section-eyebrow">Institutional Foundation</div>
+        <h2 class="section-title" id="who-heading">An Intentional African Enterprise</h2>
+        <p class="section-intro-text">
+          Kabod Crest Limited is newly incorporated with a clear mandate: to establish quiet authority across commercial sectors through uncompromising standards of execution, authentic African provenance, and institutional governance.
+        </p>
+
+        <div class="vmv-triple-grid">
+          <div class="vmv-card">
+            <span class="vmv-card-tag">Vision</span>
+            <h3 class="vmv-card-title">Enduring Benchmark</h3>
+            <p class="vmv-card-desc">
+              To stand as an exemplary African enterprise recognized across domestic and international markets for purpose-driven value creation and reliable commercial execution.
+            </p>
+          </div>
+
+          <div class="vmv-card">
+            <span class="vmv-card-tag">Mission</span>
+            <h3 class="vmv-card-title">Distinction in Delivery</h3>
+            <p class="vmv-card-desc">
+              To produce, package, and deliver wholesome food products and strategic enterprise solutions with uncompromising standards of hygiene and transparent accountability.
+            </p>
+          </div>
+
+          <div class="vmv-card">
+            <span class="vmv-card-tag">Values</span>
+            <h3 class="vmv-card-title">Purpose & Integrity</h3>
+            <p class="vmv-card-desc">
+              Purpose in every commercial initiative, distinction over shortcuts, and absolute integrity across our consumer relationships and supply partnerships.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Our Businesses — One Vision, Multiple Expressions -->
+    <section class="businesses-section" aria-labelledby="biz-heading">
+      <div class="container">
+        <div class="section-eyebrow">Corporate Portfolio</div>
+        <h2 class="section-title" id="biz-heading">Our Businesses — One Vision, Multiple Expressions</h2>
+        <p class="section-intro-text">
+          Structured across four commercial pillars, we maintain focused operational execution while preparing for multi-sector expansion.
+        </p>
+
+        <div class="businesses-grid">
+          <!-- Vertical 1: Food (Active) -->
+          <article class="biz-card biz-active">
+            <div class="biz-badge-row">
+              <span class="biz-status-pill active">Active Operating Focus</span>
+              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-plum);">01</span>
+            </div>
+            <h3 class="biz-title">Food & Consumer Products</h3>
+            <p class="biz-desc">
+              Our active operational division. Processing, packaging, and distributing wholesome Nigerian agro-produce—including Dehydrated Ugwu, Egusi, Kulikuli, and authentic seasonings—sealed for worldwide delivery.
+            </p>
+            <a href="shop.html" class="biz-link">Shop Pre-Order Catalog &rarr;</a>
+          </article>
+
+          <!-- Vertical 2: Events (Future) -->
+          <article class="biz-card">
+            <div class="biz-badge-row">
+              <span class="biz-status-pill future">Future Direction</span>
+              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-text-muted);">02</span>
+            </div>
+            <h3 class="biz-title">Events & Experiences</h3>
+            <p class="biz-desc">
+              Curated corporate gatherings, cultural celebrations, and intimate brand experiences built on aesthetic restraint, authentic hospitality, and seamless organization.
+            </p>
+            <a href="events.html" class="biz-link">Explore Future Concepts &rarr;</a>
+          </article>
+
+          <!-- Vertical 3: Hospitality (Future) -->
+          <article class="biz-card">
+            <div class="biz-badge-row">
+              <span class="biz-status-pill future">Future Direction</span>
+              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-text-muted);">03</span>
+            </div>
+            <h3 class="biz-title">Hospitality & Food Services</h3>
+            <p class="biz-desc">
+              Forward-looking dining concepts celebrating African gastronomy through produce integrity, refined modern presentation, and warm, unhurried customer care.
+            </p>
+            <a href="hospitality.html" class="biz-link">View Hospitality Vision &rarr;</a>
+          </article>
+
+          <!-- Vertical 4: Business Services (Future) -->
+          <article class="biz-card">
+            <div class="biz-badge-row">
+              <span class="biz-status-pill future">Future Direction</span>
+              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-text-muted);">04</span>
+            </div>
+            <h3 class="biz-title">Business Services</h3>
+            <p class="biz-desc">
+              Enterprise solutions and strategic commercial collaboration frameworks designed for institutional co-development, trade partnerships, and corporate alliances.
+            </p>
+            <a href="business-services.html" class="biz-link">Partner With Us &rarr;</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Kabod Crest Foods Spotlight -->
+    <section class="foods-spotlight-section" aria-labelledby="foods-heading">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-md);">
+          <div>
+            <div class="section-eyebrow">Featured Commercial Line</div>
+            <h2 class="section-title" id="foods-heading" style="margin-bottom: 0;">Kabod Crest Foods</h2>
+          </div>
+          <a href="shop.html" class="btn-hero-primary" style="padding: 10px 20px; font-size: 0.8125rem;">
+            <span>Explore All 11 Pre-Orders</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+        <p style="font-size: 0.9375rem; color: var(--color-text-muted); max-width: 68ch;">
+          Wholesome Nigerian agro-produce processed with strict attention to hygiene, moisture control, and natural flavor retention. Pre-orders are active now with priority dispatch upon batch completion.
+        </p>
+
+        <!-- 4 Agro-Produce Categories -->
+        <div class="spotlight-categories-grid">
+          <div class="spotlight-cat-card">
+            <div class="spotlight-thumb-wrap">
+              <img src="assets/images/reference/cat-dehydrated-veg.png" alt="Dehydrated Vegetables" class="spotlight-thumb-img" loading="lazy" />
+            </div>
+            <div class="spotlight-cat-body">
+              <h3 class="spotlight-cat-title">Dehydrated Vegetables</h3>
+              <p class="spotlight-cat-desc">
+                Hand-sorted fluted pumpkin leaves (Ugwu) dehydrated under regulated temperatures to preserve chlorophyll, vital minerals, and authentic aroma.
+              </p>
+              <a href="shop.html" class="biz-link" style="font-size: 0.75rem;">View Category &rarr;</a>
+            </div>
+          </div>
+
+          <div class="spotlight-cat-card">
+            <div class="spotlight-thumb-wrap">
+              <img src="assets/images/reference/cat-spices.png" alt="Spices and Seasonings" class="spotlight-thumb-img" loading="lazy" />
+            </div>
+            <div class="spotlight-cat-body">
+              <h3 class="spotlight-cat-title">Spices & Seasonings</h3>
+              <p class="spotlight-cat-desc">
+                Fermented Iru locust beans, aromatic African nutmeg (Ehuru/Uda), and whole Ashanti pepper berries sourced from heritage spice corridors.
+              </p>
+              <a href="shop.html" class="biz-link" style="font-size: 0.75rem;">View Category &rarr;</a>
+            </div>
+          </div>
+
+          <div class="spotlight-cat-card">
+            <div class="spotlight-thumb-wrap">
+              <img src="assets/images/reference/cat-seeds-nuts.png" alt="Seeds and Nuts" class="spotlight-thumb-img" loading="lazy" />
+            </div>
+            <div class="spotlight-cat-body">
+              <h3 class="spotlight-cat-title">Seeds & Nuts</h3>
+              <p class="spotlight-cat-desc">
+                Hand-shelled Egusi melon seeds, wild-harvested Ogbono dika nuts, and traditional spiced Kulikuli groundnut snacks.
+              </p>
+              <a href="shop.html" class="biz-link" style="font-size: 0.75rem;">View Category &rarr;</a>
+            </div>
+          </div>
+
+          <div class="spotlight-cat-card">
+            <div class="spotlight-thumb-wrap">
+              <img src="assets/images/reference/cat-traditional.png" alt="Traditional Foods" class="spotlight-thumb-img" loading="lazy" />
+            </div>
+            <div class="spotlight-cat-body">
+              <h3 class="spotlight-cat-title">Traditional Foods</h3>
+              <p class="spotlight-cat-desc">
+                Cleaned Atlantic stockfish cutlets, sun-dried cassava flakes (garri), raw unrefined shea butter, and hygienically dried ponmo curls.
+              </p>
+              <a href="shop.html" class="biz-link" style="font-size: 0.75rem;">View Category &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: The Kabod Standard -->
+    <section class="standard-section" aria-labelledby="standard-heading">
+      <div class="container">
+        <div class="section-eyebrow">Operating Commitments</div>
+        <h2 class="section-title" id="standard-heading">The Kabod Standard</h2>
+        <p class="section-intro-text" style="margin-bottom: var(--space-xl);">
+          We govern our processing, enterprise operations, and trade relationships through four non-negotiable commitments:
+        </p>
+
+        <div class="standard-grid">
+          <div class="standard-card">
+            <span class="standard-num">01</span>
+            <h3 class="standard-title">Quality Without Compromise</h3>
+            <p class="standard-desc">
+              From field harvest to moisture-barrier packaging, every stage is inspected to protect natural freshness and food safety.
+            </p>
+          </div>
+
+          <div class="standard-card">
+            <span class="standard-num">02</span>
+            <h3 class="standard-title">Ethical Integrity</h3>
+            <p class="standard-desc">
+              Honest commercial pricing, accurate pre-order timelines, and fair dealings with farmers, suppliers, and consumers.
+            </p>
+          </div>
+
+          <div class="standard-card">
+            <span class="standard-num">03</span>
+            <h3 class="standard-title">Purposeful Enterprise</h3>
+            <p class="standard-desc">
+              Every vertical we launch is evaluated for tangible community value, sustainable scale, and economic contribution.
+            </p>
+          </div>
+
+          <div class="standard-card">
+            <span class="standard-num">04</span>
+            <h3 class="standard-title">Accountable Stewardship</h3>
+            <p class="standard-desc">
+              Rigorous governance, environmental responsibility in agro-processing, and enduring institutional reliability.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Final CTA Callout -->
+    <section class="final-cta-section" aria-labelledby="cta-heading">
+      <div class="container">
+        <div class="final-cta-inner">
+          <div class="home-hero-badge" style="margin-bottom: var(--space-sm);">Commercial Collaboration</div>
+          <h2 class="final-cta-title" id="cta-heading">"Let's Build Something Meaningful."</h2>
+          <p class="final-cta-desc">
+            Whether you are reserving early harvest allocations for your household or exploring strategic enterprise partnerships with Kabod Crest, we invite you to begin the conversation.
+          </p>
+          <div class="final-cta-buttons">
+            <a href="shop.html" class="btn-hero-primary">
+              <span>Explore Pre-Order Catalog</span>
+            </a>
+            <a href="business-services.html#partner" class="btn-hero-secondary">
+              <span>Partner With Us</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Pre-Order Allocation</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close pre-order drawer">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your pre-order allocation is empty.</p>
+        <p style="font-size: 0.8125rem;">Select products from the catalog to reserve your early batch dispatch.</p>
+      </div>
+      <ul class="cart-items-list" id="cart-items-list"></ul>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-policy-note">
+        <strong>Pre-Order Policy:</strong> Commercial unit prices are currently [TBC]. Reserving now guarantees priority dispatch.
+      </div>
+      <a href="cart.html" class="btn-cart-checkout">Review Pre-Order & Confirm</a>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">KABOD CREST LIMITED</div>
+          <p class="footer-brand-line">"Building with Purpose. Creating with Distinction."</p>
+          <div class="footer-tagline">Excellence with Integrity</div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-light-muted); margin-top: var(--space-xs);">
+            A newly registered Nigerian enterprise committed to purposeful commercial development, ethical agro-processing, and enduring quality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Business Verticals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
+            <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="hospitality.html">Hospitality & Food Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="business-services.html">Business Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company & Contacts</h4>
+          <ul class="footer-nav-list">
+            <li><a href="about.html">About Kabod Crest</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></li>
+            <li><a href="tel:+2349053807722">+234 905 380 7722</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Mobile menu script -->
+  <script>
+    (function() {
+      const toggle = document.querySelector('.js-mobile-menu-toggle');
+      const pane = document.getElementById('mobile-nav-pane');
+      const backdrop = document.getElementById('mobile-nav-backdrop');
+      const close = document.querySelector('.js-mobile-nav-close');
+
+      function openMenu() {
+        if (pane && backdrop) {
+          pane.classList.add('open');
+          backdrop.classList.add('open');
+          pane.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeMenu() {
+        if (pane && backdrop) {
+          pane.classList.remove('open');
+          backdrop.classList.remove('open');
+          pane.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (toggle) toggle.addEventListener('click', openMenu);
+      if (close) close.addEventListener('click', closeMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+    })();
+  </script>
+</body>
+</html>

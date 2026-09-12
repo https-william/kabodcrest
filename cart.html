@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pre-Order Cart — Kabod Crest Foods</title>
+  <meta name="description" content="Review your agro-produce pre-order allocation before proceeding to worldwide delivery checkout." />
+
+  <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+</head>
+<body>
+
+  <!-- Persistent Pre-order Announcement Banner -->
+  <aside class="preorder-banner" aria-label="Order status notification">
+    <div class="container">
+      <div class="preorder-banner-content">
+        <span class="preorder-pulse-dot" aria-hidden="true"></span>
+        <span class="preorder-banner-text">Commercial Pre-Orders Active &mdash; Nationwide & Worldwide Delivery</span>
+        <a href="shop.html" class="preorder-banner-link">Catalog &rarr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+        <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+          <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+          <path d="M 24 45 L 48 45 L 64 29" />
+          <path d="M 38 45 L 62 72" />
+        </svg>
+        <div class="brand-logo-text">
+          <span class="brand-name">KABOD CREST</span>
+          <span class="brand-subline">Excellence with Integrity</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link active">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+          <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-btn-label">Pre-Orders</span>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn js-mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Step Progress Bar -->
+  <nav class="flow-steps-bar" aria-label="Checkout Progress">
+    <div class="container">
+      <ol class="flow-steps-list">
+        <li class="flow-step-item active">
+          <span class="flow-step-num">1</span>
+          <span>Review Allocation</span>
+        </li>
+        <li class="flow-step-divider" aria-hidden="true"></li>
+        <li class="flow-step-item">
+          <span class="flow-step-num">2</span>
+          <span>Worldwide Delivery</span>
+        </li>
+        <li class="flow-step-divider" aria-hidden="true"></li>
+        <li class="flow-step-item">
+          <span class="flow-step-num">3</span>
+          <span>Confirmation</span>
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="cart-page-section">
+    <div class="container">
+      <!-- Active Cart Grid -->
+      <div class="cart-layout-grid" id="cart-active-view">
+        <!-- Left: Line Items List -->
+        <div class="cart-table-card">
+          <div class="cart-table-header">
+            <h1 class="cart-table-title">Your Pre-Order Allocation</h1>
+            <span style="font-size: 0.8125rem; color: var(--color-text-muted);" id="cart-page-count">0 items</span>
+          </div>
+          <div class="cart-lines-container" id="cart-lines-body">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right: Summary Box -->
+        <aside class="summary-box-card" aria-labelledby="summary-heading">
+          <h2 class="summary-box-title" id="summary-heading">Order Summary</h2>
+
+          <div class="summary-line-item">
+            <span>Reserved Items:</span>
+            <span id="summary-items-count" style="font-weight: 600;">0</span>
+          </div>
+
+          <div class="summary-line-item">
+            <span>Commercial Rate:</span>
+            <span style="font-family: var(--font-structural); font-weight: 600; color: var(--color-plum);">[TBC on Invoice]</span>
+          </div>
+
+          <div class="summary-total-row">
+            <span>Estimated Payable:</span>
+            <span>Price: [TBC]</span>
+          </div>
+
+          <div class="summary-policy-notice">
+            <strong>Commercial Pre-Order:</strong> No upfront payment is charged right now. Reserving locks in your allocation directly from the first completed production batch.
+          </div>
+
+          <a href="checkout.html" class="btn-primary-action" id="btn-proceed-checkout">
+            Proceed to Worldwide Checkout &rarr;
+          </a>
+
+          <a href="shop.html" class="btn-secondary-action">
+            &larr; Add More Agro-Produce
+          </a>
+        </aside>
+      </div>
+
+      <!-- Empty Cart State -->
+      <div class="cart-empty-wrapper" id="cart-empty-view" style="display: none;">
+        <svg class="cart-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        <h2 style="font-family: var(--font-structural); font-size: 1.5rem; margin-bottom: var(--space-xs); color: var(--color-obsidian);">Your Pre-Order Bag is Empty</h2>
+        <p style="font-size: 0.9375rem; color: var(--color-text-muted); margin-bottom: var(--space-xl);">
+          You have not reserved any agro-produce yet. Explore our harvest catalog to allocate products from our upcoming commercial batch.
+        </p>
+        <a href="shop.html" class="btn-primary-action" style="display: inline-flex; width: auto; padding: 12px 28px;">
+          Explore Kabod Crest Foods Catalog
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Pre-Order Allocation</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close pre-order drawer">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your pre-order allocation is empty.</p>
+        <p style="font-size: 0.8125rem;">Select products from the catalog to reserve your early batch dispatch.</p>
+      </div>
+      <ul class="cart-items-list" id="cart-items-list"></ul>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-policy-note">
+        <strong>Pre-Order Policy:</strong> Commercial unit prices are currently [TBC]. Reserving now guarantees priority dispatch.
+      </div>
+      <a href="cart.html" class="btn-cart-checkout">Review Pre-Order & Confirm</a>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">KABOD CREST LIMITED</div>
+          <p class="footer-brand-line">"Building with Purpose. Creating with Distinction."</p>
+          <div class="footer-tagline">Excellence with Integrity</div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-light-muted); margin-top: var(--space-xs);">
+            A diversified Nigerian enterprise committed to purposeful enterprise, ethical agro-processing, and enduring quality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Business Verticals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
+            <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="hospitality.html">Hospitality & Food Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="business-services.html">Business Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company & Ordering</h4>
+          <ul class="footer-nav-list">
+            <li><a href="about.html">About Kabod Crest</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></li>
+            <li><a href="tel:+2349053807722">+234 905 380 7722</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise • Worldwide Delivery Available</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+
+  <!-- Cart Page Local Controller -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeView = document.getElementById('cart-active-view');
+      const emptyView = document.getElementById('cart-empty-view');
+      const linesContainer = document.getElementById('cart-lines-body');
+      const countEl = document.getElementById('cart-page-count');
+      const summaryCount = document.getElementById('summary-items-count');
+
+      function renderCartPage() {
+        const items = window.KabodCart ? window.KabodCart.getItems() : [];
+        const total = window.KabodCart ? window.KabodCart.getTotalCount() : 0;
+
+        if (items.length === 0) {
+          if (activeView) activeView.style.display = 'none';
+          if (emptyView) emptyView.style.display = 'block';
+          return;
+        }
+
+        if (activeView) activeView.style.display = 'grid';
+        if (emptyView) emptyView.style.display = 'none';
+
+        if (countEl) countEl.textContent = `${total} item${total === 1 ? '' : 's'}`;
+        if (summaryCount) summaryCount.textContent = total;
+
+        if (linesContainer) {
+          linesContainer.innerHTML = items.map(item => `
+            <div class="cart-line-row" data-id="${item.id}">
+              <div class="cart-line-thumb">
+                <img src="${item.image}" alt="${item.name}" />
+              </div>
+              <div class="cart-line-details">
+                <span class="cart-line-tag">PRE-ORDER</span>
+                <div class="cart-line-name">${item.name}</div>
+                <div class="cart-line-spec">${item.weight} • ${item.category}</div>
+                <span class="cart-line-price">${item.priceDisplay}</span>
+              </div>
+              <div class="cart-line-actions">
+                <div class="cart-qty-control" role="group" aria-label="Quantity">
+                  <button type="button" class="qty-btn js-cart-minus" data-id="${item.id}" aria-label="Decrease quantity">-</button>
+                  <span class="qty-val">${item.quantity}</span>
+                  <button type="button" class="qty-btn js-cart-plus" data-id="${item.id}" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="cart-line-remove-btn js-cart-remove" data-id="${item.id}">Remove</button>
+              </div>
+            </div>
+          `).join('');
+
+          linesContainer.querySelectorAll('.js-cart-minus').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const id = btn.getAttribute('data-id');
+              const item = window.KabodCart.getItem(id);
+              if (item) window.KabodCart.updateQuantity(id, item.quantity - 1);
+            });
+          });
+
+          linesContainer.querySelectorAll('.js-cart-plus').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const id = btn.getAttribute('data-id');
+              const item = window.KabodCart.getItem(id);
+              if (item) window.KabodCart.updateQuantity(id, item.quantity + 1);
+            });
+          });
+
+          linesContainer.querySelectorAll('.js-cart-remove').forEach(btn => {
+            btn.addEventListener('click', () => {
+              const id = btn.getAttribute('data-id');
+              window.KabodCart.removeItem(id);
+            });
+          });
+        }
+      }
+
+      window.addEventListener('kabod:cart-updated', renderCartPage);
+      renderCartPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Kabod Crest Geometric Monogram (KC Interlocking Shield Crest) -->
+  <!-- Outer Crest & Top Peaks -->
+  <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+  <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+  <!-- Inner K & C Interlocking Diagonals -->
+  <path d="M 24 45 L 48 45 L 64 29" />
+  <path d="M 38 45 L 62 72" />
+</svg>

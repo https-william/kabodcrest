@@ -1,0 +1,71 @@
+/**
+ * Kabod Crest Limited - Design Tokens
+ * Source of Truth: kabod-crest-brand skill & brand guidelines
+ * Brand Territory: Quiet Authority (refined, credible, purposeful, premium, modern, African)
+ */
+
+:root {
+  /* Color Palette - Locked Brand Constants */
+  --color-obsidian: #0B0B0B;        /* 40% - Structure, grounding, high contrast sections */
+  --color-plum: #321A4A;            /* 25% - Primary identity colour (dominant, not gold) */
+  --color-plum-deep: #1E0F2D;       /* Deep Plum for high-contrast dark accents */
+  --color-plum-hover: #452467;      /* Interactive hover state for plum elements */
+  --color-gold: #C8A45D;            /* 20% - Accent ONLY: dividers, icons, CTA highlights */
+  --color-gold-hover: #D8B775;      /* Gold hover highlight */
+  --color-gold-tint: rgba(200, 164, 93, 0.12); /* Subtle gold background tint */
+  --color-gold-border: rgba(200, 164, 93, 0.35); /* Subtle gold framing */
+  --color-ivory: #F4F0E8;           /* 10% - Primary light background */
+  --color-ivory-warm: #EFE9DD;      /* Slightly deeper ivory for container contrast */
+  --color-ivory-surface: #FCFAF6;   /* Clean card surface */
+  --color-stone: #B8B1A5;           /* 5% - Secondary neutral: structural borders and lines */
+  --color-stone-muted: rgba(184, 177, 165, 0.35); /* Transparent stone dividers */
+  --color-white: #FFFFFF;
+
+  /* Typography Colors - High-Contrast & Highly Readable (WCAG AAA/AA Compliant) */
+  --color-text-dark: #121013;       /* High-contrast near-black for primary headlines/titles */
+  --color-text-muted: #3D3730;      /* Deep rich warm charcoal for all secondary body copy, cards, specs */
+  --color-text-subtle: #5C554C;     /* Refined readable tone for metadata and form labels */
+  --color-text-light: #FAF7F2;      /* Crisp warm ivory-white for dark obsidian/plum backgrounds */
+  --color-text-light-muted: #D6CFBF;/* High-contrast readable stone for secondary text on dark surfaces */
+
+  /* Typography Families */
+  --font-structural: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-editorial: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+
+  /* Layout */
+  --container-max-width: 1240px;
+  --header-height: 72px;
+  --banner-height: 36px;
+
+  /* Softened Border Radius Scale - Eliminating harsh "sharp/pointed" edges */
+  --radius-xs: 4px;                 /* Micro indicators and subtle badges */
+  --radius-badge: 6px;              /* Status pills and small tags */
+  --radius-subtle: 8px;             /* Inputs, selects, textareas, small controls */
+  --radius-btn: 10px;               /* Buttons and interactive action links */
+  --radius-card-sm: 12px;           /* Thumbnails, tabs, sub-cards, accordion headers */
+  --radius-card: 16px;              /* Standard cards, matrix tiles, containers */
+  --radius-card-lg: 20px;           /* Featured hero visual cards, large panels */
+  --radius-modal: 22px;             /* Modals, drawers, high-level floating surfaces */
+  --radius-pill: 9999px;            /* Category filter pills, rounded counters */
+
+  /* Elevation Shadows - Soft, subtle tactile warmth */
+  --shadow-sm: 0 2px 8px rgba(11, 11, 11, 0.04);
+  --shadow-card: 0 4px 20px rgba(11, 11, 11, 0.05);
+  --shadow-hover: 0 10px 30px rgba(50, 26, 74, 0.09);
+
+  /* Transitions - Disciplined and subtle */
+  --transition-fast: 160ms ease;
+  --transition-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}

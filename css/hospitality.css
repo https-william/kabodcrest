@@ -1,0 +1,257 @@
+/* ==========================================================================
+   Kabod Crest - Hospitality & Food Services Page Styles
+   Source of Truth: kabod-crest-brand, frontend-design, brand-guidelines
+   Tone: Quiet Authority, future direction, refined restraint
+   ========================================================================== */
+
+/* Hero Section */
+.hospitality-hero {
+  background-color: var(--color-obsidian);
+  color: var(--color-text-light);
+  padding: var(--space-4xl) 0 var(--space-3xl);
+  border-bottom: 1px solid rgba(200, 164, 93, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.hospitality-hero::before {
+  content: '';
+  position: absolute;
+  top: -35%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(50, 26, 74, 0.5) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hospitality-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.hospitality-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 5px 14px;
+  border-radius: var(--radius-badge);
+  background-color: rgba(200, 164, 93, 0.16);
+  border: 1px solid rgba(200, 164, 93, 0.4);
+  color: var(--color-gold);
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-md);
+}
+
+.hospitality-hero-title {
+  font-family: var(--font-structural);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .hospitality-hero-title {
+    font-size: 3rem;
+  }
+}
+
+.hospitality-hero-lead {
+  font-family: var(--font-editorial);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--color-gold);
+  line-height: 1.35;
+  margin-bottom: var(--space-md);
+}
+
+.hospitality-hero-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+/* ==========================================================================
+   Vision & Concept Section
+   ========================================================================== */
+.hospitality-vision-section {
+  padding: var(--space-3xl) 0;
+  background-color: var(--color-ivory);
+}
+
+.vision-intro-box {
+  max-width: 720px;
+  margin-bottom: var(--space-2xl);
+}
+
+.vision-eyebrow {
+  font-family: var(--font-structural);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-plum);
+  margin-bottom: var(--space-xs);
+}
+
+.vision-heading {
+  font-family: var(--font-structural);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  line-height: 1.25;
+  margin-bottom: var(--space-sm);
+}
+
+.vision-body-text {
+  font-size: 0.9375rem;
+  color: var(--color-text-dark);
+  line-height: 1.65;
+  margin-bottom: var(--space-sm);
+}
+
+.vision-disclaimer-note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  border-left: 3px solid var(--color-gold);
+  padding-left: var(--space-sm);
+  font-style: italic;
+}
+
+/* Concepts 3-Columns Grid */
+.concept-pillars-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .concept-pillars-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.concept-card {
+  background-color: var(--color-ivory-surface);
+  border: 1px solid rgba(50, 26, 74, 0.12);
+  border-top: 4px solid var(--color-plum);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.concept-card:hover {
+  border-top-color: var(--color-gold);
+  border-color: var(--color-plum);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.concept-label {
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--color-plum);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-xs);
+}
+
+.concept-title {
+  font-family: var(--font-structural);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--space-2xs);
+}
+
+.concept-desc {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Get In Touch Inquiry Form
+   ========================================================================== */
+.hospitality-inquiry-section {
+  padding: var(--space-3xl) 0 var(--space-4xl);
+  background-color: var(--color-ivory-warm);
+  border-top: 1px solid var(--color-stone-muted);
+}
+
+.hospitality-form-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  background-color: var(--color-ivory-surface);
+  border: 1px solid rgba(50, 26, 74, 0.12);
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.hosp-form-header {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.hosp-form-title {
+  font-family: var(--font-structural);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--space-2xs);
+}
+
+.hosp-form-lead {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.btn-hosp-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 13px 20px;
+  background-color: var(--color-plum);
+  color: var(--color-text-light);
+  font-family: var(--font-structural);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-plum);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-hosp-submit:hover {
+  background-color: var(--color-plum-hover);
+  border-color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+#hosp-success-card {
+  display: none;
+  text-align: center;
+  padding: var(--space-xl) var(--space-md);
+  border-radius: var(--radius-card);
+  background-color: #F8F5ED;
+  border: 1px solid rgba(200, 164, 93, 0.3);
+}

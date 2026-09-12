@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospitality & Food Services — Kabod Crest Limited</title>
+  <meta name="description" content="Future culinary and hospitality concepts by Kabod Crest Limited. Grounded in produce integrity, thoughtful presentation, and authentic African warmth." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link rel="stylesheet" href="css/hospitality.css" />
+</head>
+<body>
+
+  <!-- Persistent Pre-order Announcement Banner -->
+  <aside class="preorder-banner" aria-label="Order status notification">
+    <div class="container">
+      <div class="preorder-banner-content">
+        <span class="preorder-pulse-dot" aria-hidden="true"></span>
+        <span class="preorder-banner-text">Commercial Pre-Orders Active &mdash; Nationwide & Worldwide Delivery</span>
+        <a href="shop.html" class="preorder-banner-link">Catalog &rarr;</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+        <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+          <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+          <path d="M 24 45 L 48 45 L 64 29" />
+          <path d="M 38 45 L 62 72" />
+        </svg>
+        <div class="brand-logo-text">
+          <span class="brand-name">KABOD CREST</span>
+          <span class="brand-subline">Excellence with Integrity</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation -->
+      <nav class="primary-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link active" aria-current="page">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+          <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-btn-label">Pre-Orders</span>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </button>
+
+        <button type="button" class="mobile-menu-btn js-mobile-menu-toggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Pane -->
+  <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+    <div>
+      <div class="mobile-nav-header">
+        <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
+        <button type="button" class="cart-drawer-close-btn js-mobile-nav-close" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Foods & Shop</a>
+        <a href="events.html" class="nav-link">Events</a>
+        <a href="hospitality.html" class="nav-link active">Hospitality</a>
+        <a href="business-services.html" class="nav-link">Business Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+    <div style="font-size: 0.75rem; color: var(--color-text-light-muted);">
+      Kabod Crest Limited • Excellence with Integrity
+    </div>
+  </div>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hospitality-hero">
+      <div class="container">
+        <div class="hospitality-hero-inner">
+          <div class="hospitality-badge">Hospitality & Food Services • Future Concept</div>
+          <h1 class="hospitality-hero-title">Culinary Experiences Crafted with Purpose & Distinction</h1>
+          <p class="hospitality-hero-lead">"Where authentic African culinary heritage meets uncompromising presentation."</p>
+          <p class="hospitality-hero-desc">
+            Kabod Crest is exploring future hospitality and dining concepts centered on ingredient integrity, thoughtful culinary aesthetics, and genuine customer care. While our agro-produce processing division is our active commercial priority, this vertical represents our forward-looking vision for African food service.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision & Concept Section -->
+    <section class="hospitality-vision-section" aria-labelledby="vision-heading">
+      <div class="container">
+        <div class="vision-intro-box">
+          <div class="vision-eyebrow">Concept Direction</div>
+          <h2 class="vision-heading" id="vision-heading">Quality, Presentation, and Experience</h2>
+          <p class="vision-body-text">
+            Our approach to hospitality rejects the loud and gimmicky in favor of quiet culinary authority. We envision dining environments where pure Nigerian ingredients are elevated through masterful traditional cooking and respectful modern presentation.
+          </p>
+          <div class="vision-disclaimer-note">
+            Note: Specific locations, dining menus, and operating hours are currently in formulation and will be announced upon formal commercial rollout.
+          </div>
+        </div>
+
+        <!-- Concept Pillars -->
+        <div class="concept-pillars-grid">
+          <div class="concept-card">
+            <span class="concept-label">Focus 01</span>
+            <h3 class="concept-title">Ingredient Integrity</h3>
+            <p class="concept-desc">
+              Drawing directly from our own rigorously cleaned, unadulterated Nigerian agro-produce supply for uncompromised flavor.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <span class="concept-label">Focus 02</span>
+            <h3 class="concept-title">Thoughtful Presentation</h3>
+            <p class="concept-desc">
+              Celebrating African gastronomy with aesthetic restraint, tactile tableware, and refined visual appeal.
+            </p>
+          </div>
+
+          <div class="concept-card">
+            <span class="concept-label">Focus 03</span>
+            <h3 class="concept-title">Attentive Hospitality</h3>
+            <p class="concept-desc">
+              Curating warm, unhurried, human-centered guest experiences that honor the timeless African tradition of welcoming guests.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Simple Get In Touch Inquiry Form -->
+    <section class="hospitality-inquiry-section" aria-labelledby="hosp-form-title">
+      <div class="container">
+        <div class="hospitality-form-wrap">
+          <div class="hosp-form-header">
+            <h2 class="hosp-form-title" id="hosp-form-title">Get in Touch</h2>
+            <p class="hosp-form-lead">
+              Interested in future pop-up dining, chef collaborations, or hospitality partnerships? Leave a message for our concept development team.
+            </p>
+          </div>
+
+          <div id="hosp-form-card">
+            <form id="hospitality-inquiry-form">
+              <div class="form-group">
+                <label for="hosp-name" class="form-label">Full Name <span class="required-mark">*</span></label>
+                <input type="text" id="hosp-name" class="form-input" placeholder="Your name" required />
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label for="hosp-email" class="form-label">Email Address <span class="required-mark">*</span></label>
+                  <input type="email" id="hosp-email" class="form-input" placeholder="name@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="hosp-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
+                  <input type="tel" id="hosp-phone" class="form-input" placeholder="+234 ..." required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="hosp-org" class="form-label">Company / Affiliation <span style="font-weight: 400; color: var(--color-text-muted);">(Optional)</span></label>
+                <input type="text" id="hosp-org" class="form-input" placeholder="e.g. Culinary Brand, Private Patron" />
+              </div>
+
+              <div class="form-group">
+                <label for="hosp-message" class="form-label">Message / Area of Interest <span class="required-mark">*</span></label>
+                <textarea id="hosp-message" class="form-textarea" rows="3" placeholder="Tell us about your interest or collaboration idea..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-hosp-submit" style="margin-top: var(--space-md);">
+                <span>Get in Touch</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Success State View -->
+            <div class="inquiry-success-card" id="hosp-success-card">
+              <div class="success-icon-wrap" aria-hidden="true">&#10003;</div>
+              <h3 style="font-family: var(--font-structural); font-size: 1.25rem; color: var(--color-obsidian); margin-bottom: var(--space-xs);">
+                Message Received
+              </h3>
+              <p style="font-size: 0.875rem; color: var(--color-text-muted); line-height: 1.5; margin-bottom: var(--space-lg);">
+                Thank you, <strong id="hosp-success-name" style="color: var(--color-obsidian);">Friend</strong>. Your note has been registered with our concept team. We will keep your details noted for future hospitality announcements.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-sm);">
+                <a href="#" class="btn-primary-action btn-whatsapp-share" id="hosp-whatsapp-link" target="_blank" rel="noopener noreferrer">
+                  <span>Connect via WhatsApp</span>
+                </a>
+                <button type="button" class="btn-secondary-action" id="btn-hosp-reset">
+                  Send another note
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Pre-Order Allocation</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close pre-order drawer">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your pre-order allocation is empty.</p>
+        <p style="font-size: 0.8125rem;">Select products from the catalog to reserve your early batch dispatch.</p>
+      </div>
+      <ul class="cart-items-list" id="cart-items-list"></ul>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-policy-note">
+        <strong>Pre-Order Policy:</strong> Commercial unit prices are currently [TBC]. Reserving now guarantees priority dispatch.
+      </div>
+      <a href="cart.html" class="btn-cart-checkout">Review Pre-Order & Confirm</a>
+    </div>
+  </aside>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-brand-title">KABOD CREST LIMITED</div>
+          <p class="footer-brand-line">"Building with Purpose. Creating with Distinction."</p>
+          <div class="footer-tagline">Excellence with Integrity</div>
+          <p style="font-size: 0.8125rem; color: var(--color-text-light-muted); margin-top: var(--space-xs);">
+            A diversified Nigerian enterprise committed to purposeful enterprise, ethical agro-processing, and enduring quality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Business Verticals</h4>
+          <ul class="footer-nav-list">
+            <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
+            <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="hospitality.html">Hospitality & Food Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+            <li><a href="business-services.html">Business Services</a> <span class="vertical-badge upcoming">Upcoming</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company & Contact</h4>
+          <ul class="footer-nav-list">
+            <li><a href="about.html">About Kabod Crest</a></li>
+            <li><a href="contact.html">Corporate Contact</a></li>
+            <li><a href="mailto:kabodcrest@gmail.com">kabodcrest@gmail.com</a></li>
+            <li><a href="tel:+2349053807722">+234 905 380 7722</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/products-data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/hospitality.js"></script>
+
+  <!-- Mobile menu script -->
+  <script>
+    (function() {
+      const toggle = document.querySelector('.js-mobile-menu-toggle');
+      const pane = document.getElementById('mobile-nav-pane');
+      const backdrop = document.getElementById('mobile-nav-backdrop');
+      const close = document.querySelector('.js-mobile-nav-close');
+
+      function openMenu() {
+        if (pane && backdrop) {
+          pane.classList.add('open');
+          backdrop.classList.add('open');
+          pane.setAttribute('aria-hidden', 'false');
+        }
+      }
+
+      function closeMenu() {
+        if (pane && backdrop) {
+          pane.classList.remove('open');
+          backdrop.classList.remove('open');
+          pane.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      if (toggle) toggle.addEventListener('click', openMenu);
+      if (close) close.addEventListener('click', closeMenu);
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+    })();
+  </script>
+</body>
+</html>
