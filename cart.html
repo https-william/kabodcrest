@@ -235,6 +235,11 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/site-motion.js"></script>
+  <script src="js/currency-service.js"></script>
   <script src="js/products-data.js"></script>
   <script src="js/cart.js"></script>
 
@@ -264,16 +269,24 @@
         if (summaryCount) summaryCount.textContent = total;
 
         if (linesContainer) {
-          linesContainer.innerHTML = items.map(item => `
+          linesContainer.innerHTML = items.map(item => {
+            let priceText = item.priceDisplay;
+            if (item.price && window.KabodCurrency) {
+              const estimate = window.KabodCurrency.formatEstimate(item.price);
+              if (estimate) {
+                priceText = `${item.priceDisplay} <span style="font-size: 0.6875rem; color: var(--color-gold); font-weight: 500;">${estimate}</span>`;
+              }
+            }
+            return `
             <div class="cart-line-row" data-id="${item.id}">
               <div class="cart-line-thumb">
                 <img src="${item.image}" alt="${item.name}" />
               </div>
               <div class="cart-line-details">
-                <span class="cart-line-tag">PRE-ORDER</span>
+                <span class="cart-line-tag">ALLOCATION</span>
                 <div class="cart-line-name">${item.name}</div>
                 <div class="cart-line-spec">${item.weight} • ${item.category}</div>
-                <span class="cart-line-price">${item.priceDisplay}</span>
+                <span class="cart-line-price">${priceText}</span>
               </div>
               <div class="cart-line-actions">
                 <div class="cart-qty-control" role="group" aria-label="Quantity">
@@ -284,7 +297,8 @@
                 <button type="button" class="cart-line-remove-btn js-cart-remove" data-id="${item.id}">Remove</button>
               </div>
             </div>
-          `).join('');
+            `;
+          }).join('');
 
           linesContainer.querySelectorAll('.js-cart-minus').forEach(btn => {
             btn.addEventListener('click', () => {

@@ -81,8 +81,30 @@ document.addEventListener('DOMContentLoaded', () => {
     deliveryDestEl.textContent = parts.join(', ');
   }
 
+  const shippingNameEl = document.getElementById('conf-shipping-name');
+  const shippingMetaEl = document.getElementById('conf-shipping-meta');
+
   if (totalCountEl) {
     totalCountEl.textContent = `${order.totalCount} items in pre-order allocation`;
+  }
+
+  // Populate Shipping Tier Info
+  if (shippingNameEl) {
+    if (order.shippingTier && order.shippingTier.name) {
+      shippingNameEl.textContent = order.shippingTier.name;
+    } else {
+      shippingNameEl.textContent = "Standard Agro-Freight Allocation";
+    }
+  }
+  if (shippingMetaEl) {
+    if (order.shippingTier) {
+      const parts = [];
+      if (order.shippingTier.estimatedDays) parts.push(order.shippingTier.estimatedDays);
+      if (order.shippingTier.rateDisplay) parts.push(order.shippingTier.rateDisplay);
+      shippingMetaEl.textContent = parts.join(' • ') || 'Rate confirmed prior to dispatch';
+    } else {
+      shippingMetaEl.textContent = 'Rate confirmed prior to dispatch';
+    }
   }
 
   // 4. Populate Line Items Table
@@ -106,8 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. WhatsApp Trade Desk Link
   if (whatsappBtn) {
     const itemListText = order.items.map(i => `• ${i.name} (${i.weight}) x${i.quantity}`).join('%0A');
-    const msg = `Hello Kabod Crest, I have placed Pre-Order *${order.orderRef}*:%0A${itemListText}%0ADelivery to: ${order.delivery.city}, ${order.delivery.country}. Please advise when commercial rates and invoice are ready.`;
-    whatsappBtn.href = `https://wa.me/?text=${msg}`;
+    const tierLine = (order.shippingTier && order.shippingTier.name) ? `%0AShipping Tier: ${order.shippingTier.name}` : '';
+    const msg = `Hello Kabod Crest, I have placed Pre-Order *${order.orderRef}*:%0A${itemListText}%0ADelivery to: ${order.delivery.city}, ${order.delivery.country}${tierLine}. Please advise when commercial rates and invoice are ready.`;
+    whatsappBtn.href = `https://wa.me/2349053807722?text=${msg}`;
   }
 
   // 6. Download / Print Receipt Handler

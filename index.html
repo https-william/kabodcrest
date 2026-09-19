@@ -121,7 +121,7 @@
               Kabod Crest Limited is a newly registered Nigerian diversified enterprise. We are food-first for now—processing wholesome Nigerian agro-produce with disciplined hygiene and culinary integrity—anchored by an enduring, multi-sector vision.
             </p>
             <div class="home-hero-actions">
-              <a href="shop.html" class="btn-hero-primary">
+              <a href="shop.html" class="btn-hero-primary btn-border-beam">
                 <span>Shop Pre-Orders</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -163,11 +163,44 @@
       </div>
     </section>
 
+    <!-- Slow-Moving Ingredient Ticker Marquee -->
+    <aside class="ingredient-marquee" aria-label="Signature Produce Marquee">
+      <div class="ingredient-marquee-track">
+        <div class="ingredient-marquee-content">
+          <span>Dehydrated Ugwu</span><span class="ingredient-marquee-dot">•</span>
+          <span>Ginger Powder</span><span class="ingredient-marquee-dot">•</span>
+          <span>Jollof Rice Spice</span><span class="ingredient-marquee-dot">•</span>
+          <span>Shelled Egusi</span><span class="ingredient-marquee-dot">•</span>
+          <span>Fermented Iru</span><span class="ingredient-marquee-dot">•</span>
+          <span>Atlantic Stockfish</span><span class="ingredient-marquee-dot">•</span>
+          <span>Kulikuli Crunch</span><span class="ingredient-marquee-dot">•</span>
+          <span>Dika Nut Ogbono</span><span class="ingredient-marquee-dot">•</span>
+          <span>Zobo Calyces</span><span class="ingredient-marquee-dot">•</span>
+          <span>Pure Shea Butter</span><span class="ingredient-marquee-dot">•</span>
+          <span>Authentic Nigerian Harvest</span><span class="ingredient-marquee-dot">•</span>
+        </div>
+        <div class="ingredient-marquee-content" aria-hidden="true">
+          <span>Dehydrated Ugwu</span><span class="ingredient-marquee-dot">•</span>
+          <span>Ginger Powder</span><span class="ingredient-marquee-dot">•</span>
+          <span>Jollof Rice Spice</span><span class="ingredient-marquee-dot">•</span>
+          <span>Shelled Egusi</span><span class="ingredient-marquee-dot">•</span>
+          <span>Fermented Iru</span><span class="ingredient-marquee-dot">•</span>
+          <span>Atlantic Stockfish</span><span class="ingredient-marquee-dot">•</span>
+          <span>Kulikuli Crunch</span><span class="ingredient-marquee-dot">•</span>
+          <span>Dika Nut Ogbono</span><span class="ingredient-marquee-dot">•</span>
+          <span>Zobo Calyces</span><span class="ingredient-marquee-dot">•</span>
+          <span>Pure Shea Butter</span><span class="ingredient-marquee-dot">•</span>
+          <span>Authentic Nigerian Harvest</span><span class="ingredient-marquee-dot">•</span>
+        </div>
+      </div>
+    </aside>
+
     <!-- Section 2: Who We Are -->
     <section class="who-section" id="who-we-are" aria-labelledby="who-heading">
       <div class="container">
         <div class="section-eyebrow">Institutional Foundation</div>
         <h2 class="section-title" id="who-heading">An Intentional African Enterprise</h2>
+        <span class="gold-hairline" aria-hidden="true"></span>
         <p class="section-intro-text">
           Kabod Crest Limited is newly incorporated with a clear mandate: to establish quiet authority across commercial sectors through uncompromising standards of execution, authentic African provenance, and institutional governance.
         </p>
@@ -200,30 +233,38 @@
       </div>
     </section>
 
-    <!-- Section 3: Our Businesses — One Vision, Multiple Expressions -->
+    <!-- Section 3: Our Businesses — One Vision, Multiple Expressions (Bento Grid) -->
     <section class="businesses-section" aria-labelledby="biz-heading">
       <div class="container">
         <div class="section-eyebrow">Corporate Portfolio</div>
         <h2 class="section-title" id="biz-heading">Our Businesses — One Vision, Multiple Expressions</h2>
+        <span class="gold-hairline" aria-hidden="true"></span>
         <p class="section-intro-text">
           Structured across four commercial pillars, we maintain focused operational execution while preparing for multi-sector expansion.
         </p>
 
-        <div class="businesses-grid">
-          <!-- Vertical 1: Food (Active) -->
-          <article class="biz-card biz-active">
-            <div class="biz-badge-row">
-              <span class="biz-status-pill active">Active Operating Focus</span>
+        <div class="businesses-bento-grid">
+          <!-- Vertical 1: Food (Active - Largest Bento Anchor) -->
+          <article class="biz-card biz-active biz-bento-food">
+            <div>
+              <div class="biz-badge-row">
+                <span class="biz-status-pill active">Active Operating Focus</span>
+                <span style="font-family: var(--font-structural); font-size: 0.6875rem; color: var(--color-gold); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">Batch 01 Live</span>
+              </div>
+              <h3 class="biz-title" style="font-size: 1.5rem; margin-bottom: var(--space-sm);">Food & Consumer Products</h3>
+              <p class="biz-desc" style="font-size: 0.9375rem; line-height: 1.65; max-width: 58ch;">
+                Our active operational division. Processing, packaging, and distributing wholesome Nigerian agro-produce—including Dehydrated Ugwu (250g @ ₦10,000), Ginger Powder, Jollof Rice Spice, and heritage staples—sealed in moisture-barrier pouches for worldwide delivery.
+              </p>
             </div>
-            <h3 class="biz-title">Food & Consumer Products</h3>
-            <p class="biz-desc">
-              Our active operational division. Processing, packaging, and distributing wholesome Nigerian agro-produce—including Dehydrated Ugwu, Egusi, Kulikuli, and authentic seasonings—sealed for worldwide delivery.
-            </p>
-            <a href="shop.html" class="biz-link">Shop Pre-Order Catalog &rarr;</a>
+            <div style="margin-top: var(--space-md);">
+              <a href="shop.html" class="btn-hero-primary btn-border-beam" style="font-size: 0.8125rem; padding: 10px 20px;">
+                <span>Shop Catalog & Pre-Orders &rarr;</span>
+              </a>
+            </div>
           </article>
 
           <!-- Vertical 2: Events (Future) -->
-          <article class="biz-card">
+          <article class="biz-card biz-bento-events">
             <div class="biz-badge-row">
               <span class="biz-status-pill future">Future Direction</span>
             </div>
@@ -235,7 +276,7 @@
           </article>
 
           <!-- Vertical 3: Hospitality (Future) -->
-          <article class="biz-card">
+          <article class="biz-card biz-bento-hospitality">
             <div class="biz-badge-row">
               <span class="biz-status-pill future">Future Direction</span>
             </div>
@@ -247,7 +288,7 @@
           </article>
 
           <!-- Vertical 4: Business Services (Future) -->
-          <article class="biz-card">
+          <article class="biz-card biz-bento-services">
             <div class="biz-badge-row">
               <span class="biz-status-pill future">Future Direction</span>
             </div>
@@ -268,8 +309,9 @@
           <div>
             <div class="section-eyebrow">Featured Commercial Line</div>
             <h2 class="section-title" id="foods-heading" style="margin-bottom: 0;">Kabod Crest Foods</h2>
+            <span class="gold-hairline" aria-hidden="true"></span>
           </div>
-          <a href="shop.html" class="btn-hero-primary" style="padding: 10px 20px; font-size: 0.8125rem;">
+          <a href="shop.html" class="btn-hero-primary btn-border-beam" style="padding: 10px 20px; font-size: 0.8125rem;">
             <span>Explore All 11 Pre-Orders</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -333,6 +375,7 @@
               </p>
               <a href="shop.html" class="biz-link" style="font-size: 0.75rem;">View Category &rarr;</a>
             </div>
+          </div>
         </div>
 
         <!-- Packaging Distinction Feature Banner -->
@@ -354,6 +397,7 @@
       <div class="container">
         <div class="section-eyebrow">Operating Commitments</div>
         <h2 class="section-title" id="standard-heading">The Kabod Standard</h2>
+        <span class="gold-hairline" aria-hidden="true"></span>
         <p class="section-intro-text" style="margin-bottom: var(--space-xl);">
           We govern our processing, enterprise operations, and trade relationships through four non-negotiable commitments:
         </p>
@@ -400,11 +444,12 @@
         <div class="final-cta-inner">
           <div class="home-hero-badge" style="margin-bottom: var(--space-sm);">Commercial Collaboration</div>
           <h2 class="final-cta-title" id="cta-heading">"Let's Build Something Meaningful."</h2>
+          <span class="gold-hairline centered" aria-hidden="true"></span>
           <p class="final-cta-desc">
             Whether you are reserving early harvest allocations for your household or exploring strategic enterprise partnerships with Kabod Crest, we invite you to begin the conversation.
           </p>
           <div class="final-cta-buttons">
-            <a href="shop.html" class="btn-hero-primary">
+            <a href="shop.html" class="btn-hero-primary btn-border-beam">
               <span>Explore Pre-Order Catalog</span>
             </a>
             <a href="business-services.html#partner" class="btn-hero-secondary">
@@ -480,6 +525,11 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/site-motion.js"></script>
+  <script src="js/currency-service.js"></script>
   <script src="js/products-data.js"></script>
   <script src="js/cart.js"></script>
 

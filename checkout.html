@@ -153,10 +153,22 @@
             </div>
           </section>
 
-          <!-- 3. Swappable Payment Step -->
+          <!-- 3. Shipping Tier Selection -->
+          <section class="checkout-card" id="shipping-tier-section" aria-labelledby="shipping-heading">
+            <h2 class="checkout-card-title" id="shipping-heading">
+              <span>3. Shipping & Fulfillment Tier</span>
+            </h2>
+            <p class="checkout-card-desc">Select your delivery dispatch tier. Rates are tracked in central config and finalized prior to dispatch.</p>
+
+            <div class="shipping-tiers-container" id="shipping-tiers-options">
+              <!-- Dynamically populated from KABOD_SHIPPING_CONFIG by js/checkout.js -->
+            </div>
+          </section>
+
+          <!-- 4. Swappable Payment Step -->
           <section class="checkout-card" aria-labelledby="payment-heading">
             <h2 class="checkout-card-title" id="payment-heading">
-              <span>3. Commercial Payment Mode</span>
+              <span>4. Commercial Payment Mode</span>
             </h2>
             <div id="payment-module-container">
               <!-- Rendered by ActivePaymentProvider in js/checkout.js -->
@@ -187,13 +199,18 @@
           </div>
 
           <div class="summary-line-item">
+            <span>Selected Shipping:</span>
+            <span id="checkout-shipping-tier-label" style="font-weight: 600; color: var(--color-plum);">Lagos Delivery</span>
+          </div>
+
+          <div class="summary-line-item">
             <span>Freight & Handling:</span>
-            <span style="font-weight: 600; color: var(--color-text-muted);">[Calculated at Invoice]</span>
+            <span id="checkout-shipping-rate-label" style="font-weight: 600; color: var(--color-text-muted);">Flat rate [TBC]</span>
           </div>
 
           <div class="summary-total-row">
             <span>Payable at Dispatch:</span>
-            <span>Price: [TBC]</span>
+            <span id="checkout-total-payable">Price: [TBC]</span>
           </div>
 
           <div class="summary-policy-notice">
@@ -216,6 +233,8 @@
 
   <!-- Scripts -->
   <script src="js/products-data.js"></script>
+  <script src="js/shipping-config.js"></script>
+  <script src="js/currency-service.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/checkout.js"></script>
 </body>

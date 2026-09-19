@@ -2,21 +2,28 @@
  * Kabod Crest Foods - Product Catalog Data
  * Central source of truth for shop, product detail, and cart/checkout pages.
  *
- * NOTE: All active items are available for PRE-ORDER while commercial production concludes.
- * Prices are flagged clearly as 'Price: [TBC]' until finalized by the commercial desk.
- * No nutritional values, certifications, shelf life, or reviews are invented.
+ * STATUS TIERS:
+ * - LIVE Items: Ready for immediate order/dispatch allocation
+ *   (Dehydrated Ugwu: 250g @ ₦10,000; Dehydrated Ginger: 250g @ [TBC]; Jollof Rice Spice: 100g @ [TBC])
+ * - COMING SOON Items: Displayed with subtle blur, non-clickable, and locked badge in Quiet Authority styling
+ *   (Kulikuli, Stockfish, Iru, Cassava Flakes, Shea Butter, African Nutmeg, Ashanti Pepper, Egusi, Ogbono, Ponmo, Zobo)
  */
 
 const KABOD_PRODUCTS = [
+  // ==========================================
+  // LIVE PRODUCTS (Orderable Now)
+  // ==========================================
   {
     id: "dehydrated-ugwu",
     name: "Dehydrated Ugwu",
     subtitle: "Fluted Pumpkin Leaves",
     category: "Dehydrated Vegetables",
-    weight: "500g",
-    price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    weight: "250g",
+    price: 10000,
+    priceDisplay: "₦10,000",
+    isLive: true,
+    isComingSoon: false,
+    isPreOrder: false,
     image: "assets/images/products/ugwu.png",
     gallery: [
       {
@@ -34,28 +41,112 @@ const KABOD_PRODUCTS = [
     shortDescription: "Fluted pumpkin leaves carefully dehydrated at controlled temperatures for easy storage and prolonged shelf stability without sacrificing culinary flavor.",
     description: "Tender, hand-selected fluted pumpkin leaves carefully dehydrated at controlled temperatures to lock in chlorophyll, vital minerals, and natural aroma. Ideal for rich Nigerian soups including Edikang Ikong, Ogbono, and Egusi.",
     features: [
-      "100% natural, no additives",
-      "Retains natural nutrients & vibrant green color",
+      "100% natural, zero preservatives or additives",
+      "Retains natural chlorophyll & vibrant green color",
       "Rehydrates cleanly in warm water within 3 to 5 minutes",
-      "Sealed in moisture-barrier standup pouch"
+      "Sealed in multi-layer moisture-barrier standup pouch"
     ],
     howToUse: "Soak leaves in clean lukewarm water for 3 to 5 minutes to gently rehydrate before adding directly to your cooking pot. Alternatively, add directly to simmered soups (such as Ogbono or Egusi) during the final 3 minutes of cooking to preserve chlorophyll and freshness.",
     howToStore: "Store in a cool, dry pantry away from moisture and direct sunlight. Keep pouch zipper securely sealed after every opening.",
     faqs: [
       {
-        question: "Why is this product currently listed as a pre-order?",
-        answer: "Kabod Crest Foods is concluding initial commercial processing runs. Taking pre-orders allows us to schedule precise dispatch allocations directly from the completed production batch."
-      },
-      {
-        question: "How will I be billed for this item?",
-        answer: "Prices are marked as [TBC] while packaging and freight parameters are finalized. Our trade desk will confirm official unit rates and invoice you prior to delivery."
-      },
-      {
         question: "How is the dehydration carried out?",
-        answer: "Leaves are sorted, washed, and dried in clean, temperature-regulated dehydration tunnels to preserve structure, aroma, and color."
+        answer: "Leaves are sorted, washed, and dried in clean, temperature-regulated dehydration tunnels to preserve cellular structure, aroma, and color."
+      },
+      {
+        question: "What is the dispatch timeline?",
+        answer: "Dehydrated Ugwu is live and currently in active fulfillment. Orders are dispatched directly from our Lagos fulfillment center nationwide and worldwide."
       }
     ]
   },
+  {
+    id: "dehydrated-ginger",
+    name: "Dehydrated Ginger Powder",
+    subtitle: "Pure Aromatic Nigerian Ginger",
+    category: "Spices & Seasonings",
+    weight: "250g",
+    price: null,
+    priceDisplay: "Price: [TBC]",
+    isLive: true,
+    isComingSoon: false,
+    isPreOrder: true,
+    image: "assets/images/products/ginger-powder.jpg",
+    gallery: [
+      {
+        src: "assets/images/products/ginger-powder.jpg",
+        alt: "Dehydrated Ginger Powder standup pouch front view",
+        label: "Pouch Packaging"
+      },
+      {
+        src: "assets/images/reference/cat-spices.png",
+        alt: "Fresh and sun-dried ginger roots and botanical spices",
+        label: "Spice Harvest"
+      }
+    ],
+    origin: "Kaduna State, Nigeria",
+    shortDescription: "Sun-dried and finely stone-milled Nigerian ginger root prized for its high gingerol content, pungent warmth, and clean spicy aroma.",
+    description: "Sourced from the renowned ginger-growing belts of southern Kaduna State, our dehydrated ginger powder delivers intense pungent aroma and therapeutic warmth. Hand-peeled, solar-dehydrated, and stone-milled into a fine, versatile spice.",
+    features: [
+      "Pure Zingiber officinale — zero starch fillers",
+      "High natural pungency and volatile oil retention",
+      "Stone-milled for silky culinary integration",
+      "Resealable freshness barrier pouch"
+    ],
+    howToUse: "Use 1/4 to 1/2 teaspoon as a fragrant seasoning foundation for stews, broths, marinades, or brew directly into soothing hot ginger tea.",
+    howToStore: "Keep pouch sealed tightly in a dark, dry spice cabinet away from humidity.",
+    faqs: [
+      {
+        question: "Is this ginger pure or blended with other roots?",
+        answer: "100% single-origin Nigerian ginger root with zero additives, flour, or coloring."
+      }
+    ]
+  },
+  {
+    id: "jollof-rice-spice",
+    name: "Jollof Rice Spice",
+    subtitle: "Signature Heritage Blend",
+    category: "Spices & Seasonings",
+    weight: "100g",
+    price: null,
+    priceDisplay: "Price: [TBC]",
+    isLive: true,
+    isComingSoon: false,
+    isPreOrder: true,
+    image: "assets/images/products/jollof-spice.jpg",
+    gallery: [
+      {
+        src: "assets/images/products/jollof-spice.jpg",
+        alt: "Jollof Rice Spice pouch packaging front view",
+        label: "Pouch Packaging"
+      },
+      {
+        src: "assets/images/reference/cat-spices.png",
+        alt: "Heritage spice assembly and smoky seasoning blend",
+        label: "Heritage Blend"
+      }
+    ],
+    origin: "Heritage Formulation, Nigeria",
+    shortDescription: "Authentic Nigerian party Jollof spice blend crafted with roasted botanical herbs, bay, dry ginger, and natural savory aromatics.",
+    description: "An authentic Nigerian celebration spice blend formulated to recreate the smoky, deeply savory character of party Jollof rice without artificial enhancers. Hand-blended using heritage botanical spices.",
+    features: [
+      "Authentic smoky notes without chemical liquid smoke",
+      "Balanced savory depth with bay, thyme, ginger, and peppers",
+      "Zero MSG or artificial fillers",
+      "Sealed in gold-accented standup barrier pouch"
+    ],
+    howToUse: "Add 1 to 2 tablespoons into your simmering tomato-pepper paste base to bloom the oils before pouring in parboiled long grain rice.",
+    howToStore: "Store in a cool, dry pantry away from ambient stove heat.",
+    faqs: [
+      {
+        question: "Does this blend contain salt?",
+        answer: "It contains only pure botanical spices and minimal natural sea salt, allowing you full control over salt seasoning."
+      }
+    ]
+  },
+
+  // ==========================================
+  // LOCKED PRODUCTS (Coming Soon — 11 Items)
+  // ==========================================
   {
     id: "kulikuli-snack",
     name: "Kulikuli",
@@ -63,19 +154,15 @@ const KABOD_PRODUCTS = [
     category: "Seeds & Nuts",
     weight: "1.5kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/kulikuli.jpg",
     gallery: [
       {
         src: "assets/images/products/kulikuli.jpg",
         alt: "Kulikuli standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-seeds-nuts.png",
-        alt: "Selected roasted groundnut seeds in rustic ceramic bowl",
-        label: "Harvest Ingredients"
       }
     ],
     origin: "Kano State, Nigeria",
@@ -86,18 +173,6 @@ const KABOD_PRODUCTS = [
       "High natural plant protein snack",
       "Perfect accompaniment for chilled soaked garri",
       "Resealable freshness pack"
-    ],
-    howToUse: "Ready to eat immediately as a savory snack. Commonly enjoyed paired with chilled soaked cassava flakes (garri) or crushed as a flavorful crust for roasted meats.",
-    howToStore: "Store in an airtight container in a dry environment to maintain crispness and protect against ambient humidity.",
-    faqs: [
-      {
-        question: "What is the pre-order dispatch timeline?",
-        answer: "Commercial batch production is currently underway. Pre-orders ensure first-in-line dispatch as soon as the current batch completes quality checks."
-      },
-      {
-        question: "When is the price confirmed?",
-        answer: "Commercial unit pricing will be confirmed and communicated by our sales desk prior to invoice generation."
-      }
     ]
   },
   {
@@ -107,19 +182,15 @@ const KABOD_PRODUCTS = [
     category: "Traditional Foods",
     weight: "1kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/stockfish.png",
     gallery: [
       {
         src: "assets/images/products/stockfish.png",
         alt: "Stockfish standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-traditional.png",
-        alt: "Traditional cured ingredients in artisanal clay bowl",
-        label: "Artisanal Preparation"
       }
     ],
     origin: "Imported Norwegian Cod, Processed in Nigeria",
@@ -130,18 +201,6 @@ const KABOD_PRODUCTS = [
       "Deep, authentic savoriness",
       "Uniform premium cutlets",
       "Long shelf-life stability"
-    ],
-    howToUse: "Rinse cutlets under clean cold water. Pre-boil or soak in warm water with a pinch of sea salt for 20 to 30 minutes until tender before incorporating into long-simmered soups and native stews.",
-    howToStore: "Store in a well-ventilated, dry place. For extended storage, keep sealed in a moisture-barrier container.",
-    faqs: [
-      {
-        question: "Are these whole fish or pre-cut pieces?",
-        answer: "These are cleaned, graded cutlets sized for straightforward kitchen preparation."
-      },
-      {
-        question: "How does pre-ordering work for stockfish?",
-        answer: "Stockfish is portioned and packed per batch. Your pre-order reserves allocation from our initial commercial packing run."
-      }
     ]
   },
   {
@@ -151,19 +210,15 @@ const KABOD_PRODUCTS = [
     category: "Spices & Seasonings",
     weight: "1.2kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/iru.jpg",
     gallery: [
       {
         src: "assets/images/products/iru.jpg",
         alt: "Iru locust beans standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-spices.png",
-        alt: "Selected African spices and seasonings in traditional bowls",
-        label: "Spice Blend"
       }
     ],
     origin: "Oyo State, Nigeria",
@@ -174,18 +229,6 @@ const KABOD_PRODUCTS = [
       "Sun-dried for pantry stability",
       "Unmatched savory foundation for soups and stews",
       "No artificial flavor enhancers"
-    ],
-    howToUse: "Rinse lightly and mash or add whole directly into hot palm oil or simmering stew base to unlock rich savory aroma.",
-    howToStore: "Store in a cool, dry cupboard or refrigerate in a tightly sealed container to preserve natural aroma.",
-    faqs: [
-      {
-        question: "Is this dry or wet iru?",
-        answer: "This is sun-dried iru, processed for prolonged ambient shelf stability and ease of transit."
-      },
-      {
-        question: "When will price and dispatch date be finalized?",
-        answer: "Pricing is currently [TBC]. Dispatch schedules and rates will be provided upon batch completion."
-      }
     ]
   },
   {
@@ -195,19 +238,15 @@ const KABOD_PRODUCTS = [
     category: "Traditional Foods",
     weight: "5kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/cassava-flakes.jpg",
     gallery: [
       {
         src: "assets/images/products/cassava-flakes.jpg",
         alt: "Cassava Flakes garri standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-traditional.png",
-        alt: "Clean sun-dried cassava flour and flakes in wooden bowl",
-        label: "Milling Preparation"
       }
     ],
     origin: "Delta State, Nigeria",
@@ -218,18 +257,6 @@ const KABOD_PRODUCTS = [
       "Thoroughly sieved and stone-free",
       "Clean sour balance from natural fermentation",
       "Bulk 5kg household pack"
-    ],
-    howToUse: "To prepare swallow (eba): add flakes steadily into freshly boiled water and turn vigorously until cohesive and firm. For chilled drinking: soak in cold water with milk, sugar, and groundnuts or kulikuli.",
-    howToStore: "Keep in a dry container with a tight-fitting lid away from humidity and heat.",
-    faqs: [
-      {
-        question: "How is the garri sieved?",
-        answer: "Our garri undergoes multi-stage mechanical and hand sieving to guarantee a fine, grit-free grain."
-      },
-      {
-        question: "Why is the price marked [TBC]?",
-        answer: "Commercial agricultural prices vary with harvest batches. Confirmed rates will be shared upon invoice release."
-      }
     ]
   },
   {
@@ -239,19 +266,15 @@ const KABOD_PRODUCTS = [
     category: "Traditional Foods",
     weight: "2kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/shea-butter.png",
     gallery: [
       {
         src: "assets/images/products/shea-butter.png",
         alt: "Pure Unrefined Shea Butter pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-traditional.png",
-        alt: "Traditional cold extraction from wild shea nuts",
-        label: "Extraction Process"
       }
     ],
     origin: "Niger State, Nigeria",
@@ -262,14 +285,6 @@ const KABOD_PRODUCTS = [
       "Rich in natural vitamins A, E, and essential fatty acids",
       "Subtle nutty aroma with velvety texture",
       "Multi-purpose cosmetic & cooking grade"
-    ],
-    howToUse: "For culinary use: melt gently over low heat as an authentic traditional cooking fat. For topical care: warm between hands and apply to skin or hair.",
-    howToStore: "Store below 30°C away from direct sunlight or heat sources to avoid melting. Keep sealed.",
-    faqs: [
-      {
-        question: "Is this scented or deodorized?",
-        answer: "No. This is raw, unrefined shea butter retaining its natural characteristic mild nutty scent and golden ivory tone."
-      }
     ]
   },
   {
@@ -279,19 +294,15 @@ const KABOD_PRODUCTS = [
     category: "Spices & Seasonings",
     weight: "500g",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/african-nutmeg.png",
     gallery: [
       {
         src: "assets/images/products/african-nutmeg.png",
         alt: "African Nutmeg standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-spices.png",
-        alt: "Fragrant whole African spices in rustic ceramic display",
-        label: "Spice Botanicals"
       }
     ],
     origin: "Edo State, Nigeria",
@@ -302,14 +313,6 @@ const KABOD_PRODUCTS = [
       "Roasts easily for pestle milling",
       "Hand-graded for uniform seed quality",
       "Aromatically sealed packaging"
-    ],
-    howToUse: "Information coming soon",
-    howToStore: "Store whole pods in an airtight glass or tin container in a dry pantry away from light.",
-    faqs: [
-      {
-        question: "Are these pods cracked or whole?",
-        answer: "Shipped whole in pods to safeguard the delicate volatile oils until you crack and grind them at home."
-      }
     ]
   },
   {
@@ -317,21 +320,17 @@ const KABOD_PRODUCTS = [
     name: "Ashanti Pepper",
     subtitle: "Uziza Seeds",
     category: "Spices & Seasonings",
-    weight: "Size TBC",
+    weight: "250g",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/ashanti-pepper.png",
     gallery: [
       {
         src: "assets/images/products/ashanti-pepper.png",
         alt: "Ashanti Pepper Uziza Seeds standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-spices.png",
-        alt: "Ground and whole Nigerian pepper varieties",
-        label: "Aromatic Harvest"
       }
     ],
     origin: "Cross River State, Nigeria",
@@ -341,15 +340,7 @@ const KABOD_PRODUCTS = [
       "Whole dried peppercorns",
       "Distinct herbaceous peppery bouquet",
       "Cleaned and sorted",
-      "Packaging size will be confirmed prior to shipment"
-    ],
-    howToUse: "Information coming soon",
-    howToStore: "Store in a tightly sealed spice container in a dark, dry cabinet.",
-    faqs: [
-      {
-        question: "Why is the weight listed as Size TBC?",
-        answer: "Packaging unit sizes for Ashanti Pepper are being finalized for our commercial pouch line. The exact net weight will be specified prior to dispatch."
-      }
+      "Aroma-protective packaging"
     ]
   },
   {
@@ -359,19 +350,15 @@ const KABOD_PRODUCTS = [
     category: "Seeds & Nuts",
     weight: "3kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/egusi.png",
     gallery: [
       {
         src: "assets/images/products/egusi.png",
         alt: "Egusi Melon Seeds standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-seeds-nuts.png",
-        alt: "Clean shelled melon seeds in traditional wooden bowl",
-        label: "Shelled Harvest"
       }
     ],
     origin: "Benue State, Nigeria",
@@ -382,14 +369,6 @@ const KABOD_PRODUCTS = [
       "Zero bitter shells or chaff",
       "High natural oil content for superior soup thickening",
       "Double moisture-barrier sack"
-    ],
-    howToUse: "Information coming soon",
-    howToStore: "Information coming soon",
-    faqs: [
-      {
-        question: "Is this product pre-ground or whole seeds?",
-        answer: "This product is supplied as whole shelled seeds, ensuring maximum freshness and oil preservation until milled in your kitchen."
-      }
     ]
   },
   {
@@ -399,19 +378,15 @@ const KABOD_PRODUCTS = [
     category: "Seeds & Nuts",
     weight: "1.2kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/ogbono.png",
     gallery: [
       {
         src: "assets/images/products/ogbono.png",
         alt: "Ogbono Dika Nut standup pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-seeds-nuts.png",
-        alt: "Dried wild dika nuts in clay bowl",
-        label: "Wild Harvest"
       }
     ],
     origin: "Cross River State, Nigeria",
@@ -422,14 +397,6 @@ const KABOD_PRODUCTS = [
       "Naturally dried without smoke contamination",
       "Milled fresh or whole kernel delivery",
       "Preserves savory aroma"
-    ],
-    howToUse: "Information coming soon",
-    howToStore: "Information coming soon",
-    faqs: [
-      {
-        question: "What guarantees the draw elasticity of this ogbono?",
-        answer: "We source exclusively mature dika kernels sun-dried under monitored atmospheric conditions without high-heat smoking."
-      }
     ]
   },
   {
@@ -439,19 +406,15 @@ const KABOD_PRODUCTS = [
     category: "Traditional Foods",
     weight: "1.5kg",
     price: null,
-    priceDisplay: "Price: [TBC]",
-    isPreOrder: true,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
     image: "assets/images/products/ponmo.jpg",
     gallery: [
       {
         src: "assets/images/products/ponmo.jpg",
         alt: "Ponmo dried cow skin pouch packaging front view",
         label: "Pouch Packaging"
-      },
-      {
-        src: "assets/images/reference/cat-traditional.png",
-        alt: "Hygienically cured traditional meats in ceramic vessel",
-        label: "Curing Standards"
       }
     ],
     origin: "Oyo State, Nigeria",
@@ -461,40 +424,38 @@ const KABOD_PRODUCTS = [
       "Completely free from chemical accelerants or tire burning",
       "Hygienically singed and scrubbed clean",
       "Rehydrates into soft, gelatinous savory pieces",
-      "Substantial 1.5kg pre-order volume"
-    ],
-    howToUse: "Information coming soon",
-    howToStore: "Information coming soon",
-    faqs: [
+      "Substantial 1.5kg pack"
+    ]
+  },
+  {
+    id: "zobo-hibiscus-calyces",
+    name: "Zobo Calyces",
+    subtitle: "Dried Hibiscus Flower",
+    category: "Dehydrated Vegetables",
+    weight: "1kg",
+    price: null,
+    priceDisplay: "Coming Soon",
+    isLive: false,
+    isComingSoon: true,
+    image: "assets/images/products/zobo.jpg",
+    gallery: [
       {
-        question: "How is this ponmo prepared?",
-        answer: "Prepared using clean hot water scraping and regulated hot-air drying, completely avoiding hazardous industrial accelerants."
+        src: "assets/images/products/zobo.jpg",
+        alt: "Zobo Calyces standup pouch front view",
+        label: "Pouch Packaging"
       }
+    ],
+    origin: "Kano State, Nigeria",
+    shortDescription: "Sun-dried dark crimson Hibiscus sabdariffa petals for authentic zobo drinks, refreshing botanical infusions, and rich tea concentrates.",
+    description: "Whole, sun-dried dark crimson Hibiscus sabdariffa calyces harvested in northern Nigeria. Rich in antioxidants and vitamin C, delivering a clean tart profile for refreshing beverages and culinary syrups.",
+    features: [
+      "Intact deep crimson whole calyces",
+      "Zero artificial food colorants",
+      "High natural anthocyanin content",
+      "Aromatically sealed standup pouch"
     ]
   }
 ];
-
-/*
- * NOTE ON FUTURE PRODUCTS:
- * ------------------------
- * Zobo (Hibiscus Sabdariffa Leaves / Dried Calyces):
- * Still in conceptual / formulation review per client specifications.
- * Not confirmed for initial catalog launch.
- *
- * UNCOMMENT WHEN CONFIRMED BY CLIENT:
- * {
- *   id: "zobo-hibiscus-calyces",
- *   name: "Zobo Calyces",
- *   subtitle: "Dried Hibiscus Flower",
- *   category: "Dehydrated Vegetables",
- *   weight: "1kg",
- *   price: null,
- *   priceDisplay: "Price: [TBC]",
- *   isPreOrder: true,
- *   image: "assets/images/products/zobo.png",
- *   description: "Sun-dried dark crimson Hibiscus sabdariffa petals for authentic zobo drinks and botanical infusions."
- * }
- */
 
 // Export for module or browser window use
 if (typeof module !== 'undefined' && module.exports) {

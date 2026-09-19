@@ -772,3 +772,171 @@ button {
   margin: 0 auto var(--space-md);
   font-size: 1.5rem;
 }
+
+/* ==========================================================================
+   Quiet Authority Motion & Material Elevations
+   ========================================================================== */
+
+/* 1. Subtle 5% Grain Texture Overlay for Warm Ivory Sections */
+.ivory-grain,
+.who-section,
+.businesses-section,
+.foods-spotlight-section,
+.standard-section,
+.catalog-section,
+.story-section,
+.harvest-ethos-section,
+.origin-matrix-section,
+.packaging-standard-section,
+.events-pillars-section,
+.concept-pillars-section {
+  position: relative;
+}
+
+.ivory-grain::after,
+.who-section::after,
+.businesses-section::after,
+.foods-spotlight-section::after,
+.standard-section::after,
+.catalog-section::after,
+.story-section::after,
+.harvest-ethos-section::after,
+.origin-matrix-section::after,
+.packaging-standard-section::after,
+.events-pillars-section::after,
+.concept-pillars-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045; /* Exactly ~4.5-5% grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 1;
+}
+
+.ivory-grain > *,
+.who-section > *,
+.businesses-section > *,
+.foods-spotlight-section > *,
+.standard-section > *,
+.catalog-section > *,
+.story-section > *,
+.harvest-ethos-section > *,
+.origin-matrix-section > *,
+.packaging-standard-section > *,
+.events-pillars-section > *,
+.concept-pillars-section > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 2. Gold Hairline Reveal Under Major Headings */
+.gold-hairline {
+  display: block;
+  width: 52px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold) 0%, rgba(200, 164, 93, 0.2) 100%);
+  margin: var(--space-xs) 0 var(--space-md);
+  transform-origin: left center;
+}
+
+.gold-hairline.centered {
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: center;
+}
+
+/* 3. Subtle Animated Border-Beam on Primary CTAs */
+.btn-border-beam {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-border-beam::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, transparent 290deg, rgba(200, 164, 93, 0.95) 340deg, #FFFFFF 355deg, transparent 360deg);
+  animation: border-beam-spin 4.5s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn-border-beam::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  background: var(--color-plum);
+  border-radius: calc(var(--radius-btn) - 1.5px);
+  z-index: -1;
+  transition: background-color var(--transition-fast);
+}
+
+.btn-border-beam:hover::after {
+  background: var(--color-plum-hover);
+}
+
+@keyframes border-beam-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-border-beam::before {
+    animation: none;
+    display: none;
+  }
+}
+
+/* 4. Slow-Moving Ingredient Ticker / Marquee */
+.ingredient-marquee {
+  overflow: hidden;
+  background-color: var(--color-obsidian);
+  color: var(--color-gold);
+  border-top: 1px solid rgba(200, 164, 93, 0.22);
+  border-bottom: 1px solid rgba(200, 164, 93, 0.22);
+  padding: 11px 0;
+  position: relative;
+  z-index: 10;
+  user-select: none;
+}
+
+.ingredient-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ingredient-marquee-scroll 36s linear infinite;
+}
+
+.ingredient-marquee:hover .ingredient-marquee-track {
+  animation-play-state: paused;
+}
+
+.ingredient-marquee-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding-right: var(--space-md);
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ingredient-marquee-dot {
+  color: rgba(200, 164, 93, 0.45);
+  font-size: 0.75rem;
+}
+
+@keyframes ingredient-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ingredient-marquee-track {
+    animation: none;
+  }
+}

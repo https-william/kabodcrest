@@ -52,7 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (categoryEl) categoryEl.textContent = product.category;
   if (titleEl) titleEl.textContent = product.name;
   if (subtitleEl) subtitleEl.textContent = product.subtitle;
-  if (priceEl) priceEl.textContent = product.priceDisplay || 'Price: [TBC]';
+  
+  const isLocked = !product.isLive || product.isComingSoon;
+
+  function renderPriceDetail() {
+    if (!priceEl) return;
+    if (isLocked) {
+      priceEl.textContent = "Coming Soon";
+      priceEl.style.color = "var(--color-text-subtle)";
+    } else if (product.price && typeof product.price === 'number') {
+      const estimate = window.KabodCurrency ? window.KabodCurrency.formatEstimate(product.price) : '';
+      priceEl.innerHTML = `<span>${product.priceDisplay}</span> <span class="price-estimate-tag js-currency-estimate" style="font-size: 0.9375rem; margin-left: 6px; color: var(--color-gold); font-weight: 500;">${estimate}</span>`;
+    } else {
+      priceEl.textContent = product.priceDisplay || 'Price: [TBC]';
+    }
+  }
+
+  renderPriceDetail();
+  window.addEventListener('kabod:currency-ready', renderPriceDetail);
+
   if (weightPillEl) weightPillEl.textContent = product.weight;
   if (categoryPillEl) categoryPillEl.textContent = product.category;
   if (originPillEl) originPillEl.textContent = product.origin || 'Nigeria';
@@ -77,6 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mainImageEl) {
     mainImageEl.src = galleryItems[0].src;
     mainImageEl.alt = galleryItems[0].alt;
+    if (isLocked) {
+      mainImageEl.style.filter = 'blur(8px)';
+      mainImageEl.style.webkitFilter = 'blur(8px)';
+      mainImageEl.style.opacity = '0.7';
+    }
   }
 
   if (thumbnailsStripEl) {
@@ -106,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
             mainImageEl.src = newSrc;
             mainImageEl.alt = newAlt;
-            mainImageEl.style.opacity = '1';
+            mainImageEl.style.opacity = isLocked ? '0.7' : '1';
           }, 120);
         }
       });
@@ -121,7 +144,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentQty = 1;
 
-  if (qtyDecBtn && qtyInput) {
+  if (isLocked && preorderBtn) {
+    preorderBtn.disabled = true;
+    preorderBtn.classList.add('btn-disabled');
+    preorderBtn.innerHTML = '<span>Available Soon</span>';
+    if (qtyInput) qtyInput.disabled = true;
+    if (qtyDecBtn) qtyDecBtn.disabled = true;
+    if (qtyIncBtn) qtyIncBtn.disabled = true;
+  } else if (preorderBtn) {
+    if (product.price) {
+      preorderBtn.innerHTML = `
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span>Add to Order Bag</span>
+      `;
+    }
+  }
+
+  if (qtyDecBtn && qtyInput && !isLocked) {
     qtyDecBtn.addEventListener('click', () => {
       if (currentQty > 1) {
         currentQty--;
@@ -130,14 +172,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (qtyIncBtn && qtyInput) {
+  if (qtyIncBtn && qtyInput && !isLocked) {
     qtyIncBtn.addEventListener('click', () => {
       currentQty++;
       qtyInput.value = currentQty;
     });
   }
 
-  if (qtyInput) {
+  if (qtyInput && !isLocked) {
     qtyInput.addEventListener('change', () => {
       let val = parseInt(qtyInput.value, 10);
       if (isNaN(val) || val < 1) val = 1;
@@ -146,11 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  if (preorderBtn) {
+  if (preorderBtn && !isLocked) {
     preorderBtn.addEventListener('click', () => {
       if (window.KabodCart) {
         window.KabodCart.addItem(product, currentQty);
-        showToast(`Added ${currentQty}x ${product.name} to pre-orders`);
+        showToast(`Added ${currentQty}x ${product.name} to order bag`);
       }
     });
   }

@@ -58,6 +58,7 @@
             <path d="M 38 45 L 62 72" />
           </svg>
           <h1 class="confirmation-title">Pre-Order Reservation Registered</h1>
+          <span class="gold-hairline centered" aria-hidden="true"></span>
           <p class="confirmation-lead">"Building with Purpose. Creating with Distinction."</p>
 
           <div class="order-ref-badge-card">
@@ -80,7 +81,7 @@
           </div>
 
           <!-- Customer & Destination Details Grid -->
-          <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin: var(--space-lg) 0; padding-bottom: var(--space-lg); border-bottom: 1px solid var(--color-stone-muted);">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin: var(--space-lg) 0; padding-bottom: var(--space-lg); border-bottom: 1px solid var(--color-stone-muted);">
             <div>
               <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Customer & Contact</h2>
               <div style="font-size: 0.9375rem; font-weight: 600;" id="conf-cust-name">--</div>
@@ -91,6 +92,12 @@
             <div>
               <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Worldwide Delivery Destination</h2>
               <div style="font-size: 0.875rem; color: var(--color-obsidian); line-height: 1.5;" id="conf-delivery-dest">--</div>
+            </div>
+
+            <div>
+              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Selected Shipping Tier</h2>
+              <div style="font-size: 0.9375rem; font-weight: 600; color: var(--color-plum);" id="conf-shipping-name">--</div>
+              <div style="font-size: 0.8125rem; color: var(--color-text-muted);" id="conf-shipping-meta">--</div>
             </div>
           </div>
 
@@ -211,6 +218,10 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/site-motion.js"></script>
   <script src="js/order-confirmation.js"></script>
 </body>
 </html>

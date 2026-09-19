@@ -415,6 +415,79 @@
   color: var(--color-text-dark);
 }
 
+/* Shipping Options Tier Selector */
+.shipping-tiers-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.shipping-tier-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  border: 1.5px solid rgba(50, 26, 74, 0.15);
+  border-radius: var(--radius-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.shipping-tier-option:hover {
+  border-color: var(--color-plum);
+  background-color: #FAF8F5;
+}
+
+.shipping-tier-option.selected {
+  border-color: var(--color-plum);
+  background-color: #FAF7F2;
+  box-shadow: 0 0 0 1px var(--color-plum), var(--shadow-sm);
+}
+
+.shipping-tier-radio {
+  margin-top: 3px;
+  accent-color: var(--color-plum);
+  cursor: pointer;
+}
+
+.shipping-tier-info {
+  flex-grow: 1;
+}
+
+.shipping-tier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin-bottom: 2px;
+}
+
+.shipping-tier-name {
+  font-family: var(--font-structural);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.shipping-tier-rate {
+  font-family: var(--font-structural);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-plum);
+  background-color: rgba(50, 26, 74, 0.08);
+  padding: 2px 7px;
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+}
+
+.shipping-tier-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
 /* ==========================================================================
    Order Confirmation Page (order-confirmation.html)
    ========================================================================== */

@@ -186,6 +186,87 @@ document.addEventListener('DOMContentLoaded', () => {
     ActivePaymentProvider.renderUI(paymentContainer, { items: cartItems });
   }
 
+  // Initialize Shipping Tiers (Step 3)
+  const shippingContainer = document.getElementById('shipping-tiers-options');
+  const shippingTierLabelEl = document.getElementById('checkout-shipping-tier-label');
+  const shippingRateLabelEl = document.getElementById('checkout-shipping-rate-label');
+  let selectedShippingTier = (typeof KABOD_SHIPPING_CONFIG !== 'undefined') ? KABOD_SHIPPING_CONFIG.defaultTier : 'lagos';
+
+  function renderShippingTiers() {
+    if (!shippingContainer || typeof KABOD_SHIPPING_CONFIG === 'undefined') return;
+
+    shippingContainer.innerHTML = KABOD_SHIPPING_CONFIG.tiers.map(tier => `
+      <label class="shipping-tier-option ${tier.id === selectedShippingTier ? 'selected' : ''}" data-tier-id="${tier.id}">
+        <input
+          type="radio"
+          name="shipping_tier"
+          value="${tier.id}"
+          class="shipping-tier-radio"
+          ${tier.id === selectedShippingTier ? 'checked' : ''}
+        />
+        <div class="shipping-tier-info">
+          <div class="shipping-tier-header">
+            <span class="shipping-tier-name">${tier.name}</span>
+            <span class="shipping-tier-rate">${tier.rateText}</span>
+          </div>
+          <p class="shipping-tier-desc">${tier.description}</p>
+        </div>
+      </label>
+    `).join('');
+
+    shippingContainer.querySelectorAll('.shipping-tier-option').forEach(el => {
+      el.addEventListener('click', () => {
+        const id = el.getAttribute('data-tier-id');
+        setShippingTier(id);
+      });
+    });
+
+    updateShippingSummary();
+  }
+
+  function setShippingTier(tierId) {
+    selectedShippingTier = tierId;
+    if (shippingContainer) {
+      shippingContainer.querySelectorAll('.shipping-tier-option').forEach(el => {
+        const isTarget = el.getAttribute('data-tier-id') === tierId;
+        el.classList.toggle('selected', isTarget);
+        const radio = el.querySelector('input[type="radio"]');
+        if (radio) radio.checked = isTarget;
+      });
+    }
+    updateShippingSummary();
+  }
+
+  function updateShippingSummary() {
+    if (typeof KABOD_SHIPPING_CONFIG === 'undefined') return;
+    const tier = KABOD_SHIPPING_CONFIG.tiers.find(t => t.id === selectedShippingTier);
+    if (tier) {
+      if (shippingTierLabelEl) shippingTierLabelEl.textContent = tier.name;
+      if (shippingRateLabelEl) shippingRateLabelEl.textContent = tier.rateText;
+    }
+  }
+
+  renderShippingTiers();
+
+  // Auto-suggest shipping tier when destination changes
+  function checkSuggestedShipping() {
+    const c = countrySelect ? countrySelect.value : 'Nigeria';
+    const s = stateSelect ? stateSelect.value : '';
+
+    if (c === 'Nigeria') {
+      if (s === 'Lagos') {
+        setShippingTier('lagos');
+      } else {
+        setShippingTier('rest-of-nigeria');
+      }
+    } else {
+      setShippingTier('international-air');
+    }
+  }
+
+  if (countrySelect) countrySelect.addEventListener('change', checkSuggestedShipping);
+  if (stateSelect) stateSelect.addEventListener('change', checkSuggestedShipping);
+
   // Handle Form Submission
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -207,6 +288,10 @@ document.addEventListener('DOMContentLoaded', () => {
         notes: document.getElementById('delivery-notes') ? document.getElementById('delivery-notes').value.trim() : ''
       };
 
+      const tierObj = (typeof KABOD_SHIPPING_CONFIG !== 'undefined')
+        ? KABOD_SHIPPING_CONFIG.tiers.find(t => t.id === selectedShippingTier)
+        : { id: selectedShippingTier, name: selectedShippingTier };
+
       // Generate unique Order Reference number
       const randomSuffix = Math.floor(1000 + Math.random() * 9000);
       const orderRef = `KC-2026-${randomSuffix}`;
@@ -216,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createdAt: new Date().toISOString(),
         customer: customer,
         delivery: delivery,
+        shippingTier: tierObj,
         items: cartItems,
         totalCount: window.KabodCart.getTotalCount(),
         priceStatus: 'Price: [TBC - Official invoice confirmed prior to dispatch]'

@@ -338,7 +338,8 @@
   border-bottom: 1px solid var(--color-stone-muted);
 }
 
-.businesses-grid {
+.businesses-grid,
+.businesses-bento-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-lg);
@@ -348,6 +349,38 @@
 @media (min-width: 640px) {
   .businesses-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 860px) {
+  .businesses-bento-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: auto;
+  }
+
+  /* Food: Active Vertical - gets primary largest bento cell */
+  .biz-card.biz-bento-food {
+    grid-column: span 7;
+    background: linear-gradient(145deg, #FAF7F2 0%, #F4EFE6 100%);
+    border: 1px solid rgba(50, 26, 74, 0.22);
+    border-left: 6px solid var(--color-plum);
+    padding: var(--space-2xl);
+    box-shadow: 0 6px 20px rgba(50, 26, 74, 0.08);
+  }
+
+  /* Events */
+  .biz-card.biz-bento-events {
+    grid-column: span 5;
+  }
+
+  /* Hospitality */
+  .biz-card.biz-bento-hospitality {
+    grid-column: span 5;
+  }
+
+  /* Business Services */
+  .biz-card.biz-bento-services {
+    grid-column: span 7;
   }
 }
 
