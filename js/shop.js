@@ -192,8 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="product-origin-tag">${originDisplay}</span>
           </div>
 
-          <div style="margin-bottom: 4px;">${badgeMarkup}</div>
-
           <h2 class="product-title">
             ${isLocked ? product.name : `<a href="product-detail.html?id=${encodeURIComponent(product.id)}">${product.name}</a>`}
           </h2>

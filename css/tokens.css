@@ -47,7 +47,7 @@
   /* Layout */
   --container-max-width: 1240px;
   --header-height: 72px;
-  --banner-height: 36px;
+  --banner-height: 0px;
 
   /* Softened Border Radius Scale - Eliminating harsh "sharp/pointed" edges */
   --radius-xs: 4px;                 /* Micro indicators and subtle badges */
