@@ -75,9 +75,17 @@ button {
   margin-right: auto;
   padding-left: var(--space-md);
   padding-right: var(--space-md);
+  box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+}
+
+@media (min-width: 1200px) {
   .container {
     padding-left: var(--space-xl);
     padding-right: var(--space-xl);
@@ -99,6 +107,10 @@ button {
   border-bottom: 1px solid rgba(200, 164, 93, 0.22);
   position: relative;
   z-index: 100;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .preorder-banner-content {
@@ -176,6 +188,9 @@ button {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .header-inner {
@@ -183,7 +198,10 @@ button {
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  gap: var(--space-md);
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Brand Logo Lockup */
@@ -233,12 +251,20 @@ button {
   opacity: 0.92;
 }
 
-@media (max-width: 440px) {
+@media (max-width: 480px) {
+  .brand-logo-link {
+    gap: 8px;
+  }
+  .brand-crest-mark {
+    width: 28px;
+    height: 28px;
+  }
   .brand-subline {
     display: none;
   }
   .brand-name {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
   }
 }
 
@@ -247,14 +273,14 @@ button {
   display: none;
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1180px) {
   .primary-nav {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 4px 6px;
+    padding: 3px 5px;
     border-radius: var(--radius-pill);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
   }
@@ -262,18 +288,29 @@ button {
 
 .nav-link {
   font-family: var(--font-structural);
-  font-size: 0.8125rem;
+  font-size: 0.775rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: #D6CFBF;
-  padding: 6px 13px;
+  padding: 5px 9px;
   border-radius: var(--radius-pill);
   position: relative;
   transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1280px) {
+  .primary-nav {
+    gap: 2px;
+    padding: 4px 6px;
+  }
+  .nav-link {
+    font-size: 0.8125rem;
+    padding: 6px 13px;
+  }
+}
+
+@media (min-width: 1380px) {
   .nav-link {
     font-size: 0.835rem;
     padding: 7px 15px;
@@ -377,7 +414,7 @@ button {
   border-color: rgba(200, 164, 93, 0.3);
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1180px) {
   .mobile-menu-btn {
     display: none;
   }
