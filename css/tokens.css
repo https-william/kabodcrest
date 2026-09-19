@@ -60,12 +60,17 @@
   --radius-modal: 22px;             /* Modals, drawers, high-level floating surfaces */
   --radius-pill: 9999px;            /* Category filter pills, rounded counters */
 
-  /* Elevation Shadows - Soft, subtle tactile warmth */
-  --shadow-sm: 0 2px 8px rgba(11, 11, 11, 0.04);
-  --shadow-card: 0 4px 20px rgba(11, 11, 11, 0.05);
-  --shadow-hover: 0 10px 30px rgba(50, 26, 74, 0.09);
+  /* Architectural Hairlines & Borders */
+  --border-hairline: 1px solid rgba(50, 26, 74, 0.12);
+  --border-hairline-dark: 1px solid rgba(255, 255, 255, 0.08);
+  --border-gold-subtle: 1px solid rgba(200, 164, 93, 0.28);
+
+  /* Elevation Shadows - Tactile, crisp architectural depth */
+  --shadow-sm: 0 2px 8px rgba(11, 11, 11, 0.03);
+  --shadow-card: 0 4px 16px rgba(11, 11, 11, 0.04);
+  --shadow-hover: 0 8px 24px rgba(50, 26, 74, 0.08);
 
   /* Transitions - Disciplined and subtle */
-  --transition-fast: 160ms ease;
+  --transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 240ms cubic-bezier(0.16, 1, 0.3, 1);
 }

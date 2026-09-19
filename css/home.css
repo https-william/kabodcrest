@@ -8,21 +8,10 @@
 .home-hero {
   background-color: var(--color-obsidian);
   color: var(--color-text-light);
-  padding: var(--space-4xl) 0 var(--space-3xl);
-  border-bottom: 1px solid rgba(200, 164, 93, 0.25);
+  padding: var(--space-3xl) 0 var(--space-3xl);
+  border-bottom: 1px solid rgba(200, 164, 93, 0.22);
   position: relative;
   overflow: hidden;
-}
-
-.home-hero::before {
-  content: '';
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(50, 26, 74, 0.6) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .home-hero-inner {
@@ -60,23 +49,25 @@
 
 .home-hero-title {
   font-family: var(--font-editorial);
-  font-size: 2.75rem;
-  font-weight: 600;
-  font-style: italic;
+  font-size: 2.85rem;
+  font-weight: 500;
+  font-style: normal;
   color: var(--color-text-light);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-md);
 }
 
 @media (min-width: 768px) {
   .home-hero-title {
-    font-size: 3.75rem;
+    font-size: 4rem;
   }
 }
 
 .home-hero-title .brand-accent {
   color: var(--color-gold);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .home-hero-desc {
@@ -163,16 +154,16 @@
   display: flex;
   gap: var(--space-md);
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(184, 177, 165, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(200, 164, 93, 0.22);
   border-radius: var(--radius-card-sm);
   padding: var(--space-sm) var(--space-md);
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .hero-visual-card:hover {
   border-color: var(--color-gold);
-  transform: translateX(3px);
+  background-color: rgba(255, 255, 255, 0.09);
 }
 
 .hero-visual-thumb {
@@ -568,19 +559,6 @@
   color: var(--color-text-light);
   text-align: center;
   position: relative;
-  overflow: hidden;
-}
-
-.final-cta-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 250px;
-  background: radial-gradient(circle, rgba(50, 26, 74, 0.8) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 .final-cta-inner {

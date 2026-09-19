@@ -91,12 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (emptyStateEl) emptyStateEl.style.display = 'none';
 
     // Render cards
-    gridEl.innerHTML = filtered.map(product => `
+    gridEl.innerHTML = filtered.map(product => {
+      const originDisplay = product.origin ? product.origin.split(',')[0].trim() : 'Nigeria';
+      return `
       <article class="product-card" data-product-id="${product.id}" data-category="${product.category}">
-        <div class="product-card-badge-row">
-          <span class="preorder-pill">Pre-Order</span>
-        </div>
-
         <a href="product-detail.html?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
           <img
             src="${product.image}"
@@ -108,7 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
 
         <div class="product-card-body">
-          <div class="product-category-label">${product.category}</div>
+          <div class="product-meta-row">
+            <span class="product-category-label">${product.category}</span>
+            <span class="product-origin-tag">${originDisplay}</span>
+          </div>
           <h2 class="product-title">
             <a href="product-detail.html?id=${encodeURIComponent(product.id)}">${product.name}</a>
           </h2>
@@ -124,18 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
               type="button"
               class="btn-preorder js-add-preorder"
               data-id="${product.id}"
-              aria-label="Reserve ${product.name} pre-order allocation"
+              aria-label="Reserve ${product.name} allocation"
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
-              <span class="preorder-btn-label">Pre-Order</span>
+              <span class="preorder-btn-label">Reserve Allocation</span>
             </button>
           </div>
         </div>
       </article>
-    `).join('');
+    `;
+    }).join('');
 
     // Attach click events to Add to Pre-Order buttons with instant psychological feedback
     gridEl.querySelectorAll('.js-add-preorder').forEach(btn => {
@@ -153,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            <span>Reserved</span>
+            <span>Allocated ✓</span>
           `;
           
           setTimeout(() => {
