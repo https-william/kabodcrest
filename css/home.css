@@ -143,61 +143,95 @@
   background: linear-gradient(180deg, rgba(50, 26, 74, 0.45) 0%, rgba(11, 11, 11, 0.85) 100%);
   border: 1px solid rgba(200, 164, 93, 0.35);
   border-radius: var(--radius-card-lg);
-  padding: var(--space-lg);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
   box-shadow: var(--shadow-hover);
+  overflow: hidden;
 }
 
-.hero-visual-card {
-  display: flex;
-  gap: var(--space-md);
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(200, 164, 93, 0.22);
-  border-radius: var(--radius-card-sm);
-  padding: var(--space-sm) var(--space-md);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+@media (min-width: 768px) {
+  .hero-visual-frame {
+    padding: var(--space-lg);
+  }
 }
 
-.hero-visual-card:hover {
-  border-color: var(--color-gold);
-  background-color: rgba(255, 255, 255, 0.09);
+.hero-visual-main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid rgba(200, 164, 93, 0.28);
 }
 
-.hero-visual-thumb {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-subtle);
+.hero-featured-image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  flex-shrink: 0;
+  transition: transform var(--transition-smooth);
 }
 
-.hero-visual-info {
+.hero-visual-frame:hover .hero-featured-image {
+  transform: scale(1.03);
+}
+
+.hero-featured-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(18, 11, 26, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--color-gold);
+  border: 1px solid rgba(200, 164, 93, 0.4);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-visual-ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xs);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 164, 93, 0.2);
+  border-radius: var(--radius-card-sm);
+  padding: 10px 12px;
+}
+
+@media (max-width: 500px) {
+  .hero-visual-ledger {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+.hero-ledger-item {
   display: flex;
   flex-direction: column;
 }
 
-.hero-visual-tag {
+.hero-ledger-label {
   font-family: var(--font-structural);
-  font-size: 0.625rem;
+  font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-gold);
   text-transform: uppercase;
+  margin-bottom: 2px;
 }
 
-.hero-visual-name {
-  font-family: var(--font-structural);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--color-text-light);
-}
-
-.hero-visual-note {
+.hero-ledger-val {
   font-size: 0.75rem;
-  color: var(--color-text-light-muted);
+  color: var(--color-text-light);
+  line-height: 1.25;
+  font-weight: 500;
 }
 
 /* ==========================================================================
@@ -481,6 +515,66 @@
   line-height: 1.55;
   margin-bottom: var(--space-md);
   flex-grow: 1;
+}
+
+/* Packaging Distinction Spotlight Banner */
+.packaging-spotlight-banner {
+  margin-top: var(--space-2xl);
+  background: var(--color-plum-deep);
+  border: 1px solid rgba(200, 164, 93, 0.3);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: var(--shadow-card);
+}
+
+@media (min-width: 900px) {
+  .packaging-spotlight-banner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+.packaging-spotlight-img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.packaging-spotlight-caption {
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-light);
+}
+
+.packaging-badge {
+  display: inline-block;
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-xs);
+}
+
+.packaging-title {
+  font-family: var(--font-structural);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  line-height: 1.25;
+  margin-bottom: var(--space-sm);
+}
+
+.packaging-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.6;
 }
 
 /* ==========================================================================
