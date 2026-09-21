@@ -10,28 +10,47 @@ const KABOD_SHIPPING_CONFIG = {
       id: "lagos",
       name: "Lagos Delivery (Mainland & Island)",
       description: "Direct door-to-door dispatch within Lagos State",
-      rateText: "Flat rate [TBC]",
-      rateAmount: null, // Set number e.g. 2500 once finalized
-      isTBC: true
+      rateText: "₦2,500",
+      rateAmount: 2500,
+      isTBC: false
     },
     {
       id: "rest-of-nigeria",
       name: "Rest of Nigeria (35 States & FCT)",
       description: "Nationwide regional courier network dispatch",
-      rateText: "Flat rate [TBC]",
-      rateAmount: null, // Set number e.g. 5000 once finalized
-      isTBC: true
+      rateText: "₦4,500",
+      rateAmount: 4500,
+      isTBC: false
     },
     {
       id: "international-air",
       name: "International Freight (UK, US, Canada, AU, Worldwide)",
       description: "Priority international air cargo with tracking & export documentation",
-      rateText: "Calculated prior to dispatch invoice [TBC]",
+      rateText: "[TBC prior to dispatch]",
       rateAmount: null,
       isTBC: true
     }
   ],
-  defaultTier: "lagos"
+  defaultTier: "lagos",
+
+  getTierById: function(tierId) {
+    if (!tierId) return this.tiers.find(t => t.id === this.defaultTier);
+    return this.tiers.find(t => t.id === tierId) || this.tiers.find(t => t.id === this.defaultTier) || null;
+  },
+
+  getTierForDestination: function(country, state) {
+    const normCountry = (country || '').trim().toLowerCase();
+    const normState = (state || '').trim().toLowerCase();
+
+    if (!normCountry || normCountry === 'nigeria') {
+      if (normState === 'lagos') {
+        return this.getTierById('lagos');
+      }
+      return this.getTierById('rest-of-nigeria');
+    }
+
+    return this.getTierById('international-air');
+  }
 };
 
 if (typeof window !== 'undefined') {

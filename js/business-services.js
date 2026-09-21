@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappLink) {
       const companyNote = inquiry.company !== 'Independent Partner' ? ` from ${inquiry.company}` : '';
       const text = `Hello Kabod Crest Limited, my name is *${inquiry.name}*${companyNote}.%0A%0AI am reaching out regarding strategic business collaboration:%0A"${inquiry.message}"%0A%0APlease let me know when convenient to schedule an exploratory discussion.`;
-      whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      whatsappLink.href = `https://wa.me/2349053807722?text=${encodeURIComponent(text)}`;
     }
 
     // Toggle UI views

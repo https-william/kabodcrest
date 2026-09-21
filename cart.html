@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pre-Order Cart — Kabod Crest Foods</title>
+  <title>Pre-Order Cart | Kabod Crest Foods</title>
   <meta name="description" content="Review your agro-produce pre-order allocation before proceeding to worldwide delivery checkout." />
 
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
@@ -78,12 +78,12 @@
       <ol class="flow-steps-list">
         <li class="flow-step-item active">
           <span class="flow-step-num">1</span>
-          <span>Review Allocation</span>
+          <span>Review Your Bag</span>
         </li>
         <li class="flow-step-divider" aria-hidden="true"></li>
         <li class="flow-step-item">
           <span class="flow-step-num">2</span>
-          <span>Worldwide Delivery</span>
+          <span>Delivery Details</span>
         </li>
         <li class="flow-step-divider" aria-hidden="true"></li>
         <li class="flow-step-item">
@@ -101,7 +101,7 @@
         <!-- Left: Line Items List -->
         <div class="cart-table-card">
           <div class="cart-table-header">
-            <h1 class="cart-table-title">Your Pre-Order Allocation</h1>
+            <h1 class="cart-table-title">Your Selected Items</h1>
             <span style="font-size: 0.8125rem; color: var(--color-text-muted);" id="cart-page-count">0 items</span>
           </div>
           <div class="cart-lines-container" id="cart-lines-body">
@@ -114,30 +114,30 @@
           <h2 class="summary-box-title" id="summary-heading">Order Summary</h2>
 
           <div class="summary-line-item">
-            <span>Reserved Items:</span>
+            <span>Total Items:</span>
             <span id="summary-items-count" style="font-weight: 600;">0</span>
           </div>
 
           <div class="summary-line-item">
-            <span>Commercial Rate:</span>
-            <span style="font-family: var(--font-structural); font-weight: 600; color: var(--color-plum);">[TBC on Invoice]</span>
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" style="font-family: var(--font-structural); font-weight: 600; color: var(--color-plum);">₦0</span>
           </div>
 
           <div class="summary-total-row">
-            <span>Estimated Payable:</span>
-            <span>Price: [TBC]</span>
+            <span>Estimated Total:</span>
+            <span id="cart-payable-total" style="font-weight: 700; color: var(--color-plum);">₦0</span>
           </div>
 
           <div class="summary-policy-notice">
-            <strong>Commercial Pre-Order:</strong> No upfront payment is charged right now. Reserving locks in your allocation directly from the first completed production batch.
+            Carefully packaged and sealed. Delivery freight and payment options are selected on the next step.
           </div>
 
           <a href="checkout.html" class="btn-primary-action" id="btn-proceed-checkout">
-            Proceed to Worldwide Checkout &rarr;
+            Proceed to Checkout &rarr;
           </a>
 
           <a href="shop.html" class="btn-secondary-action">
-            &larr; Add More Agro-Produce
+            &larr; Continue Shopping
           </a>
         </aside>
       </div>
@@ -149,12 +149,12 @@
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <path d="M16 10a4 4 0 0 1-8 0"></path>
         </svg>
-        <h2 style="font-family: var(--font-structural); font-size: 1.5rem; margin-bottom: var(--space-xs); color: var(--color-obsidian);">Your Pre-Order Bag is Empty</h2>
+        <h2 style="font-family: var(--font-structural); font-size: 1.5rem; margin-bottom: var(--space-xs); color: var(--color-obsidian);">Your Bag is Empty</h2>
         <p style="font-size: 0.9375rem; color: var(--color-text-muted); margin-bottom: var(--space-xl);">
-          You have not reserved any agro-produce yet. Explore our harvest catalog to allocate products from our upcoming commercial batch.
+          You haven't added any pantry items yet. Take a look at our collection and find something special for your kitchen.
         </p>
         <a href="shop.html" class="btn-primary-action" style="display: inline-flex; width: auto; padding: 12px 28px;">
-          Explore Kabod Crest Foods Catalog
+          Browse the Pantry Collection
         </a>
       </div>
     </div>
@@ -175,6 +175,10 @@
       <ul class="cart-items-list" id="cart-items-list"></ul>
     </div>
     <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-drawer-subtotal-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--color-stone-muted, #e5e5e5); font-family: var(--font-structural, 'Cinzel', serif);">
+        <span class="subtotal-label" style="font-size: 0.9375rem; font-weight: 600; color: var(--color-obsidian, #1a1a1a);">Subtotal:</span>
+        <span class="subtotal-value" id="cart-drawer-subtotal" style="font-size: 1.125rem; font-weight: 700; color: var(--color-plum, #4A1525);">₦0</span>
+      </div>
       <div class="cart-policy-note">
         <strong>Pre-Order Policy:</strong> Commercial unit prices are currently [TBC]. Reserving now guarantees priority dispatch.
       </div>
@@ -240,14 +244,21 @@
       const linesContainer = document.getElementById('cart-lines-body');
       const countEl = document.getElementById('cart-page-count');
       const summaryCount = document.getElementById('summary-items-count');
+      const subtotalEl = document.getElementById('cart-subtotal');
+      const payableTotalEl = document.getElementById('cart-payable-total');
 
       function renderCartPage() {
-        const items = window.KabodCart ? window.KabodCart.getItems() : [];
-        const total = window.KabodCart ? window.KabodCart.getTotalCount() : 0;
+        const totals = window.KabodCart
+          ? window.KabodCart.getTotals()
+          : { items: [], totalCount: 0, pricedSubtotal: 0, formattedSubtotal: '₦0', formattedSummaryTotal: '₦0' };
+        const items = totals.items;
+        const total = totals.totalCount;
 
         if (items.length === 0) {
           if (activeView) activeView.style.display = 'none';
           if (emptyView) emptyView.style.display = 'block';
+          if (subtotalEl) subtotalEl.textContent = '₦0';
+          if (payableTotalEl) payableTotalEl.textContent = '₦0';
           return;
         }
 
@@ -256,26 +267,42 @@
 
         if (countEl) countEl.textContent = `${total} item${total === 1 ? '' : 's'}`;
         if (summaryCount) summaryCount.textContent = total;
+        if (subtotalEl) subtotalEl.textContent = totals.formattedSubtotal;
+        if (payableTotalEl) payableTotalEl.textContent = totals.formattedSummaryTotal;
 
         if (linesContainer) {
           linesContainer.innerHTML = items.map(item => {
-            let priceText = item.priceDisplay;
-            if (item.price && window.KabodCurrency) {
-              const estimate = window.KabodCurrency.formatEstimate(item.price);
-              if (estimate) {
-                priceText = `${item.priceDisplay} <span style="font-size: 0.6875rem; color: var(--color-gold); font-weight: 500;">${estimate}</span>`;
+            let priceMarkup = '';
+            if (item.isPriced && typeof item.lineTotal === 'number') {
+              const formattedLineTotal = item.lineTotalDisplay;
+              let estMarkup = '';
+              if (window.KabodCurrency) {
+                const estimate = window.KabodCurrency.formatEstimate(item.lineTotal);
+                if (estimate) {
+                  estMarkup = `<span class="cart-line-estimate" style="font-size: 0.75rem; color: var(--color-gold); font-weight: 600; margin-left: 6px;">${estimate}</span>`;
+                }
               }
+
+              priceMarkup = (item.quantity > 1)
+                ? `<div class="cart-line-price-stack" style="display: flex; flex-direction: column; gap: 2px;">
+                     <span class="cart-line-unit-rate" style="font-size: 0.8125rem; color: var(--color-text-muted);">${item.quantity} × ${item.priceDisplay}</span>
+                     <span class="cart-line-price" style="font-size: 1rem; font-weight: 700; color: var(--color-plum);">${formattedLineTotal}${estMarkup}</span>
+                   </div>`
+                : `<span class="cart-line-price" style="font-size: 1rem; font-weight: 700; color: var(--color-plum);">${formattedLineTotal}${estMarkup}</span>`;
+            } else {
+              priceMarkup = `<span class="cart-line-price" style="font-weight: 600; color: var(--color-plum);">${item.priceDisplay || 'Price: [TBC]'}</span>`;
             }
+
             return `
             <div class="cart-line-row" data-id="${item.id}">
               <div class="cart-line-thumb">
                 <img src="${item.image}" alt="${item.name}" />
               </div>
               <div class="cart-line-details">
-                <span class="cart-line-tag">ALLOCATION</span>
+                <span class="cart-line-tag ${item.isPreOrder ? '' : 'live'}">${item.isPreOrder ? 'PRE-ORDER' : 'LIVE ORDER'}</span>
                 <div class="cart-line-name">${item.name}</div>
                 <div class="cart-line-spec">${item.weight} • ${item.category}</div>
-                <span class="cart-line-price">${priceText}</span>
+                ${priceMarkup}
               </div>
               <div class="cart-line-actions">
                 <div class="cart-qty-control" role="group" aria-label="Quantity">

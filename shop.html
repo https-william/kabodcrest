@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shop Agro-Produce — Kabod Crest Foods</title>
+  <title>Shop Agro-Produce | Kabod Crest Foods</title>
   <meta name="description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
 
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
@@ -18,6 +18,38 @@
   <link rel="stylesheet" href="css/tokens.css" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/shop.css" />
+
+  <!-- JSON-LD Structured Data: ItemList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Kabod Crest Foods Product Catalog",
+    "description": "Premium Nigerian botanical agro-produce, spices, dehydrated vegetables, and traditional provisions.",
+    "url": "https://kabodcrest.com/shop.html",
+    "numberOfItems": 14,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Dehydrated Ugwu",
+        "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ugwu"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dehydrated Ginger Powder",
+        "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ginger"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Jollof Rice Spice",
+        "url": "https://kabodcrest.com/product-detail.html?id=jollof-spice"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -103,13 +135,13 @@
         <div class="shop-hero-inner">
           <h1 class="shop-hero-title">Kabod Crest Foods</h1>
           <span class="gold-hairline" aria-hidden="true"></span>
-          <p class="shop-hero-lead">Wholesome Nigerian agro-produce processed with disciplined hygiene, natural preservation, and culinary integrity.</p>
+          <p class="shop-hero-lead">Welcome to our kitchen pantry. Here you will find our carefully dried Nigerian vegetables, stone-ground spices, and everyday kitchen staples. Always pure, gently handled, and sealed to bring true home flavor straight to your table.</p>
         </div>
       </div>
     </section>
 
-    <!-- Psychological Reassurance & Trust Pillars Strip -->
-    <section class="shop-trust-strip" aria-label="Commercial guarantees and ordering reassurance">
+    <!-- Thoughtful Pantry Reassurance Strip -->
+    <section class="shop-trust-strip" aria-label="Our pantry promises">
       <div class="container">
         <div class="shop-trust-grid">
           <div class="shop-trust-item">
@@ -118,8 +150,8 @@
               <polyline points="9 12 11 14 15 10"></polyline>
             </svg>
             <div>
-              <div class="shop-trust-title">Guaranteed Batch 1 Slot</div>
-              <div class="shop-trust-desc">Locks your dispatch allocation directly from our first finished processing run.</div>
+              <div class="shop-trust-title">Gently Preserved</div>
+              <div class="shop-trust-desc">Dried with gentle warm air so leaves and spices hold their natural color, fresh aroma, and honest flavor.</div>
             </div>
           </div>
 
@@ -130,8 +162,8 @@
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
             </svg>
             <div>
-              <div class="shop-trust-title">Worldwide & Nationwide</div>
-              <div class="shop-trust-desc">Direct delivery across all 36 Nigerian states + UK, US, Canada, AU & SA.</div>
+              <div class="shop-trust-title">Straight to Your Door</div>
+              <div class="shop-trust-desc">Packed fresh in Lagos and delivered securely across all 36 Nigerian states and worldwide.</div>
             </div>
           </div>
 
@@ -142,8 +174,8 @@
               <path d="M2 12l10 5 10-5"></path>
             </svg>
             <div>
-              <div class="shop-trust-title">Zero Artificial Additives</div>
-              <div class="shop-trust-desc">100% natural agro-produce sealed in premium moisture-barrier standup pouches.</div>
+              <div class="shop-trust-title">Nothing Artificial Added</div>
+              <div class="shop-trust-desc">Single-origin produce with zero chemical additives, preservatives, or colorants.</div>
             </div>
           </div>
 
@@ -154,33 +186,51 @@
               <line x1="8" y1="12" x2="16" y2="12"></line>
             </svg>
             <div>
-              <div class="shop-trust-title">Transparent Verification</div>
-              <div class="shop-trust-desc">Commercial rates [TBC] confirmed with you directly prior to dispatch invoice.</div>
+              <div class="shop-trust-title">Sealed Fresh</div>
+              <div class="shop-trust-desc">Packed in multi-layer barrier pouches with an airtight zip to stay cupboard-fresh for months.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Category Filter Bar -->
-    <nav class="shop-controls-bar" aria-label="Product categories">
+    <!-- Search & Category Controls Bar -->
+    <nav class="shop-controls-bar" aria-label="Product search and categories">
       <div class="container">
-        <div class="category-tabs-container" id="category-tabs" role="tablist">
-          <button type="button" class="category-tab active" data-category="all" role="tab" aria-selected="true">
-            All Products <span class="tab-count">(11)</span>
-          </button>
-          <button type="button" class="category-tab" data-category="Dehydrated Vegetables" role="tab" aria-selected="false">
-            Dehydrated Vegetables <span class="tab-count">(0)</span>
-          </button>
-          <button type="button" class="category-tab" data-category="Spices & Seasonings" role="tab" aria-selected="false">
-            Spices & Seasonings <span class="tab-count">(0)</span>
-          </button>
-          <button type="button" class="category-tab" data-category="Seeds & Nuts" role="tab" aria-selected="false">
-            Seeds & Nuts <span class="tab-count">(0)</span>
-          </button>
-          <button type="button" class="category-tab" data-category="Traditional Foods" role="tab" aria-selected="false">
-            Traditional Foods <span class="tab-count">(0)</span>
-          </button>
+        <div class="shop-controls-wrapper">
+          <div class="shop-search-box">
+            <svg class="shop-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="catalog-search-input"
+              class="shop-search-input"
+              placeholder="Search our pantry (e.g. Ugwu, Ginger, Garri...)"
+              aria-label="Search ingredients and pantry products"
+              autocomplete="off"
+            />
+            <button type="button" id="catalog-search-clear" class="shop-search-clear" aria-label="Clear search" style="display: none;">&times;</button>
+          </div>
+
+          <div class="category-tabs-container" id="category-tabs" role="tablist">
+            <button type="button" class="category-tab active" data-category="all" role="tab" aria-selected="true">
+              All Pantry <span class="tab-count">(14)</span>
+            </button>
+            <button type="button" class="category-tab" data-category="Dehydrated Vegetables" role="tab" aria-selected="false">
+              Dehydrated Vegetables <span class="tab-count">(0)</span>
+            </button>
+            <button type="button" class="category-tab" data-category="Spices & Seasonings" role="tab" aria-selected="false">
+              Spices & Seasonings <span class="tab-count">(0)</span>
+            </button>
+            <button type="button" class="category-tab" data-category="Seeds & Nuts" role="tab" aria-selected="false">
+              Seeds & Nuts <span class="tab-count">(0)</span>
+            </button>
+            <button type="button" class="category-tab" data-category="Traditional Foods" role="tab" aria-selected="false">
+              Traditional Foods <span class="tab-count">(0)</span>
+            </button>
+          </div>
         </div>
       </div>
     </nav>
@@ -190,10 +240,10 @@
       <div class="container">
         <header class="catalog-header">
           <div>
-            <h2 class="catalog-heading" id="active-category-title">All Pre-Order Agro-Produce</h2>
-            <p class="catalog-subheading">Batch 01 Dispatch Ledger &bull; Controlled harvest reservations</p>
+            <h2 class="catalog-heading" id="active-category-title">All Nigerian Agro-Produce</h2>
+            <p class="catalog-subheading">Pure harvests and kitchen staples, carefully prepared for your table.</p>
           </div>
-          <span class="catalog-meta" id="catalog-count">Showing 11 items</span>
+          <span class="catalog-meta" id="catalog-count">Showing 14 items</span>
         </header>
 
         <!-- Product Grid: 2 columns mobile, 3 columns tablet, 4 columns desktop -->
@@ -202,14 +252,14 @@
         </div>
 
         <!-- Empty State UI -->
-        <div class="catalog-empty-state" id="catalog-empty-state">
+        <div class="catalog-empty-state" id="catalog-empty-state" style="display: none;">
           <svg class="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
             <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
             <line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
-          <h3 class="empty-state-title">No products found in this category</h3>
-          <p class="empty-state-text">We are continuously expanding our agro-processing batches. Please check our other departments or return to the full catalog.</p>
+          <h3 class="empty-state-title">We couldn't find a match</h3>
+          <p class="empty-state-text">Try searching for a different ingredient, or view our full pantry collection.</p>
           <button type="button" class="btn-reset-filter" id="btn-reset-filter">View All Products</button>
         </div>
 
@@ -217,11 +267,27 @@
         <div class="shop-packaging-feature">
           <img src="assets/images/packaging/shop-packaging-trio.jpg" alt="Kabod Crest high-barrier standup pouches in Royal Plum and unbleached kraft" class="shop-packaging-feature-img" loading="lazy" />
           <div class="shop-packaging-feature-content">
-            <span class="shop-packaging-badge">Packaging Integrity</span>
+            <span class="shop-packaging-badge">Kept Fresh</span>
             <h3 class="shop-packaging-title">Sealed in Moisture-Barrier Standup Pouches</h3>
             <p class="shop-packaging-desc">
-              Every allocation of Nigerian agro-produce is sealed in puncture-resistant, foil-laminated standup pouches with airtight zip-closures. By shielding sensitive dried botanicals, seeds, and spices from humidity, UV degradation, and oxidation, we ensure farm-fresh potency arrives at your kitchen anywhere worldwide.
+              Good food deserves honest care. We seal each harvest in thick, puncture-resistant barrier pouches with an airtight resealable zip. Moisture stays out, fresh aroma stays in, and you enjoy true farm flavor every time you cook.
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dehydration Process Diagram Section -->
+    <section class="process-diagram-section" style="padding: var(--space-3xl) 0; background-color: var(--color-obsidian); color: var(--color-text-light);">
+      <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto var(--space-2xl) auto;">
+          <span style="font-family: var(--font-structural); font-size: 0.75rem; font-weight: 700; color: var(--color-gold); letter-spacing: 0.1em; text-transform: uppercase;">The Agro-Processing Standard</span>
+          <h2 style="font-family: var(--font-structural); font-size: 1.875rem; color: var(--color-text-light); margin-top: var(--space-xs); margin-bottom: var(--space-sm);">From Rural Harvest to Sealed Botanical Pouch</h2>
+          <p style="font-size: 0.9375rem; color: var(--color-text-light-muted); line-height: 1.6;">Our low-temperature dehydration preserves leaf cellular structure, fresh garden color, and aromatic volatile oils without a single chemical preservative.</p>
+        </div>
+        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: var(--space-md);">
+          <div style="min-width: 860px; max-width: 1140px; margin: 0 auto;">
+            <img src="assets/images/diagrams/dehydration-process.svg" alt="Kabod Crest Farm-to-Pouch Controlled Dehydration Process" style="width: 100%; height: auto; display: block; border-radius: var(--radius-card);" />
           </div>
         </div>
       </div>
@@ -247,6 +313,10 @@
     </div>
 
     <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-drawer-subtotal-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--color-stone-muted, #e5e5e5); font-family: var(--font-structural, 'Cinzel', serif);">
+        <span class="subtotal-label" style="font-size: 0.9375rem; font-weight: 600; color: var(--color-obsidian, #1a1a1a);">Subtotal:</span>
+        <span class="subtotal-value" id="cart-drawer-subtotal" style="font-size: 1.125rem; font-weight: 700; color: var(--color-plum, #4A1525);">₦0</span>
+      </div>
       <div class="cart-policy-note">
         <strong>Pre-Order Policy:</strong> Commercial unit prices are currently being finalized [TBC]. Reserving now guarantees priority dispatch from the first completed production run.
       </div>
@@ -313,7 +383,7 @@
           &copy; 2026 Kabod Crest Limited. All rights reserved.
         </div>
         <div class="footer-note">
-          RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority
+          RC: Registered Nigerian Enterprise • Excellence with Integrity
         </div>
       </div>
     </div>

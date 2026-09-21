@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Worldwide Delivery Checkout — Kabod Crest Foods</title>
+  <title>Worldwide Delivery Checkout | Kabod Crest Foods</title>
   <meta name="description" content="Secure pre-order registration and worldwide delivery checkout for Kabod Crest Foods." />
 
   <!-- Google Fonts -->
@@ -68,30 +68,33 @@
 
   <main class="checkout-page-section">
     <div class="container">
-      <form id="checkout-form" class="checkout-grid">
+      <form id="checkout-form" class="checkout-grid" novalidate>
         <!-- Left: Form Fields -->
         <div class="checkout-form-container">
 
           <!-- 1. Customer Contact Details -->
           <section class="checkout-card" aria-labelledby="contact-heading">
             <h2 class="checkout-card-title" id="contact-heading">
-              <span>1. Customer & Trade Contact</span>
+              <span>1. Your Contact Details</span>
             </h2>
-            <p class="checkout-card-desc">We will use these details to send your order reference and commercial batch schedule.</p>
+            <p class="checkout-card-desc">We will send your order confirmation and dispatch updates directly to your email and phone.</p>
 
             <div class="form-group">
-              <label for="cust-name" class="form-label">Full Name / Corporate Entity <span class="required-mark">*</span></label>
-              <input type="text" id="cust-name" class="form-input" placeholder="e.g. Olufunmi Adeleke" required />
+              <label for="cust-name" class="form-label">Full Name <span class="required-mark">*</span></label>
+              <input type="text" id="cust-name" class="form-input" placeholder="e.g. Olufunmi Adeleke" required aria-describedby="cust-name-error" />
+              <span class="field-error-msg" id="cust-name-error" role="alert" aria-live="polite"></span>
             </div>
 
             <div class="form-grid-2">
               <div class="form-group">
                 <label for="cust-email" class="form-label">Email Address <span class="required-mark">*</span></label>
-                <input type="email" id="cust-email" class="form-input" placeholder="name@domain.com" required />
+                <input type="email" id="cust-email" class="form-input" placeholder="name@domain.com" required aria-describedby="cust-email-error" />
+                <span class="field-error-msg" id="cust-email-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="cust-phone" class="form-label">Phone / WhatsApp Number <span class="required-mark">*</span></label>
-                <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. +234 803 000 0000" required />
+                <input type="tel" id="cust-phone" class="form-input" placeholder="e.g. +234 803 000 0000" required aria-describedby="cust-phone-error" />
+                <span class="field-error-msg" id="cust-phone-error" role="alert" aria-live="polite"></span>
                 <span class="form-hint">Please include country code for international destinations</span>
               </div>
             </div>
@@ -100,54 +103,59 @@
           <!-- 2. Worldwide Delivery Destination -->
           <section class="checkout-card" aria-labelledby="delivery-heading">
             <h2 class="checkout-card-title" id="delivery-heading">
-              <span>2. Worldwide Delivery Destination</span>
+              <span>2. Delivery Address</span>
             </h2>
-            <p class="checkout-card-desc">We dispatch across Nigeria and internationally to Australia, UK, US, South Africa, and worldwide.</p>
+            <p class="checkout-card-desc">Where should we deliver your order? We deliver across Nigeria and worldwide.</p>
 
             <div class="form-grid-2">
               <div class="form-group">
                 <label for="delivery-country" class="form-label">Destination Country <span class="required-mark">*</span></label>
-                <select id="delivery-country" class="form-select" required>
+                <select id="delivery-country" class="form-select" required aria-describedby="delivery-country-error">
                   <!-- Populated by js/checkout.js -->
                 </select>
+                <span class="field-error-msg" id="delivery-country-error" role="alert" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="delivery-state" class="form-label">State / Province / Region <span class="required-mark">*</span></label>
-                <select id="delivery-state" class="form-select" required>
+                <select id="delivery-state" class="form-select" required aria-describedby="delivery-state-error">
                   <!-- Dynamically populated based on country -->
                 </select>
+                <span class="field-error-msg" id="delivery-state-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
             <div class="form-grid-2">
               <div class="form-group">
                 <label for="delivery-city" class="form-label">City / Town <span class="required-mark">*</span></label>
-                <input type="text" id="delivery-city" class="form-input" placeholder="e.g. Ikeja, London, Melbourne" required />
+                <input type="text" id="delivery-city" class="form-input" placeholder="e.g. Ikeja, London, Melbourne" required aria-describedby="delivery-city-error" />
+                <span class="field-error-msg" id="delivery-city-error" role="alert" aria-live="polite"></span>
               </div>
               <div class="form-group">
                 <label for="delivery-postal" class="form-label">Postal / ZIP Code</label>
-                <input type="text" id="delivery-postal" class="form-input" placeholder="e.g. 100001, SW1A 1AA" />
+                <input type="text" id="delivery-postal" class="form-input" placeholder="e.g. 100001, SW1A 1AA" aria-describedby="delivery-postal-error" />
+                <span class="field-error-msg" id="delivery-postal-error" role="alert" aria-live="polite"></span>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="delivery-address" class="form-label">Street Address / Delivery Point <span class="required-mark">*</span></label>
-              <input type="text" id="delivery-address" class="form-input" placeholder="House number, street name, apartment or suite" required />
+              <label for="delivery-address" class="form-label">Street Address <span class="required-mark">*</span></label>
+              <input type="text" id="delivery-address" class="form-input" placeholder="House number, street name, apartment or suite" required aria-describedby="delivery-address-error" />
+              <span class="field-error-msg" id="delivery-address-error" role="alert" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
-              <label for="delivery-notes" class="form-label">Special Handling or Freight Instructions (Optional)</label>
-              <textarea id="delivery-notes" class="form-textarea" rows="2" placeholder="e.g. Commercial freight preference, gate code, preferred courier contact"></textarea>
+              <label for="delivery-notes" class="form-label">Special Delivery Instructions (Optional)</label>
+              <textarea id="delivery-notes" class="form-textarea" rows="2" placeholder="e.g. Landmark, gate buzzer, or preferred delivery timing"></textarea>
             </div>
           </section>
 
           <!-- 3. Shipping Tier Selection -->
           <section class="checkout-card" id="shipping-tier-section" aria-labelledby="shipping-heading">
             <h2 class="checkout-card-title" id="shipping-heading">
-              <span>3. Shipping & Fulfillment Tier</span>
+              <span>3. Delivery Option</span>
             </h2>
-            <p class="checkout-card-desc">Select your delivery dispatch tier. Rates are tracked in central config and finalized prior to dispatch.</p>
+            <p class="checkout-card-desc">Select your preferred delivery tier.</p>
 
             <div class="shipping-tiers-container" id="shipping-tiers-options">
               <!-- Dynamically populated from KABOD_SHIPPING_CONFIG by js/checkout.js -->
@@ -157,27 +165,43 @@
           <!-- 4. Swappable Payment Step -->
           <section class="checkout-card" aria-labelledby="payment-heading">
             <h2 class="checkout-card-title" id="payment-heading">
-              <span>4. Commercial Payment Mode</span>
+              <span>4. How Would You Like to Pay?</span>
             </h2>
+            <div class="payment-selector-grid">
+              <label class="payment-option-card selected" data-method="paystack">
+                <input type="radio" name="payment_method" value="paystack" checked />
+                <div class="payment-option-info">
+                  <div class="payment-option-title">Pay Online (Paystack)</div>
+                  <div class="payment-option-desc">Fast, secure checkout via Card, Bank Transfer, USSD, or Apple Pay</div>
+                </div>
+              </label>
+              <label class="payment-option-card" data-method="manual_bank_transfer">
+                <input type="radio" name="payment_method" value="manual_bank_transfer" />
+                <div class="payment-option-info">
+                  <div class="payment-option-title">Direct Corporate Bank Transfer</div>
+                  <div class="payment-option-desc">Send payment directly to our corporate Zenith Bank account and receive your official invoice</div>
+                </div>
+              </label>
+            </div>
             <div id="payment-module-container">
               <!-- Rendered by ActivePaymentProvider in js/checkout.js -->
             </div>
           </section>
 
           <!-- Submit Button -->
-          <button type="submit" class="btn-primary-action" style="padding: 16px; font-size: 1rem;">
-            Confirm & Register Pre-Order Allocation &rarr;
+          <button type="submit" id="checkout-submit-btn" class="btn-primary-action" style="padding: 16px; font-size: 1rem;">
+            Proceed to Payment &rarr;
           </button>
 
           <div style="font-size: 0.75rem; color: var(--color-text-muted); text-align: center;">
-            By confirming, you register your allocation with Kabod Crest Foods. Official invoice is sent prior to batch release.
+            Your transaction is encrypted and secure. You will receive an immediate receipt with your tracking reference.
           </div>
 
         </div>
 
         <!-- Right: Sticky Order Summary -->
         <aside class="summary-box-card" aria-labelledby="side-summary-heading">
-          <h2 class="summary-box-title" id="side-summary-heading">Allocation Summary</h2>
+          <h2 class="summary-box-title" id="side-summary-heading">Order Summary</h2>
           <div id="checkout-summary-items">
             <!-- Rendered by js/checkout.js -->
           </div>
@@ -187,6 +211,12 @@
             <span id="checkout-items-count" style="font-weight: 600;">0</span>
           </div>
 
+          <div class="summary-line-item" id="checkout-subtotal-row">
+            <span>Items Subtotal:</span>
+            <span id="checkout-subtotal-val" style="font-weight: 600; color: var(--color-text-dark);">₦0</span>
+            <span id="checkout-summary-subtotal" style="display: none;">₦0</span>
+          </div>
+
           <div class="summary-line-item">
             <span>Selected Shipping:</span>
             <span id="checkout-shipping-tier-label" style="font-weight: 600; color: var(--color-plum);">Lagos Delivery</span>
@@ -194,13 +224,15 @@
 
           <div class="summary-line-item">
             <span>Freight & Handling:</span>
-            <span id="checkout-shipping-rate-label" style="font-weight: 600; color: var(--color-text-muted);">Flat rate [TBC]</span>
+            <span id="checkout-shipping-rate-label" style="font-weight: 600; color: var(--color-text-muted);">₦2,500</span>
           </div>
 
           <div class="summary-total-row">
-            <span>Payable at Dispatch:</span>
-            <span id="checkout-total-payable">Price: [TBC]</span>
+            <span>Payable Grand Total:</span>
+            <span id="checkout-total-payable">₦0</span>
+            <span id="checkout-summary-grandtotal" style="display: none;">₦0</span>
           </div>
+          <div id="checkout-estimate-payable" style="text-align: right; font-size: 0.75rem; color: var(--color-gold); font-weight: 600; margin-top: 2px;"></div>
 
           <div class="summary-policy-notice">
             <strong>Honest Pre-Order Policy:</strong> No card or funds are drawn right now. Your registration secures prioritized production allocation from our first commercial release.
@@ -221,6 +253,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script src="js/products-data.js"></script>
   <script src="js/shipping-config.js"></script>
   <script src="js/currency-service.js"></script>

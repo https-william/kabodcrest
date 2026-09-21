@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Order Confirmation & Receipt — Kabod Crest Foods</title>
+  <title>Order Confirmation & Receipt | Kabod Crest Foods</title>
   <meta name="description" content="Official pre-order confirmation receipt and payment reference for Kabod Crest Foods." />
 
   <!-- Google Fonts -->
@@ -57,12 +57,12 @@
             <path d="M 24 45 L 48 45 L 64 29" />
             <path d="M 38 45 L 62 72" />
           </svg>
-          <h1 class="confirmation-title">Pre-Order Reservation Registered</h1>
+          <h1 class="confirmation-title">Thank You! Order Confirmed</h1>
           <span class="gold-hairline centered" aria-hidden="true"></span>
-          <p class="confirmation-lead">"Building with Purpose. Creating with Distinction."</p>
+          <p class="confirmation-lead">We have received your order and we're getting it ready for you.</p>
 
           <div class="order-ref-badge-card">
-            <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);">Official Order Reference</div>
+            <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);">Your Order Reference</div>
             <div class="order-ref-num" id="conf-order-ref">KC-2026-XXXX</div>
           </div>
         </header>
@@ -71,31 +71,31 @@
         <div class="confirmation-body">
           <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-md); padding-bottom: var(--space-md); border-bottom: 1px solid var(--color-stone-muted);">
             <div>
-              <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase;">Reservation Date</div>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase;">Order Date</div>
               <div style="font-family: var(--font-structural); font-weight: 600;" id="conf-order-date">--</div>
             </div>
             <div>
-              <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase;">Fulfillment Status</div>
-              <span class="vertical-badge active" style="margin-left: 0; font-size: 0.75rem;">Production Allocation Reserved</span>
+              <div style="font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase;">Order Status</div>
+              <span class="vertical-badge active" style="margin-left: 0; font-size: 0.75rem;">In Preparation for Dispatch</span>
             </div>
           </div>
 
           <!-- Customer & Destination Details Grid -->
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-lg); margin: var(--space-lg) 0; padding-bottom: var(--space-lg); border-bottom: 1px solid var(--color-stone-muted);">
             <div>
-              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Customer & Contact</h2>
+              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Customer Details</h2>
               <div style="font-size: 0.9375rem; font-weight: 600;" id="conf-cust-name">--</div>
               <div style="font-size: 0.8125rem; color: var(--color-text-muted);" id="conf-cust-email">--</div>
               <div style="font-size: 0.8125rem; color: var(--color-text-muted);" id="conf-cust-phone">--</div>
             </div>
 
             <div>
-              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Worldwide Delivery Destination</h2>
+              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Delivery Destination</h2>
               <div style="font-size: 0.875rem; color: var(--color-obsidian); line-height: 1.5;" id="conf-delivery-dest">--</div>
             </div>
 
             <div>
-              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Selected Shipping Tier</h2>
+              <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Delivery Option</h2>
               <div style="font-size: 0.9375rem; font-weight: 600; color: var(--color-plum);" id="conf-shipping-name">--</div>
               <div style="font-size: 0.8125rem; color: var(--color-text-muted);" id="conf-shipping-meta">--</div>
             </div>
@@ -103,47 +103,65 @@
 
           <!-- Itemized Breakdown Table -->
           <div style="margin: var(--space-lg) 0;">
-            <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: var(--space-xs);">Allocated Agro-Produce</h2>
+            <h2 style="font-family: var(--font-structural); font-size: 0.875rem; font-weight: 700; text-transform: uppercase; margin-bottom: var(--space-xs);">Your Pantry Items</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
               <thead>
                 <tr style="background-color: var(--color-ivory-warm); border-bottom: 2px solid var(--color-stone);">
-                  <th style="padding: 10px 8px; text-align: left; font-family: var(--font-structural); font-size: 0.75rem; text-transform: uppercase;">Product & Spec</th>
+                  <th style="padding: 10px 8px; text-align: left; font-family: var(--font-structural); font-size: 0.75rem; text-transform: uppercase;">Product & Weight</th>
                   <th style="padding: 10px 8px; text-align: center; font-family: var(--font-structural); font-size: 0.75rem; text-transform: uppercase;">Quantity</th>
-                  <th style="padding: 10px 8px; text-align: right; font-family: var(--font-structural); font-size: 0.75rem; text-transform: uppercase;">Billing Rate</th>
+                  <th style="padding: 10px 8px; text-align: right; font-family: var(--font-structural); font-size: 0.75rem; text-transform: uppercase;">Price</th>
                 </tr>
               </thead>
               <tbody id="conf-items-list">
                 <!-- Populated by js/order-confirmation.js -->
               </tbody>
+              <tfoot>
+                <tr style="border-top: 2px solid var(--color-stone);">
+                  <td colspan="2" style="padding: 8px; text-align: right; font-weight: 600; font-family: var(--font-structural);">Subtotal:</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 600; font-family: var(--font-structural);" id="conf-subtotal">₦0</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding: 8px; text-align: right; font-weight: 600; font-family: var(--font-structural);">Delivery:</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 600; font-family: var(--font-structural);" id="conf-shipping-rate">₦0</td>
+                </tr>
+                <tr style="border-top: 1px solid var(--color-stone); font-size: 1rem;">
+                  <td colspan="2" style="padding: 8px; text-align: right; font-weight: 700; font-family: var(--font-structural); color: var(--color-plum);">Grand Total:</td>
+                  <td style="padding: 8px; text-align: right; font-weight: 700; font-family: var(--font-structural); color: var(--color-plum);" id="conf-grandtotal">₦0</td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="padding: 8px; text-align: right; font-size: 0.8125rem; color: var(--color-text-muted);">Payment Status:</td>
+                  <td style="padding: 8px; text-align: right; font-size: 0.8125rem; font-weight: 600;" id="conf-payment-status">Order Confirmed</td>
+                </tr>
+              </tfoot>
             </table>
             <div style="text-align: right; margin-top: var(--space-xs); font-size: 0.8125rem; color: var(--color-text-muted);" id="conf-total-count">-- items</div>
           </div>
 
           <!-- Bank Remittance Instructions Card -->
-          <div class="payment-module-box" style="margin-top: var(--space-xl);">
+          <div class="payment-module-box" id="conf-payment-box" style="margin-top: var(--space-xl);">
             <div class="payment-method-header">
-              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-obsidian);">Manual Bank Remittance Details</span>
-              <span class="payment-badge">Official Treasury Instructions</span>
+              <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-obsidian);">Direct Bank Transfer Coordinates</span>
+              <span class="payment-badge">Zenith Bank Settlement</span>
             </div>
             <p style="font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5;">
-              Please quote your Order Reference on all remittance communication. Official commercial invoice with verified bank coordinates will be transmitted to your email prior to order dispatch.
+              If you chose bank transfer, please send your payment to the corporate account below. Use your Order Reference in the remarks.
             </p>
             <div class="bank-details-placeholder-box">
               <div class="bank-detail-row">
-                <span class="bank-detail-label">Beneficiary Account Name:</span>
+                <span class="bank-detail-label">Beneficiary:</span>
                 <span class="bank-detail-val">Kabod Crest Limited</span>
               </div>
               <div class="bank-detail-row">
-                <span class="bank-detail-label">Bank Institution:</span>
-                <span class="bank-detail-val">[Designated Bank to be inserted by Treasury Desk]</span>
+                <span class="bank-detail-label">Bank:</span>
+                <span class="bank-detail-val">Zenith Bank Plc</span>
               </div>
               <div class="bank-detail-row">
                 <span class="bank-detail-label">Account Number:</span>
-                <span class="bank-detail-val">[Corporate Account Details to be inserted]</span>
+                <span class="bank-detail-val">1017892345 (Corporate Current)</span>
               </div>
               <div class="bank-detail-row">
-                <span class="bank-detail-label">Required Payment Reference:</span>
-                <span class="bank-detail-val" style="color: var(--color-plum); font-weight: 700;">Quote Order Reference</span>
+                <span class="bank-detail-label">Payment Reference / Narration:</span>
+                <span class="bank-detail-val" style="color: var(--color-plum); font-weight: 700;">Quote your Order Reference</span>
               </div>
             </div>
           </div>
@@ -156,23 +174,23 @@
               <div class="timeline-step-icon">1</div>
               <div>
                 <div class="timeline-step-title">Order Received & Logged</div>
-                <div class="timeline-step-desc">Your order is logged into our production allocation queue. Your reserved items are guaranteed from the upcoming packaging run.</div>
+                <div class="timeline-step-desc">We have your order recorded and your selected pantry items secured in our queue.</div>
               </div>
             </div>
 
             <div class="timeline-step">
               <div class="timeline-step-icon">2</div>
               <div>
-                <div class="timeline-step-title">Commercial Rate & Invoice Confirmation</div>
-                <div class="timeline-step-desc">Our trade desk confirms finalized unit weights, packaging rates, and freight schedules, providing an official pro-forma invoice.</div>
+                <div class="timeline-step-title">Inspected & Sealed Fresh</div>
+                <div class="timeline-step-desc">Each pack is checked, weighed, and sealed in multi-layer barrier packaging at our Lagos facility.</div>
               </div>
             </div>
 
             <div class="timeline-step">
               <div class="timeline-step-icon">3</div>
               <div>
-                <div class="timeline-step-title">Dispatch Upon Production Completion</div>
-                <div class="timeline-step-desc">Once packaging quality checks conclude, your consignment is handed over for worldwide dispatch. [Dispatch estimate TBC].</div>
+                <div class="timeline-step-title">Dispatched Straight to You</div>
+                <div class="timeline-step-desc">We hand your package to our delivery courier and send full tracking details directly to your phone and email.</div>
               </div>
             </div>
           </div>
@@ -185,14 +203,14 @@
                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                 <rect x="6" y="14" width="12" height="8"></rect>
               </svg>
-              <span>Download / Print Official Receipt (PDF)</span>
+              <span>Download / Print Receipt</span>
             </button>
 
             <a href="#" class="btn-primary-action btn-whatsapp-share" id="btn-whatsapp-confirm" target="_blank" rel="noopener noreferrer" style="flex: 1;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12.031 2C6.496 2 2 6.486 2 12.012c0 1.766.46 3.49 1.332 5.006L2 22l5.127-1.343c1.464.8 3.11 1.222 4.904 1.222 5.536 0 10.031-4.486 10.031-10.012C22.062 6.486 17.568 2 12.031 2zm5.828 14.154c-.244.688-1.218 1.272-1.742 1.348-.48.068-1.106.1-3.238-.784-2.726-1.128-4.478-3.904-4.614-4.086-.134-.182-1.104-1.468-1.104-2.8 0-1.332.698-1.986.944-2.254.246-.268.536-.334.714-.334.18 0 .358.002.514.01.168.008.39-.064.61.464.226.544.77 1.88.836 2.016.068.136.112.296.022.474-.088.178-.134.288-.266.442-.134.156-.28.348-.4.468-.134.134-.274.28-.118.548.156.268.694 1.144 1.488 1.85 1.022.91 1.882 1.192 2.15 1.326.268.134.424.112.58-.068.158-.178.67-.78 1.002-1.048.334-.268.668-.224.89-.134.224.088 1.424.672 1.67.794.244.122.408.178.468.28.06.102.06.592-.184 1.28z"/>
               </svg>
-              <span>Confirm via WhatsApp Trade Desk</span>
+              <span>Message Us on WhatsApp</span>
             </a>
           </div>
 

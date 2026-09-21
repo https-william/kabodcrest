@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Details — Kabod Crest Foods</title>
+  <title>Product Details | Kabod Crest Foods</title>
   <meta name="description" content="View specifications and place pre-orders for Kabod Crest Foods wholesome Nigerian agro-produce." />
 
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/shop.css" />
   <link rel="stylesheet" href="css/product-detail.css" />
+
+  <!-- Dynamic Product JSON-LD Structured Data -->
+  <script type="application/ld+json" id="product-jsonld"></script>
 </head>
 <body>
 
@@ -142,8 +145,8 @@
               <div class="price-main-row">
                 <span class="price-tag-value" id="product-price-value">Price: [TBC]</span>
               </div>
-              <p class="price-subnote">
-                Official commercial rate is finalizing. Placing an order reserves priority allocation without upfront billing until invoice confirmation.
+              <p class="price-subnote" id="product-price-subnote">
+                Freshly packed and ready for prompt dispatch to your doorstep.
               </p>
             </div>
 
@@ -157,7 +160,7 @@
             <!-- Action Controls -->
             <div class="product-actions-box">
               <div class="product-qty-row">
-                <label for="qty-input" class="qty-label">Pre-Order Quantity:</label>
+                <label for="qty-input" class="qty-label">Quantity:</label>
                 <div class="qty-picker" role="group" aria-label="Quantity Picker">
                   <button type="button" class="qty-picker-btn" id="qty-btn-minus" aria-label="Decrease quantity">-</button>
                   <input type="number" id="qty-input" class="qty-picker-input" value="1" min="1" max="500" aria-label="Quantity" />
@@ -170,7 +173,7 @@
                   <line x1="12" y1="5" x2="12" y2="19"></line>
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
-                <span>Reserve Pre-Order</span>
+                <span>Add to Bag</span>
               </button>
 
               <div class="order-assurance-note">
@@ -178,16 +181,16 @@
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
-                <span>Dispatch begins as soon as batch packaging completes. You will receive an invoice and schedule confirmation prior to shipment.</span>
+                <span>Packed and sealed directly at our Lagos facility. We will notify you with full tracking details the moment your order ships.</span>
               </div>
             </div>
 
             <!-- Narrative / Overview -->
             <div class="product-narrative">
-              <h2 class="product-narrative-heading">Product Overview</h2>
+              <h2 class="product-narrative-heading">About This Harvest</h2>
               <p class="product-narrative-p" id="product-short-desc"></p>
 
-              <h2 class="product-narrative-heading" style="margin-top: var(--space-md);">Processing & Quality Standard</h2>
+              <h2 class="product-narrative-heading" style="margin-top: var(--space-md);">Quality & Processing Standard</h2>
               <ul class="features-list" id="product-features-list">
                 <!-- Features rendered dynamically -->
               </ul>
@@ -202,15 +205,15 @@
     <section class="product-info-section" aria-labelledby="product-info-heading">
       <div class="container">
         <header class="info-section-header">
-          <h2 class="info-section-title" id="product-info-heading">Preparation & Fulfillment Details</h2>
-          <p class="info-section-subtitle">Verified culinary guidance and commercial fulfillment specifications.</p>
+          <h2 class="info-section-title" id="product-info-heading">Preparation & Storage Guidance</h2>
+          <p class="info-section-subtitle">Simple ways to bring out the finest flavor in your home cooking.</p>
         </header>
 
         <div class="accordions-container">
           <!-- How to Use Accordion -->
           <details class="info-accordion" open>
             <summary class="accordion-summary">
-              <span>How to Use & Prepare</span>
+              <span>How to Cook With This</span>
               <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -223,7 +226,7 @@
           <!-- How to Store Accordion -->
           <details class="info-accordion" open>
             <summary class="accordion-summary">
-              <span>How to Store & Preserve</span>
+              <span>Keeping It Fresh</span>
               <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -236,7 +239,7 @@
           <!-- Verified FAQs Accordion -->
           <details class="info-accordion">
             <summary class="accordion-summary">
-              <span>Pre-Order & Packaging FAQs</span>
+              <span>Common Questions</span>
               <svg class="accordion-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
@@ -245,6 +248,22 @@
               <!-- Dynamically populated -->
             </div>
           </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dehydration Process Diagram Section -->
+    <section class="process-diagram-section" style="padding: var(--space-3xl) 0; background-color: var(--color-obsidian); color: var(--color-text-light);">
+      <div class="container">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto var(--space-2xl) auto;">
+          <span style="font-family: var(--font-structural); font-size: 0.75rem; font-weight: 700; color: var(--color-gold); letter-spacing: 0.1em; text-transform: uppercase;">Our Process</span>
+          <h2 style="font-family: var(--font-structural); font-size: 1.875rem; color: var(--color-text-light); margin-top: var(--space-xs); margin-bottom: var(--space-sm);">From Rural Harvest to Sealed Botanical Pouch</h2>
+          <p style="font-size: 0.9375rem; color: var(--color-text-light-muted); line-height: 1.6;">Our gentle low-temperature drying preserves cellular structure, vibrant color, and rich natural oils without a single chemical preservative.</p>
+        </div>
+        <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: var(--space-md);">
+          <div style="min-width: 860px; max-width: 1140px; margin: 0 auto;">
+            <img src="assets/images/diagrams/dehydration-process.svg" alt="Kabod Crest Farm-to-Pouch Controlled Dehydration Process" style="width: 100%; height: auto; display: block; border-radius: var(--radius-card);" />
+          </div>
         </div>
       </div>
     </section>
@@ -267,14 +286,14 @@
   <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
   <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true">
     <div class="cart-drawer-header">
-      <h2 class="cart-drawer-title" id="cart-drawer-heading">Pre-Order Allocation</h2>
-      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close pre-order drawer">&times;</button>
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Your Bag</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close drawer">&times;</button>
     </div>
 
     <div class="cart-drawer-body">
       <div class="cart-empty-state" id="cart-empty-state">
-        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your pre-order allocation is empty.</p>
-        <p style="font-size: 0.8125rem;">Select products from the catalog to reserve your early batch dispatch.</p>
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your bag is currently empty.</p>
+        <p style="font-size: 0.8125rem;">Select products from our pantry to add to your order.</p>
       </div>
       <ul class="cart-items-list" id="cart-items-list">
         <!-- Rendered by js/cart.js -->
@@ -282,18 +301,22 @@
     </div>
 
     <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-drawer-subtotal-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--color-stone-muted, #e5e5e5); font-family: var(--font-structural, 'Cinzel', serif);">
+        <span class="subtotal-label" style="font-size: 0.9375rem; font-weight: 600; color: var(--color-obsidian, #1a1a1a);">Subtotal:</span>
+        <span class="subtotal-value" id="cart-drawer-subtotal" style="font-size: 1.125rem; font-weight: 700; color: var(--color-plum, #4A1525);">₦0</span>
+      </div>
       <div class="cart-policy-note">
-        <strong>Pre-Order Policy:</strong> Commercial unit prices are currently being finalized [TBC]. Reserving now guarantees priority dispatch from the first completed production run.
+        Carefully packaged and sealed. Shipping and payment are completed on the next step.
       </div>
       <a href="cart.html" class="btn-cart-checkout">
-        Review Pre-Order & Confirm
+        Review Bag & Proceed &rarr;
       </a>
     </div>
   </aside>
 
   <!-- Quick Feedback Toast -->
   <div class="shop-toast" id="shop-toast" role="status" aria-live="polite" aria-hidden="true">
-    <span class="toast-message" id="toast-message">Item added to pre-orders</span>
+    <span class="toast-message" id="toast-message">Added to your bag</span>
     <a href="#" class="toast-view-link" id="toast-view-cart">View Bag</a>
   </div>
 
@@ -348,7 +371,7 @@
           &copy; 2026 Kabod Crest Limited. All rights reserved.
         </div>
         <div class="footer-note">
-          RC: Registered Nigerian Enterprise • Brand Territory: Quiet Authority
+          RC: Registered Nigerian Enterprise • Excellence with Integrity
         </div>
       </div>
     </div>

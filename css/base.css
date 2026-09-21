@@ -688,6 +688,35 @@ button {
   color: var(--color-text-subtle);
 }
 
+/* Form Validation States */
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: #b32d2e !important;
+  background-color: #fffaf9 !important;
+  box-shadow: 0 0 0 3px rgba(179, 45, 46, 0.15) !important;
+}
+
+.form-input.is-valid,
+.form-select.is-valid,
+.form-textarea.is-valid {
+  border-color: #1E6B43;
+}
+
+.field-error-msg {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #b32d2e;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.field-error-msg.visible {
+  display: block;
+}
+
 /* Universal Buttons */
 .btn-primary-action {
   display: inline-flex;

@@ -4,14 +4,14 @@
  *
  * STATUS TIERS:
  * - LIVE Items: Ready for immediate order/dispatch allocation
- *   (Dehydrated Ugwu: 250g @ ₦10,000; Dehydrated Ginger: 250g @ [TBC]; Jollof Rice Spice: 100g @ [TBC])
+ *   (Dehydrated Ugwu: 250g @ ₦2,850; Dehydrated Ginger: 250g @ ₦2,400; Jollof Rice Spice: 100g @ ₦2,200)
  * - COMING SOON Items: Displayed with subtle blur, non-clickable, and locked badge in Quiet Authority styling
  *   (Kulikuli, Stockfish, Iru, Cassava Flakes, Shea Butter, African Nutmeg, Ashanti Pepper, Egusi, Ogbono, Ponmo, Zobo)
  */
 
 const KABOD_PRODUCTS = [
   // ==========================================
-  // LIVE PRODUCTS (Orderable Now)
+  // LIVE PRODUCTS (Ready to Order)
   // ==========================================
   {
     id: "dehydrated-ugwu",
@@ -19,11 +19,12 @@ const KABOD_PRODUCTS = [
     subtitle: "Fluted Pumpkin Leaves",
     category: "Dehydrated Vegetables",
     weight: "250g",
-    price: 10000,
-    priceDisplay: "₦10,000",
+    price: 2850,
+    priceDisplay: "₦2,850",
     isLive: true,
     isComingSoon: false,
     isPreOrder: false,
+    keywords: ["ugwu", "fluted pumpkin", "vegetable", "leaves", "soup", "edikang ikong", "ogbono", "egusi", "enugu"],
     image: "assets/images/products/ugwu.png",
     gallery: [
       {
@@ -34,28 +35,28 @@ const KABOD_PRODUCTS = [
       {
         src: "assets/images/reference/cat-dehydrated-veg.png",
         alt: "Fresh harvest fluted pumpkin leaves in traditional stone bowl",
-        label: "Ingredient Harvest"
+        label: "Harvest Leaves"
       }
     ],
     origin: "Enugu State, Nigeria",
-    shortDescription: "Fluted pumpkin leaves carefully dehydrated at controlled temperatures for easy storage and prolonged shelf stability without sacrificing culinary flavor.",
-    description: "Tender, hand-selected fluted pumpkin leaves carefully dehydrated at controlled temperatures to lock in chlorophyll, vital minerals, and natural aroma. Ideal for rich Nigerian soups including Edikang Ikong, Ogbono, and Egusi.",
+    shortDescription: "Tender fluted pumpkin leaves from Enugu, dried gently with warm air so they keep their deep green color, delicate crunch, and honest flavor.",
+    description: "Tender, hand-selected fluted pumpkin leaves carefully dried at mild temperatures to hold onto their natural chlorophyll, vitamins, and gentle aroma. Perfect for whenever you want to cook a comforting pot of Edikang Ikong, Egusi, or Ogbono.",
     features: [
-      "100% natural, zero preservatives or additives",
-      "Retains natural chlorophyll & vibrant green color",
+      "100% natural with zero additives or preservatives",
+      "Retains its natural vibrant green color and tender crunch",
       "Rehydrates cleanly in warm water within 3 to 5 minutes",
-      "Sealed in multi-layer moisture-barrier standup pouch"
+      "Sealed fresh in an airtight moisture-barrier pouch"
     ],
-    howToUse: "Soak leaves in clean lukewarm water for 3 to 5 minutes to gently rehydrate before adding directly to your cooking pot. Alternatively, add directly to simmered soups (such as Ogbono or Egusi) during the final 3 minutes of cooking to preserve chlorophyll and freshness.",
-    howToStore: "Store in a cool, dry pantry away from moisture and direct sunlight. Keep pouch zipper securely sealed after every opening.",
+    howToUse: "Let the leaves sit in a bowl of warm water for 3 to 5 minutes to gently wake them up before cooking. Or, simply drop them straight into your soup during the final 3 minutes on the stove so they stay bright and fresh.",
+    howToStore: "Keep your pouch zipped tight and store it in a cool, dry cupboard away from direct sunlight.",
     faqs: [
       {
-        question: "How is the dehydration carried out?",
-        answer: "Leaves are sorted, washed, and dried in clean, temperature-regulated dehydration tunnels to preserve cellular structure, aroma, and color."
+        question: "How do you dry the leaves?",
+        answer: "We wash fresh leaves thoroughly and dry them with warm, gentle air. That protects the color, nutrients, and aroma without ever needing chemical preservatives."
       },
       {
-        question: "What is the dispatch timeline?",
-        answer: "Dehydrated Ugwu is live and currently in active fulfillment. Orders are dispatched directly from our Lagos fulfillment center nationwide and worldwide."
+        question: "When will my order arrive?",
+        answer: "We pack and seal your order right here in Lagos and send it straight to you, whether you are across the street or across the world."
       }
     ]
   },
@@ -65,11 +66,12 @@ const KABOD_PRODUCTS = [
     subtitle: "Pure Aromatic Nigerian Ginger",
     category: "Spices & Seasonings",
     weight: "250g",
-    price: null,
-    priceDisplay: "Price: [TBC]",
+    price: 2400,
+    priceDisplay: "₦2,400",
     isLive: true,
     isComingSoon: false,
-    isPreOrder: true,
+    isPreOrder: false,
+    keywords: ["ginger", "spice", "seasoning", "tea", "kaduna", "aromatic", "powder"],
     image: "assets/images/products/ginger-powder.jpg",
     gallery: [
       {
@@ -84,34 +86,36 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Kaduna State, Nigeria",
-    shortDescription: "Sun-dried and finely stone-milled Nigerian ginger root prized for its high gingerol content, pungent warmth, and clean spicy aroma.",
-    description: "Sourced from the renowned ginger-growing belts of southern Kaduna State, our dehydrated ginger powder delivers intense pungent aroma and therapeutic warmth. Hand-peeled, solar-dehydrated, and stone-milled into a fine, versatile spice.",
+    shortDescription: "Sun-dried and stone-ground ginger root from Kaduna. Gives a lively, fragrant warmth with nothing else added.",
+    description: "Grown in the ginger heartland of southern Kaduna, our ginger is peeled, naturally dried, and finely stone-ground. It brings a clean, fragrant warmth that lifts everything from comforting stews to a steaming morning brew.",
     features: [
-      "Pure Zingiber officinale — zero starch fillers",
-      "High natural pungency and volatile oil retention",
-      "Stone-milled for silky culinary integration",
-      "Resealable freshness barrier pouch"
+      "100% pure Nigerian ginger root with zero starch fillers",
+      "Rich in natural warmth and essential aroma oils",
+      "Stone-milled fine for effortless blending",
+      "Resealable pouch keeps the spice lively and punchy"
     ],
-    howToUse: "Use 1/4 to 1/2 teaspoon as a fragrant seasoning foundation for stews, broths, marinades, or brew directly into soothing hot ginger tea.",
-    howToStore: "Keep pouch sealed tightly in a dark, dry spice cabinet away from humidity.",
+    howToUse: "A small pinch does wonders. Stir a quarter teaspoon into your stews and marinades, or steep in hot water with a spoonful of raw honey for a soothing drink.",
+    howToStore: "Zip tightly after every use and keep in a cool, dry spice rack away from stove steam.",
     faqs: [
       {
-        question: "Is this ginger pure or blended with other roots?",
-        answer: "100% single-origin Nigerian ginger root with zero additives, flour, or coloring."
+        question: "Is this pure ginger or blended with flour?",
+        answer: "It is 100% pure ginger root. We never add starch, flour, or artificial flavorings."
       }
     ]
   },
   {
     id: "jollof-rice-spice",
+    aliases: ["jollof-spice"],
     name: "Jollof Rice Spice",
     subtitle: "Signature Heritage Blend",
     category: "Spices & Seasonings",
     weight: "100g",
-    price: null,
-    priceDisplay: "Price: [TBC]",
+    price: 2200,
+    priceDisplay: "₦2,200",
     isLive: true,
     isComingSoon: false,
-    isPreOrder: true,
+    isPreOrder: false,
+    keywords: ["jollof", "rice", "spice", "seasoning", "party jollof", "blend", "pepper", "tomatoes"],
     image: "assets/images/products/jollof-spice.jpg",
     gallery: [
       {
@@ -126,26 +130,26 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Heritage Formulation, Nigeria",
-    shortDescription: "Authentic Nigerian party Jollof spice blend crafted with roasted botanical herbs, bay, dry ginger, and natural savory aromatics.",
-    description: "An authentic Nigerian celebration spice blend formulated to recreate the smoky, deeply savory character of party Jollof rice without artificial enhancers. Hand-blended using heritage botanical spices.",
+    shortDescription: "Our signature blend of slow-roasted herbs, bay leaf, ginger, and native spices for that unmistakable smoky party Jollof flavor.",
+    description: "An authentic Nigerian celebration spice blend formulated to bring out the smoky, savory depth of party Jollof rice without artificial enhancers. Carefully blended using roasted botanical herbs and heritage spices.",
     features: [
-      "Authentic smoky notes without chemical liquid smoke",
-      "Balanced savory depth with bay, thyme, ginger, and peppers",
-      "Zero MSG or artificial fillers",
-      "Sealed in gold-accented standup barrier pouch"
+      "Natural savory aroma with zero chemical liquid smoke",
+      "Balanced with bay leaf, thyme, ginger, and peppers",
+      "Zero MSG, artificial colorants, or fillers",
+      "Airtight barrier pouch seals in the fresh roasted aroma"
     ],
-    howToUse: "Add 1 to 2 tablespoons into your simmering tomato-pepper paste base to bloom the oils before pouring in parboiled long grain rice.",
-    howToStore: "Store in a cool, dry pantry away from ambient stove heat.",
+    howToUse: "Stir one to two spoonfuls directly into your simmering tomato and pepper paste. Let the natural oils bloom in the oil for a minute before adding your parboiled rice.",
+    howToStore: "Keep in a cool, dark cupboard away from direct stove heat.",
     faqs: [
       {
-        question: "Does this blend contain salt?",
-        answer: "It contains only pure botanical spices and minimal natural sea salt, allowing you full control over salt seasoning."
+        question: "Does this spice blend contain salt?",
+        answer: "Only pure spices and a touch of natural sea salt, so you stay completely in control of your seasoning."
       }
     ]
   },
 
   // ==========================================
-  // LOCKED PRODUCTS (Coming Soon — 11 Items)
+  // IN PREPARATION (Coming Soon | 11 Items)
   // ==========================================
   {
     id: "kulikuli-snack",
@@ -157,6 +161,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["kulikuli", "groundnut", "peanut", "crunch", "snack", "garri", "kano"],
     image: "assets/images/products/kulikuli.jpg",
     gallery: [
       {
@@ -166,13 +171,13 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Kano State, Nigeria",
-    shortDescription: "Traditional northern Nigerian groundnut crunch prepared from defatted roasted peanut paste, lightly spiced with dry ginger and pepper.",
-    description: "Classic northern Nigerian crunchy spiced groundnut press-cakes. Prepared from defatted roasted groundnut paste seasoned with dry ginger, chili, and sea salt.",
+    shortDescription: "Crispy northern groundnut crunch made from roasted peanut paste, gently spiced with dry ginger and pepper.",
+    description: "Classic northern Nigerian crunchy spiced groundnut press-cakes. Made from defatted roasted groundnut paste seasoned with ginger and a touch of chili.",
     features: [
-      "Crisp, dense traditional texture",
-      "High natural plant protein snack",
-      "Perfect accompaniment for chilled soaked garri",
-      "Resealable freshness pack"
+      "Crisp, dense, satisfying crunch",
+      "Wholesome natural plant-protein snack",
+      "A timeless companion for chilled soaked garri",
+      "Packaged in a resealable freshness pack"
     ]
   },
   {
@@ -185,6 +190,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["stockfish", "cod", "fish", "soup", "stew", "cutlets", "traditional"],
     image: "assets/images/products/stockfish.png",
     gallery: [
       {
@@ -194,8 +200,8 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Imported Norwegian Cod, Processed in Nigeria",
-    shortDescription: "Cleaned, thoroughly dried Atlantic cod cutlets, prepared to deliver deep savory flavor to traditional soups and ceremonial dishes.",
-    description: "Thoroughly dried and cleaned Atlantic cod cutlets. Delivers deep, savory umami depth to ceremonial soups, sauces, and traditional Nigerian family stews.",
+    shortDescription: "Cleaned, thoroughly dried Atlantic cod cutlets that bring rich, savory depth to soups and ceremonial dishes.",
+    description: "Thoroughly dried and cleaned Atlantic cod cutlets. Delivers deep, savory umami depth to ceremonial soups, sauces, and traditional family stews.",
     features: [
       "Thoroughly dried and free from sand or grit",
       "Deep, authentic savoriness",
@@ -213,6 +219,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["iru", "locust beans", "dawadawa", "fermented", "soup", "stew", "oyo"],
     image: "assets/images/products/iru.jpg",
     gallery: [
       {
@@ -222,8 +229,8 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Oyo State, Nigeria",
-    shortDescription: "Naturally fermented and sun-dried African locust beans (Parkia biglobosa) offering intense savory depth for Nigerian stews and vegetable pots.",
-    description: "Naturally fermented African locust beans (Parkia biglobosa). A cornerstone seasoning providing intense savory depth, essential probiotics, and traditional heritage flavor.",
+    shortDescription: "Naturally fermented and sun-dried African locust beans that lend deep savory umami to stews and vegetable pots.",
+    description: "Naturally fermented African locust beans (Parkia biglobosa). A cornerstone seasoning providing intense savory depth and traditional heritage flavor.",
     features: [
       "Traditional slow batch fermentation",
       "Sun-dried for pantry stability",
@@ -241,6 +248,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["garri", "cassava", "flakes", "swallow", "soaking", "delta"],
     image: "assets/images/products/cassava-flakes.jpg",
     gallery: [
       {
@@ -250,7 +258,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Delta State, Nigeria",
-    shortDescription: "Finely processed, sun-dried cassava flakes prepared through careful peeling, grating, natural fermentation, and roasting.",
+    shortDescription: "Finely roasted, well-fermented cassava flakes with a crisp crunch and mild, clean tart finish.",
     description: "Fine-grained, well-fermented sun-dried cassava flakes. Crispy and clean with a mild tart finish; exceptional for swallow or chilled soaking with groundnuts.",
     features: [
       "Evenly roasted golden grains",
@@ -269,6 +277,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["shea butter", "ori", "unrefined", "raw", "butter", "niger"],
     image: "assets/images/products/shea-butter.png",
     gallery: [
       {
@@ -278,8 +287,8 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Niger State, Nigeria",
-    shortDescription: "Unrefined cold-pressed shea butter extracted from wild-harvested Vitellaria paradoxa nuts without chemical bleaching.",
-    description: "100% pure unrefined cold-pressed shea butter from wild-harvested Vitellaria paradoxa nuts. Nutrient-dense, versatile culinary and wellness staple.",
+    shortDescription: "Raw cold-pressed shea butter from wild-harvested shea nuts, completely unbleached and chemical-free.",
+    description: "100% pure unrefined cold-pressed shea butter from wild-harvested shea nuts. Nutrient-dense, versatile culinary and wellness staple.",
     features: [
       "First cold press, raw & unbleached",
       "Rich in natural vitamins A, E, and essential fatty acids",
@@ -297,6 +306,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["ehuru", "uda", "african nutmeg", "peppersoup", "spice", "edo"],
     image: "assets/images/products/african-nutmeg.png",
     gallery: [
       {
@@ -306,7 +316,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Edo State, Nigeria",
-    shortDescription: "Whole Monodora myristica pods, delivering an aromatic, peppery warmth characteristic of traditional Nigerian broths.",
+    shortDescription: "Aromatic Monodora myristica pods with the warm, woody, peppery scent essential to traditional pepper soups.",
     description: "Aromatic Monodora myristica seed pods. Known for warm, peppery, woody notes essential for authentic pepper soup, Banga soup, and Nkwobi.",
     features: [
       "Intact pods preserving aromatic volatile oils",
@@ -325,6 +335,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["uziza", "ashanti pepper", "peppercorns", "spice", "peppersoup", "cross river"],
     image: "assets/images/products/ashanti-pepper.png",
     gallery: [
       {
@@ -334,7 +345,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Cross River State, Nigeria",
-    shortDescription: "Dried Piper guineense peppercorns providing sharp heat with herbal, pine-like undertones for restorative soups.",
+    shortDescription: "Whole dried uziza berries that bring a lively piney heat and herbaceous lift to restorative broths.",
     description: "Dried Piper guineense berries featuring a fragrant pungent heat with piney, herbaceous undertones. Enhances restorative broths and native delicacies.",
     features: [
       "Whole dried peppercorns",
@@ -353,6 +364,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["egusi", "melon seeds", "soup", "swallow", "shelled", "benue"],
     image: "assets/images/products/egusi.png",
     gallery: [
       {
@@ -362,7 +374,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Benue State, Nigeria",
-    shortDescription: "Plump, carefully shelled Nigerian melon seeds, cleaned and ready for traditional grinding into rich egusi soups.",
+    shortDescription: "Plump, clean hand-shelled melon seeds ready for stone-milling into a rich, velvety egusi soup.",
     description: "Premium hand-shelled Nigerian melon seeds, uniformly plump and clean. Rich in natural plant proteins and lipids, ready for stone-milling into classic Egusi soup.",
     features: [
       "Uniform seed caliber, machine and hand sorted",
@@ -381,6 +393,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["ogbono", "dika nut", "draw soup", "kernels", "cross river"],
     image: "assets/images/products/ogbono.png",
     gallery: [
       {
@@ -390,7 +403,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Cross River State, Nigeria",
-    shortDescription: "Wild-harvested, sun-dried Irvingia gabonensis kernels prized for traditional draw consistency in Nigerian soups.",
+    shortDescription: "Sun-dried dika nut kernels that give that comforting, silky draw and deep richness to your soup pot.",
     description: "Wild-harvested Irvingia gabonensis kernels. Sun-dried to perfection to yield superior viscosity, golden richness, and comforting traditional draw soup texture.",
     features: [
       "Exceptional elasticity and draw power",
@@ -409,6 +422,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["ponmo", "kanda", "cow skin", "dried", "soup", "stew", "oyo"],
     image: "assets/images/products/ponmo.jpg",
     gallery: [
       {
@@ -418,7 +432,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Oyo State, Nigeria",
-    shortDescription: "Thoroughly washed, clean dried cow skin curls prepared without chemical agents or accelerants.",
+    shortDescription: "Thoroughly washed, clean dried cow skin curls prepared hygienically without chemicals or tire smoke.",
     description: "Hygienically prepared, chemical-free dried brown cow skin curls. Rehydrates cleanly to absorb cooking juices and savory broth spices.",
     features: [
       "Completely free from chemical accelerants or tire burning",
@@ -437,6 +451,7 @@ const KABOD_PRODUCTS = [
     priceDisplay: "Coming Soon",
     isLive: false,
     isComingSoon: true,
+    keywords: ["zobo", "hibiscus", "calyces", "tea", "drink", "botanical", "kano"],
     image: "assets/images/products/zobo.jpg",
     gallery: [
       {
@@ -446,7 +461,7 @@ const KABOD_PRODUCTS = [
       }
     ],
     origin: "Kano State, Nigeria",
-    shortDescription: "Sun-dried dark crimson Hibiscus sabdariffa petals for authentic zobo drinks, refreshing botanical infusions, and rich tea concentrates.",
+    shortDescription: "Deep crimson dried hibiscus calyces from Kano. Delivers a clean, tart, antioxidant-rich infusion for zobo drink or hot tea.",
     description: "Whole, sun-dried dark crimson Hibiscus sabdariffa calyces harvested in northern Nigeria. Rich in antioxidants and vitamin C, delivering a clean tart profile for refreshing beverages and culinary syrups.",
     features: [
       "Intact deep crimson whole calyces",
@@ -457,7 +472,37 @@ const KABOD_PRODUCTS = [
   }
 ];
 
+// Helper to resolve product by id or alias (e.g. 'jollof-spice' -> 'jollof-rice-spice')
+function getProductById(productId) {
+  if (!productId || typeof productId !== 'string') return null;
+  const normalized = productId.trim().toLowerCase();
+  return KABOD_PRODUCTS.find(p =>
+    p.id.toLowerCase() === normalized ||
+    (Array.isArray(p.aliases) && p.aliases.some(a => a.toLowerCase() === normalized))
+  ) || null;
+}
+
+// Enhance KABOD_PRODUCTS.find to support alias fallback
+const _origFind = KABOD_PRODUCTS.find;
+KABOD_PRODUCTS.find = function(predicate, thisArg) {
+  const directMatch = _origFind.call(this, predicate, thisArg);
+  if (directMatch) return directMatch;
+  return _origFind.call(this, (p, idx, arr) => {
+    if (predicate.call(thisArg, p, idx, arr)) return true;
+    if (Array.isArray(p.aliases)) {
+      for (const alias of p.aliases) {
+        if (predicate.call(thisArg, { ...p, id: alias }, idx, arr)) return true;
+      }
+    }
+    return false;
+  }, thisArg);
+};
+
 // Export for module or browser window use
+if (typeof window !== 'undefined') {
+  window.KABOD_PRODUCTS = KABOD_PRODUCTS;
+  window.getProductById = getProductById;
+}
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { KABOD_PRODUCTS };
+  module.exports = { KABOD_PRODUCTS, getProductById };
 }

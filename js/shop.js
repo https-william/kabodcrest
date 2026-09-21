@@ -1,34 +1,92 @@
 /**
  * Kabod Crest - Shop / Catalog Controller
- * Handles product catalog filtering, card rendering, and pre-order / live purchase interactions.
- * Supports:
- * - Live items (Dehydrated Ugwu ₦10,000, Dehydrated Ginger [TBC], Jollof Spice [TBC])
- * - Locked items (11 items with 8px blur, non-clickable, centered "Coming Soon" badge)
- * - Dynamic approximate currency estimate display alongside NGN base prices
- * - Quiet Authority card styling and micro-interactions
+ * Quiet Authority & Barista Tone: Warm, conversational, and effortless.
+ * Features:
+ * - Real-time instant search across product names, subtitles, origin, and culinary keywords.
+ * - Category tabs with dynamic count updates.
+ * - Clean, unblurred product presentation for both live and coming soon items.
+ * - Dynamic price estimates alongside NGN base prices.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Filters a product catalog list by category and search query.
+ * Matches across: name, subtitle, origin, category, and keywords array.
+ * Case-insensitive, trimmed query matching.
+ *
+ * @param {string} category - Category name or 'all'
+ * @param {string} query - Free-text search string
+ * @param {Array} [productsList] - Optional array of products, defaults to KABOD_PRODUCTS
+ * @returns {Array} Filtered list of products
+ */
+function filterCatalog(category, query, productsList) {
+  const source = productsList || (typeof KABOD_PRODUCTS !== 'undefined' ? KABOD_PRODUCTS : []);
+  let list = (!category || category === 'all')
+    ? source
+    : source.filter(p => p.category === category);
+
+  if (query && typeof query === 'string') {
+    const q = query.trim().toLowerCase();
+    if (q) {
+      list = list.filter(p => {
+        const nameMatch = p.name && p.name.toLowerCase().includes(q);
+        const subMatch = p.subtitle && p.subtitle.toLowerCase().includes(q);
+        const origMatch = p.origin && p.origin.toLowerCase().includes(q);
+        const catMatch = p.category && p.category.toLowerCase().includes(q);
+        const kwMatch = Array.isArray(p.keywords) && p.keywords.some(k => k.toLowerCase().includes(q));
+        return Boolean(nameMatch || subMatch || origMatch || catMatch || kwMatch);
+      });
+    }
+  }
+
+  return list;
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
   const gridEl = document.getElementById('product-grid');
   const tabsContainer = document.getElementById('category-tabs');
   const emptyStateEl = document.getElementById('catalog-empty-state');
   const activeCategoryTitleEl = document.getElementById('active-category-title');
   const catalogCountEl = document.getElementById('catalog-count');
+  const searchInput = document.getElementById('catalog-search-input');
+  const searchClearBtn = document.getElementById('catalog-search-clear');
   const toastEl = document.getElementById('shop-toast');
   const toastMessageEl = document.getElementById('toast-message');
   const toastViewBtn = document.getElementById('toast-view-cart');
 
   let currentCategory = 'all';
+  let currentSearchQuery = '';
   let toastTimer = null;
 
-  // Verify catalog data
+  // Catalog products data
   const products = (typeof KABOD_PRODUCTS !== 'undefined') ? KABOD_PRODUCTS : [];
 
   // Initialize tabs and counts
   initCategoryTabs();
 
+  // Search input handler
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value.trim().toLowerCase();
+      if (searchClearBtn) {
+        searchClearBtn.style.display = currentSearchQuery ? 'block' : 'none';
+      }
+      renderCatalog(currentCategory, currentSearchQuery);
+    });
+  }
+
+  if (searchClearBtn && searchInput) {
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      currentSearchQuery = '';
+      searchClearBtn.style.display = 'none';
+      searchInput.focus();
+      renderCatalog(currentCategory, '');
+    });
+  }
+
   // Initial render
-  renderCatalog(currentCategory);
+  renderCatalog(currentCategory, currentSearchQuery);
 
   // Re-render price estimates when currency service finishes geo/rate lookup
   window.addEventListener('kabod:currency-ready', () => {
@@ -53,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update count labels inside existing tab elements
+    // Update count labels inside tab buttons
     const tabs = tabsContainer.querySelectorAll('.category-tab');
     tabs.forEach(tab => {
       const cat = tab.getAttribute('data-category');
@@ -71,30 +129,45 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.setAttribute('aria-selected', 'true');
 
         currentCategory = cat;
-        renderCatalog(currentCategory);
+        renderCatalog(currentCategory, currentSearchQuery);
       });
     });
   }
 
-  function renderCatalog(category) {
+  function renderCatalog(category, query) {
     if (!gridEl) return;
 
-    const filtered = (category === 'all')
-      ? products
-      : products.filter(p => p.category === category);
+    const filtered = filterCatalog(category, query, products);
 
     // Update headings
     if (activeCategoryTitleEl) {
-      activeCategoryTitleEl.textContent = (category === 'all') ? 'All Nigerian Agro-Produce' : category;
+      if (query) {
+        activeCategoryTitleEl.textContent = `Search results for "${query}"`;
+      } else {
+        activeCategoryTitleEl.textContent = (category === 'all') ? 'All Nigerian Agro-Produce' : category;
+      }
     }
+
     if (catalogCountEl) {
-      catalogCountEl.textContent = `Showing ${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+      if (filtered.length === products.length) {
+        catalogCountEl.textContent = `Showing all ${filtered.length} pantry items`;
+      } else {
+        catalogCountEl.textContent = `Showing ${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
+      }
     }
 
     // Handle Empty State
     if (filtered.length === 0) {
       gridEl.innerHTML = '';
-      if (emptyStateEl) emptyStateEl.style.display = 'block';
+      if (emptyStateEl) {
+        emptyStateEl.style.display = 'block';
+        const emptyMsg = emptyStateEl.querySelector('.empty-state-text');
+        if (emptyMsg) {
+          emptyMsg.textContent = query
+            ? `We couldn't find anything matching "${query}". Try searching for another ingredient, or take a look through our full pantry collection.`
+            : 'We are currently preparing more items for this department. Please explore our other categories or check back soon.';
+        }
+      }
       return;
     }
 
@@ -118,10 +191,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
       } else {
-        priceMarkup = `<span class="product-price-tbc" title="Commercial price will be confirmed prior to shipment">${product.priceDisplay}</span>`;
+        priceMarkup = `<span class="product-price-tbc">${product.priceDisplay}</span>`;
       }
 
-      // Thumbnail markup
+      // Thumbnail markup - clean, unblurred, appetizing
       const thumbContent = `
         <img
           src="${product.image}"
@@ -130,17 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
           loading="lazy"
           onerror="this.src='assets/images/logo/icon-gold.png'; this.style.padding='40px';"
         />
-        ${isLocked ? `
-          <div class="coming-soon-overlay">
-            <span class="coming-soon-badge">Coming Soon</span>
-          </div>
-        ` : ''}
       `;
 
       // Top badge
       const badgeMarkup = isLocked
         ? `<span class="product-status-tag locked">Coming Soon</span>`
-        : (product.price ? `<span class="product-status-tag live">Live Order</span>` : `<span class="product-status-tag preorder">Pre-Order</span>`);
+        : `<span class="product-status-tag live">Ready to Order</span>`;
 
       // Action button
       let actionBtnMarkup = '';
@@ -150,41 +218,38 @@ document.addEventListener('DOMContentLoaded', () => {
             type="button"
             class="btn-preorder btn-disabled"
             disabled
-            title="Available soon"
+            title="In preparation"
             aria-disabled="true"
           >
-            <span class="preorder-btn-label">Available Soon</span>
+            <span class="preorder-btn-label">Coming Soon</span>
           </button>
         `;
       } else {
-        const btnLabel = product.price ? 'Add to Bag' : 'Reserve Allocation';
         actionBtnMarkup = `
           <button
             type="button"
             class="btn-preorder js-add-preorder"
             data-id="${product.id}"
-            aria-label="${btnLabel} for ${product.name}"
+            aria-label="Add ${product.name} to bag"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="12" y1="5" x2="12" y2="19"></line>
               <line x1="5" y1="12" x2="19" y2="12"></line>
             </svg>
-            <span class="preorder-btn-label">${btnLabel}</span>
+            <span class="preorder-btn-label">Add to Bag</span>
           </button>
         `;
       }
 
       return `
       <article class="product-card ${isLocked ? 'product-card-locked' : ''}" data-product-id="${product.id}" data-category="${product.category}">
-        ${isLocked ? `
-          <div class="product-thumb-wrap">
-            ${thumbContent}
-          </div>
-        ` : `
-          <a href="product-detail.html?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
-            ${thumbContent}
-          </a>
-        `}
+        <div class="product-card-badge-row">
+          ${badgeMarkup}
+        </div>
+
+        <a href="product-detail.html?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
+          ${thumbContent}
+        </a>
 
         <div class="product-card-body">
           <div class="product-meta-row">
@@ -193,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <h2 class="product-title">
-            ${isLocked ? product.name : `<a href="product-detail.html?id=${encodeURIComponent(product.id)}">${product.name}</a>`}
+            <a href="product-detail.html?id=${encodeURIComponent(product.id)}">${product.name}</a>
           </h2>
           <div class="product-subtitle">${product.subtitle}</div>
 
@@ -210,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // Attach click events to Add buttons
+    // Attach click events to Add to Bag buttons
     gridEl.querySelectorAll('.js-add-preorder').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -219,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prod && window.KabodCart) {
           window.KabodCart.addItem(prod, 1);
           
-          // Instant micro-interaction visual confirmation
+          // Micro-interaction visual feedback
           const originalHTML = btn.innerHTML;
           btn.classList.add('btn-added');
           btn.innerHTML = `
@@ -234,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = originalHTML;
           }, 1400);
 
-          showToast(`Added 1× ${prod.name} to order bag`);
+          showToast(`Added 1× ${prod.name} to your bag`);
         }
       });
     });
@@ -254,8 +319,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn = document.getElementById('btn-reset-filter');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        currentSearchQuery = '';
+      }
+      if (searchClearBtn) {
+        searchClearBtn.style.display = 'none';
+      }
       const allTab = tabsContainer ? tabsContainer.querySelector('[data-category="all"]') : null;
-      if (allTab) allTab.click();
+      if (allTab) {
+        allTab.click();
+      } else {
+        currentCategory = 'all';
+        renderCatalog('all', '');
+      }
     });
   }
 
@@ -282,4 +359,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (toastEl) toastEl.classList.remove('show');
     });
   }
-});
+  });
+}
+
+// Expose filterCatalog for external callers and test runners
+if (typeof window !== 'undefined') {
+  window.KabodCatalog = { filterCatalog };
+}
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { filterCatalog };
+}

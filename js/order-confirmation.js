@@ -12,24 +12,56 @@ document.addEventListener('DOMContentLoaded', () => {
   const deliveryDestEl = document.getElementById('conf-delivery-dest');
   const itemsContainer = document.getElementById('conf-items-list');
   const totalCountEl = document.getElementById('conf-total-count');
+  const subtotalEl = document.getElementById('conf-subtotal');
+  const shippingEl = document.getElementById('conf-shipping-rate');
+  const grandTotalEl = document.getElementById('conf-grandtotal');
+  const paymentStatusEl = document.getElementById('conf-payment-status');
   const whatsappBtn = document.getElementById('btn-whatsapp-confirm');
   const printBtn = document.getElementById('btn-print-receipt');
 
-  // 1. Retrieve order data from localStorage
+  // 1. Retrieve order data from URL param and localStorage
+  const urlParams = (typeof window !== 'undefined' && window.location)
+    ? new URLSearchParams(window.location.search)
+    : new URLSearchParams();
+  const searchRef = (urlParams.get('ref') || '').trim();
+
   let order = null;
-  try {
-    const raw = localStorage.getItem('kabod_pending_order');
-    if (raw) order = JSON.parse(raw);
-  } catch (err) {
-    console.warn('Unable to read pending order', err);
+
+  // Try retrieving from kabod_order_history first if searchRef is provided
+  if (searchRef) {
+    try {
+      const historyRaw = localStorage.getItem('kabod_order_history');
+      if (historyRaw) {
+        const history = JSON.parse(historyRaw);
+        if (Array.isArray(history)) {
+          order = history.find(o => (o.orderRef || '').toUpperCase() === searchRef.toUpperCase());
+        }
+      }
+    } catch (err) {
+      console.warn('Unable to read order history:', err);
+    }
   }
 
-  // Fallback demo order if visited directly without pending order in storage
+  // Next try pending order if not found in history
   if (!order) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ref = urlParams.get('ref') || 'KC-2026-7319';
+    try {
+      const raw = localStorage.getItem('kabod_pending_order');
+      if (raw) {
+        const pending = JSON.parse(raw);
+        if (!searchRef || (pending.orderRef || '').toUpperCase() === searchRef.toUpperCase()) {
+          order = pending;
+        }
+      }
+    } catch (err) {
+      console.warn('Unable to read pending order:', err);
+    }
+  }
+
+  // Fallback demo order if visited directly without matching order in storage
+  if (!order) {
+    const fallbackRef = searchRef || 'KC-2026-7319';
     order = {
-      orderRef: ref,
+      orderRef: fallbackRef,
       createdAt: new Date().toISOString(),
       customer: {
         name: "Valued Client",
@@ -43,12 +75,25 @@ document.addEventListener('DOMContentLoaded', () => {
         country: "Nigeria",
         postalCode: ""
       },
+      shippingTier: {
+        id: "lagos",
+        name: "Lagos Delivery (Mainland & Island)",
+        rateAmount: 2500,
+        rateText: "₦2,500"
+      },
       items: [
-        { name: "Dehydrated Ugwu", weight: "500g", quantity: 2, priceDisplay: "Price: [TBC]" },
-        { name: "Kulikuli", weight: "1.5kg", quantity: 1, priceDisplay: "Price: [TBC]" }
+        { name: "Dehydrated Ugwu", weight: "250g", quantity: 2, price: 2850, priceDisplay: "₦2,850", lineTotalDisplay: "₦5,700" },
+        { name: "Kulikuli Batch", weight: "1.5kg", quantity: 1, price: null, priceDisplay: "Price: [TBC]", lineTotalDisplay: "Price: [TBC]" }
       ],
       totalCount: 3,
-      priceStatus: "Price: [TBC - Official invoice confirmed prior to dispatch]"
+      subtotal: 5700,
+      shippingFee: 2500,
+      grandTotal: 8200,
+      formattedSubtotal: "₦5,700",
+      formattedShipping: "₦2,500",
+      formattedGrandTotal: "₦8,200",
+      paymentMethod: "manual_bank_transfer",
+      paymentStatus: "pending_invoice"
     };
   }
 
@@ -85,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shippingMetaEl = document.getElementById('conf-shipping-meta');
 
   if (totalCountEl) {
-    totalCountEl.textContent = `${order.totalCount} items in pre-order allocation`;
+    totalCountEl.textContent = `${order.totalCount} item${order.totalCount === 1 ? '' : 's'} in pre-order allocation`;
   }
 
   // Populate Shipping Tier Info
@@ -98,42 +143,113 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (shippingMetaEl) {
     if (order.shippingTier) {
-      const parts = [];
-      if (order.shippingTier.estimatedDays) parts.push(order.shippingTier.estimatedDays);
-      if (order.shippingTier.rateDisplay) parts.push(order.shippingTier.rateDisplay);
-      shippingMetaEl.textContent = parts.join(' • ') || 'Rate confirmed prior to dispatch';
+      shippingMetaEl.textContent = order.shippingTier.rateText || 'Rate confirmed prior to dispatch';
     } else {
       shippingMetaEl.textContent = 'Rate confirmed prior to dispatch';
     }
   }
 
-  // 4. Populate Line Items Table
+  // 4. Populate Financial Summary Totals
+  if (subtotalEl) {
+    subtotalEl.textContent = order.formattedSubtotal || (order.subtotal ? `₦${order.subtotal.toLocaleString('en-NG')}` : '₦0');
+  }
+  if (shippingEl) {
+    shippingEl.textContent = order.formattedShipping || (order.shippingFee ? `₦${order.shippingFee.toLocaleString('en-NG')}` : (order.shippingTier ? order.shippingTier.rateText : '₦0'));
+  }
+  if (grandTotalEl) {
+    grandTotalEl.textContent = order.formattedGrandTotal || (order.grandTotal ? `₦${order.grandTotal.toLocaleString('en-NG')}` : '₦0');
+  }
+  if (paymentStatusEl) {
+    paymentStatusEl.textContent = (order.paymentStatus === 'paid')
+      ? 'Paid via Paystack Gateway'
+      : 'Official Invoice Allocation Reserved';
+  }
+
+  // Populate Payment Details Box
+  const paymentBox = document.getElementById('conf-payment-box');
+  if (paymentBox) {
+    if (order.paymentMethod === 'paystack' && order.paymentStatus === 'paid') {
+      paymentBox.innerHTML = `
+        <div class="payment-method-header">
+          <span style="font-family: var(--font-structural); font-weight: 700; color: #1E6B43;">Verified Paystack Online Settlement</span>
+          <span class="payment-badge" style="background: rgba(30, 107, 67, 0.15); color: #1E6B43;">Payment Confirmed</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5;">
+          Transaction verified and settled via Paystack. Your allocation is confirmed for prioritized packaging and delivery.
+        </p>
+        <div class="bank-details-placeholder-box" style="border-left: 3px solid #1E6B43;">
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Payment Channel:</span>
+            <span class="bank-detail-val">Paystack Secure Checkout</span>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Transaction Reference:</span>
+            <span class="bank-detail-val" style="color: var(--color-plum); font-weight: 700;">${(order.paymentDetails && order.paymentDetails.reference) ? order.paymentDetails.reference : order.orderRef}</span>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Amount Paid:</span>
+            <span class="bank-detail-val">${order.formattedGrandTotal || (order.grandTotal ? '₦' + order.grandTotal.toLocaleString('en-NG') : '₦0')}</span>
+          </div>
+        </div>
+      `;
+    } else {
+      paymentBox.innerHTML = `
+        <div class="payment-method-header">
+          <span style="font-family: var(--font-structural); font-weight: 700; color: var(--color-obsidian);">Manual Bank Remittance Details</span>
+          <span class="payment-badge">Official Treasury Instructions</span>
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--color-text-muted); line-height: 1.5;">
+          Please quote your Order Reference on all remittance communication. Official commercial invoice with verified bank coordinates will be transmitted to your email prior to order dispatch.
+        </p>
+        <div class="bank-details-placeholder-box">
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Beneficiary Account Name:</span>
+            <span class="bank-detail-val">Kabod Crest Limited</span>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Bank Institution:</span>
+            <span class="bank-detail-val">Zenith Bank PLC</span>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Corporate Account Number:</span>
+            <span class="bank-detail-val">1018293847</span>
+          </div>
+          <div class="bank-detail-row">
+            <span class="bank-detail-label">Required Payment Reference:</span>
+            <span class="bank-detail-val" style="color: var(--color-plum); font-weight: 700;">${order.orderRef}</span>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // 5. Populate Line Items Table
   if (itemsContainer) {
     itemsContainer.innerHTML = order.items.map(item => `
       <tr style="border-bottom: 1px solid var(--color-stone-muted);">
         <td style="padding: 12px 8px; font-family: var(--font-structural); font-weight: 600;">
           ${item.name}
-          <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400;">${item.weight}</div>
+          <div style="font-size: 0.75rem; color: var(--color-text-muted); font-family: var(--font-body); font-weight: 400;">${item.weight || ''}</div>
         </td>
         <td style="padding: 12px 8px; text-align: center; font-family: var(--font-structural); font-weight: 600;">
           ${item.quantity}
         </td>
         <td style="padding: 12px 8px; text-align: right; font-family: var(--font-structural); font-weight: 600; color: var(--color-plum);">
-          ${item.priceDisplay}
+          ${item.lineTotalDisplay || item.priceDisplay}
         </td>
       </tr>
     `).join('');
   }
 
-  // 5. WhatsApp Trade Desk Link
+  // 6. WhatsApp Trade Desk Link
   if (whatsappBtn) {
-    const itemListText = order.items.map(i => `• ${i.name} (${i.weight}) x${i.quantity}`).join('%0A');
+    const itemListText = order.items.map(i => `• ${i.name} (${i.weight || ''}) x${i.quantity}`).join('%0A');
     const tierLine = (order.shippingTier && order.shippingTier.name) ? `%0AShipping Tier: ${order.shippingTier.name}` : '';
-    const msg = `Hello Kabod Crest, I have placed Pre-Order *${order.orderRef}*:%0A${itemListText}%0ADelivery to: ${order.delivery.city}, ${order.delivery.country}${tierLine}. Please advise when commercial rates and invoice are ready.`;
+    const msg = `Hello Kabod Crest, I have placed Pre-Order *${order.orderRef}*:%0A${itemListText}%0ADelivery to: ${order.delivery.city}, ${order.delivery.country}${tierLine}. Total: ${order.formattedGrandTotal || order.formattedSubtotal}. Please advise when commercial invoice is ready.`;
     whatsappBtn.href = `https://wa.me/2349053807722?text=${msg}`;
   }
 
-  // 6. Download / Print Receipt Handler
+  // 7. Download / Print Receipt Handler
   if (printBtn) {
     printBtn.addEventListener('click', () => {
       window.print();

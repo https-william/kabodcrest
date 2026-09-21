@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappLink) {
       const orgText = inquiry.organization !== 'Private Guest / Partner' ? ` (${inquiry.organization})` : '';
       const text = `Hello Kabod Crest Hospitality Desk, my name is *${inquiry.name}*${orgText}.%0A%0AI would like to connect regarding future hospitality concepts:%0A"${inquiry.message}"`;
-      whatsappLink.href = `https://wa.me/?text=${encodeURIComponent(text)}`;
+      whatsappLink.href = `https://wa.me/2349053807722?text=${encodeURIComponent(text)}`;
     }
 
     form.style.display = 'none';

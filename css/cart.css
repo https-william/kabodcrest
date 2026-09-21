@@ -153,6 +153,10 @@
   text-transform: uppercase;
 }
 
+.cart-line-tag.live {
+  color: var(--color-success, #1E6B43);
+}
+
 .cart-line-name {
   font-family: var(--font-structural);
   font-size: 1rem;
@@ -483,6 +487,98 @@
 }
 
 .shipping-tier-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Form Validation & Error States (F9-F12)
+   ========================================================================== */
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: #b32d2e !important;
+  background-color: #fffaf9 !important;
+  box-shadow: 0 0 0 3px rgba(179, 45, 46, 0.15) !important;
+}
+
+.form-input.is-valid,
+.form-select.is-valid,
+.form-textarea.is-valid {
+  border-color: #1E6B43;
+}
+
+.field-error-msg {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #b32d2e;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.field-error-msg.visible {
+  display: block;
+}
+
+/* Payment Method Selector (F13) */
+.payment-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .payment-selector-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.payment-option-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--color-white);
+  border: 1.5px solid rgba(50, 26, 74, 0.15);
+  border-radius: var(--radius-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.payment-option-card:hover {
+  border-color: var(--color-plum);
+  background-color: #FAF8F5;
+}
+
+.payment-option-card.selected {
+  border-color: var(--color-plum);
+  background-color: #FAF7F2;
+  box-shadow: 0 0 0 1px var(--color-plum), var(--shadow-sm);
+}
+
+.payment-option-card input[type="radio"] {
+  margin-top: 3px;
+  accent-color: var(--color-plum);
+  cursor: pointer;
+}
+
+.payment-option-info {
+  flex-grow: 1;
+}
+
+.payment-option-title {
+  font-family: var(--font-structural);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 2px;
+}
+
+.payment-option-desc {
   font-size: 0.75rem;
   color: var(--color-text-muted);
   line-height: 1.4;

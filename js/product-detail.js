@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 2. Populate Page Title & Meta
-  document.title = `${product.name} (${product.subtitle}) — Kabod Crest Foods`;
+  document.title = `${product.name} (${product.subtitle}) | Kabod Crest Foods`;
 
   // 3. Populate Breadcrumb
   const breadcrumbCategoryEl = document.getElementById('breadcrumb-category');
@@ -54,15 +54,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (subtitleEl) subtitleEl.textContent = product.subtitle;
   
   const isLocked = !product.isLive || product.isComingSoon;
+  const subnoteEl = document.getElementById('product-price-subnote');
 
   function renderPriceDetail() {
     if (!priceEl) return;
     if (isLocked) {
       priceEl.textContent = "Coming Soon";
       priceEl.style.color = "var(--color-text-subtle)";
+      if (subnoteEl) {
+        subnoteEl.textContent = "We are currently preparing and testing this harvest batch. It will be available here soon.";
+      }
     } else if (product.price && typeof product.price === 'number') {
       const estimate = window.KabodCurrency ? window.KabodCurrency.formatEstimate(product.price) : '';
       priceEl.innerHTML = `<span>${product.priceDisplay}</span> <span class="price-estimate-tag js-currency-estimate" style="font-size: 0.9375rem; margin-left: 6px; color: var(--color-gold); font-weight: 500;">${estimate}</span>`;
+      if (subnoteEl) {
+        subnoteEl.textContent = "Freshly packed and ready for prompt dispatch to your doorstep.";
+      }
     } else {
       priceEl.textContent = product.priceDisplay || 'Price: [TBC]';
     }
@@ -85,6 +92,31 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
+  // Populate Schema.org Product JSON-LD
+  const jsonLdEl = document.getElementById('product-jsonld');
+  if (jsonLdEl) {
+    const productSchema = {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": product.name,
+      "image": "https://kabodcrest.com/" + product.image,
+      "description": product.description || product.shortDescription,
+      "brand": {
+        "@type": "Brand",
+        "name": "Kabod Crest"
+      },
+      "category": product.category,
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "NGN",
+        "price": product.price || 0,
+        "availability": product.isLive ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+        "url": "https://kabodcrest.com/product-detail.html?id=" + encodeURIComponent(product.id)
+      }
+    };
+    jsonLdEl.textContent = JSON.stringify(productSchema, null, 2);
+  }
+
   // 5. Initialize Image Gallery
   const mainImageEl = document.getElementById('gallery-main-image');
   const thumbnailsStripEl = document.getElementById('gallery-thumbnails');
@@ -96,9 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainImageEl.src = galleryItems[0].src;
     mainImageEl.alt = galleryItems[0].alt;
     if (isLocked) {
-      mainImageEl.style.filter = 'blur(8px)';
-      mainImageEl.style.webkitFilter = 'blur(8px)';
-      mainImageEl.style.opacity = '0.7';
+      mainImageEl.style.opacity = '0.95';
     }
   }
 
@@ -129,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => {
             mainImageEl.src = newSrc;
             mainImageEl.alt = newAlt;
-            mainImageEl.style.opacity = isLocked ? '0.7' : '1';
+            mainImageEl.style.opacity = isLocked ? '0.95' : '1';
           }, 120);
         }
       });
@@ -147,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (isLocked && preorderBtn) {
     preorderBtn.disabled = true;
     preorderBtn.classList.add('btn-disabled');
-    preorderBtn.innerHTML = '<span>Available Soon</span>';
+    preorderBtn.innerHTML = '<span>Coming Soon</span>';
     if (qtyInput) qtyInput.disabled = true;
     if (qtyDecBtn) qtyDecBtn.disabled = true;
     if (qtyIncBtn) qtyIncBtn.disabled = true;
@@ -158,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <line x1="12" y1="5" x2="12" y2="19"></line>
           <line x1="5" y1="12" x2="19" y2="12"></line>
         </svg>
-        <span>Add to Order Bag</span>
+        <span>Add to Bag</span>
       `;
     }
   }
@@ -192,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     preorderBtn.addEventListener('click', () => {
       if (window.KabodCart) {
         window.KabodCart.addItem(product, currentQty);
-        showToast(`Added ${currentQty}x ${product.name} to order bag`);
+        showToast(`Added ${currentQty}× ${product.name} to your bag`);
       }
     });
   }
@@ -278,10 +308,31 @@ document.addEventListener('DOMContentLoaded', () => {
       related = related.slice(0, 4);
     }
 
-    relatedGridEl.innerHTML = related.map(rel => `
-      <article class="product-card" data-product-id="${rel.id}">
+    relatedGridEl.innerHTML = related.map(rel => {
+      const isRelLocked = !rel.isLive || rel.isComingSoon;
+      const relBadge = isRelLocked
+        ? `<span class="product-status-tag locked">Coming Soon</span>`
+        : `<span class="product-status-tag live">Ready to Order</span>`;
+
+      const relBtn = isRelLocked
+        ? `<button type="button" class="btn-preorder btn-disabled" disabled aria-disabled="true"><span class="preorder-btn-label">Coming Soon</span></button>`
+        : `<button
+            type="button"
+            class="btn-preorder js-add-related-preorder"
+            data-id="${rel.id}"
+            aria-label="Add ${rel.name} to bag"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add to Bag</span>
+          </button>`;
+
+      return `
+      <article class="product-card ${isRelLocked ? 'product-card-locked' : ''}" data-product-id="${rel.id}">
         <div class="product-card-badge-row">
-          <span class="preorder-pill">Pre-Order</span>
+          ${relBadge}
         </div>
 
         <a href="product-detail.html?id=${encodeURIComponent(rel.id)}" class="product-thumb-wrap" aria-label="View details for ${rel.name}">
@@ -303,26 +354,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <div class="product-card-specs">
             <span class="product-weight">${rel.weight}</span>
-            <span class="product-price-tbc">${rel.priceDisplay}</span>
+            <span class="${isRelLocked ? 'product-price-coming-soon' : 'product-price-val'}">${rel.priceDisplay}</span>
           </div>
 
           <div class="product-card-action">
-            <button
-              type="button"
-              class="btn-preorder js-add-related-preorder"
-              data-id="${rel.id}"
-              aria-label="Add ${rel.name} to pre-orders"
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              <span>Add to Pre-Order</span>
-            </button>
+            ${relBtn}
           </div>
         </div>
       </article>
-    `).join('');
+      `;
+    }).join('');
 
     relatedGridEl.querySelectorAll('.js-add-related-preorder').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -331,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = products.find(p => p.id === id);
         if (item && window.KabodCart) {
           window.KabodCart.addItem(item, 1);
-          showToast(`Added ${item.name} to pre-orders`);
+          showToast(`Added 1× ${item.name} to your bag`);
         }
       });
     });
