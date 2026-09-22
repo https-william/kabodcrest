@@ -324,7 +324,7 @@
   font-family: var(--font-editorial);
   font-size: 1.75rem;
   font-style: italic;
-  color: var(--color-gold);
+  color: var(--color-plum, #4A1525);
   line-height: 1;
   margin-bottom: var(--space-xs);
 }

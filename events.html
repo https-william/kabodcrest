@@ -6,6 +6,22 @@
   <title>Events & Experiences | Kabod Crest Limited</title>
   <meta name="description" content="Kabod Crest Events & Experiences. Curated corporate gatherings, cultural celebrations, and intimate brand experiences built on aesthetic restraint and authentic hospitality." />
 
+  <link rel="canonical" href="https://kabodcrest.com/events.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kabodcrest.com/events.html" />
+  <meta property="og:title" content="Events & Experiences | Kabod Crest Limited" />
+  <meta property="og:description" content="Curated corporate gatherings, cultural celebrations, and intimate brand experiences built on aesthetic restraint and authentic hospitality." />
+  <meta property="og:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://kabodcrest.com/events.html" />
+  <meta name="twitter:title" content="Events & Experiences | Kabod Crest Limited" />
+  <meta name="twitter:description" content="Curated corporate gatherings, cultural celebrations, and intimate brand experiences built on aesthetic restraint." />
+  <meta name="twitter:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,13 +35,29 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/shop.css" />
   <link rel="stylesheet" href="css/events.css" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Events & Experiences | Kabod Crest Limited",
+    "url": "https://kabodcrest.com/events.html",
+    "description": "Curated corporate gatherings, cultural celebrations, and intimate brand experiences.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Kabod Crest Limited",
+      "url": "https://kabodcrest.com"
+    }
+  }
+  </script>
 </head>
 <body>
 
   <!-- Site Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest - Excellence with Integrity">
         <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
           <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
@@ -51,7 +83,7 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+        <button type="button" class="cart-toggle-btn js-cart-toggle">
           <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -74,7 +106,7 @@
 
   <!-- Mobile Navigation Pane -->
   <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
-  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true" inert>
     <div>
       <div class="mobile-nav-header">
         <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
@@ -369,6 +401,32 @@
     </section>
   </main>
 
+  <!-- Slide-out Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-backdrop" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-labelledby="cart-drawer-heading" aria-hidden="true" inert>
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title" id="cart-drawer-heading">Your Bag</h2>
+      <button type="button" class="cart-drawer-close-btn" id="cart-close-btn" aria-label="Close bag drawer">&times;</button>
+    </div>
+    <div class="cart-drawer-body">
+      <div class="cart-empty-state" id="cart-empty-state">
+        <p style="margin-bottom: var(--space-xs); font-family: var(--font-structural); font-weight: 600;">Your bag is currently empty.</p>
+        <p style="font-size: 0.8125rem;">Explore our Nigerian agro-produce catalog to add pure harvests and kitchen staples.</p>
+      </div>
+      <ul class="cart-items-list" id="cart-items-list"></ul>
+    </div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="cart-drawer-subtotal-row" style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-sm); padding-bottom: var(--space-xs); border-bottom: 1px solid var(--color-stone-muted, #e5e5e5); font-family: var(--font-structural, 'Cinzel', serif);">
+        <span class="subtotal-label" style="font-size: 0.9375rem; font-weight: 600; color: var(--color-obsidian, #1a1a1a);">Subtotal:</span>
+        <span class="subtotal-value" id="cart-drawer-subtotal" style="font-size: 1.125rem; font-weight: 700; color: var(--color-plum, #4A1525);">₦0</span>
+      </div>
+      <div class="cart-policy-note">
+        Carefully packed in barrier pouches to guarantee pantry freshness upon arrival.
+      </div>
+      <a href="cart.html" class="btn-cart-checkout">Review Bag & Checkout</a>
+    </div>
+  </aside>
+
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container">
@@ -382,7 +440,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Business Verticals</h4>
+          <h3 class="footer-heading">Business Verticals</h3>
           <ul class="footer-nav-list">
             <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
             <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
@@ -392,7 +450,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Company & Contacts</h4>
+          <h3 class="footer-heading">Company & Contacts</h3>
           <ul class="footer-nav-list">
             <li><a href="about.html">About Kabod Crest</a></li>
             <li><a href="contact.html">Corporate Contact</a></li>
@@ -432,6 +490,8 @@
           pane.classList.add('open');
           backdrop.classList.add('open');
           pane.setAttribute('aria-hidden', 'false');
+          pane.removeAttribute('inert');
+          if (close) close.focus();
         }
       }
 
@@ -440,12 +500,19 @@
           pane.classList.remove('open');
           backdrop.classList.remove('open');
           pane.setAttribute('aria-hidden', 'true');
+          pane.setAttribute('inert', '');
         }
       }
 
       if (toggle) toggle.addEventListener('click', openMenu);
       if (close) close.addEventListener('click', closeMenu);
       if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pane && pane.classList.contains('open')) {
+          closeMenu();
+        }
+      });
 
       // Event Form Submission handling
       const form = document.getElementById('event-inquiry-form');

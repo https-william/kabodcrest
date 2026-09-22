@@ -309,11 +309,11 @@ button {
 }
 
 .nav-link.active {
-  color: var(--color-gold);
-  background: rgba(200, 164, 93, 0.16);
+  color: #DFC478;
+  background: rgba(20, 14, 28, 0.75);
   font-weight: 600;
-  border: 1px solid rgba(200, 164, 93, 0.35);
-  box-shadow: 0 0 12px rgba(200, 164, 93, 0.12);
+  border: 1px solid rgba(223, 196, 120, 0.45);
+  box-shadow: 0 0 14px rgba(223, 196, 120, 0.15);
 }
 
 /* Header Right Actions */
@@ -327,8 +327,10 @@ button {
 .cart-toggle-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 7px 15px;
+  padding: 8px 16px;
+  min-height: 44px;
   border-radius: var(--radius-pill);
   background: rgba(50, 26, 74, 0.5);
   border: 1px solid rgba(200, 164, 93, 0.4);
@@ -376,7 +378,8 @@ button {
     display: none;
   }
   .cart-toggle-btn {
-    padding: 7px 11px;
+    padding: 8px 12px;
+    min-width: 44px;
     gap: 6px;
   }
 }
@@ -385,8 +388,10 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: var(--radius-subtle);
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -426,11 +431,15 @@ button {
   flex-direction: column;
   justify-content: space-between;
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
-  transition: right var(--transition-smooth);
+  visibility: hidden;
+  pointer-events: none;
+  transition: right var(--transition-smooth), visibility var(--transition-smooth);
 }
 
 .mobile-nav-pane.open {
   right: 0;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-nav-header {

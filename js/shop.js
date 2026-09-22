@@ -230,7 +230,7 @@ if (typeof document !== 'undefined') {
             type="button"
             class="btn-preorder js-add-preorder"
             data-id="${product.id}"
-            aria-label="Add ${product.name} to bag"
+            aria-label="Add to Bag: ${product.name}"
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -336,17 +336,22 @@ if (typeof document !== 'undefined') {
     });
   }
 
+  // Toast initial state
+  if (toastEl) toastEl.setAttribute('inert', '');
+
   function showToast(message) {
     if (!toastEl || !toastMessageEl) return;
 
     toastMessageEl.textContent = message;
     toastEl.classList.add('show');
     toastEl.setAttribute('aria-hidden', 'false');
+    toastEl.removeAttribute('inert');
 
     if (toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toastEl.classList.remove('show');
       toastEl.setAttribute('aria-hidden', 'true');
+      toastEl.setAttribute('inert', '');
     }, 4000);
   }
 
@@ -356,7 +361,11 @@ if (typeof document !== 'undefined') {
       if (typeof window.openCartDrawer === 'function') {
         window.openCartDrawer();
       }
-      if (toastEl) toastEl.classList.remove('show');
+      if (toastEl) {
+        toastEl.classList.remove('show');
+        toastEl.setAttribute('aria-hidden', 'true');
+        toastEl.setAttribute('inert', '');
+      }
     });
   }
   });

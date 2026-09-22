@@ -6,6 +6,22 @@
   <title>Kabod Crest Limited | Building with Purpose. Creating with Distinction.</title>
   <meta name="description" content="Official homepage of Kabod Crest Limited. A newly registered Nigerian diversified enterprise. Pre-orders now active for premium Nigerian agro-produce." />
 
+  <link rel="canonical" href="https://kabodcrest.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kabodcrest.com/" />
+  <meta property="og:title" content="Kabod Crest Limited | Building with Purpose. Creating with Distinction." />
+  <meta property="og:description" content="Official homepage of Kabod Crest Limited. Pre-orders and allocations now active for premium Nigerian agro-produce, fluted pumpkin leaves, spices, and provisions." />
+  <meta property="og:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://kabodcrest.com/" />
+  <meta name="twitter:title" content="Kabod Crest Limited | Building with Purpose. Creating with Distinction." />
+  <meta name="twitter:description" content="Official homepage of Kabod Crest Limited. Pre-orders and allocations now active for premium Nigerian agro-produce." />
+  <meta name="twitter:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,27 +36,46 @@
   <link rel="stylesheet" href="css/shop.css" />
   <link rel="stylesheet" href="css/home.css" />
 
-  <!-- JSON-LD Structured Data: Organization -->
+  <!-- JSON-LD Structured Data: Organization & WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Kabod Crest Limited",
-    "url": "https://kabodcrest.com",
-    "logo": "https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png",
-    "description": "A premier Nigerian diversified enterprise operating across food production and agro-processing, events, hospitality, and business advisory.",
-    "slogan": "Building with Purpose. Creating with Distinction.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Lagos",
-      "addressCountry": "NG"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+2349053807722",
-      "contactType": "corporate inquiries",
-      "email": "kabodcrest@gmail.com"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://kabodcrest.com/#organization",
+        "name": "Kabod Crest Limited",
+        "url": "https://kabodcrest.com",
+        "logo": "https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png",
+        "description": "A premier Nigerian enterprise operating across food production and agro-processing, events, hospitality, and business advisory.",
+        "slogan": "Building with Purpose. Creating with Distinction.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lagos",
+          "addressCountry": "NG"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+2349053807722",
+          "contactType": "customer service",
+          "email": "kabodcrest@gmail.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kabodcrest.com/#website",
+        "url": "https://kabodcrest.com/",
+        "name": "Kabod Crest Limited",
+        "publisher": {
+          "@id": "https://kabodcrest.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://kabodcrest.com/shop.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -49,7 +84,7 @@
   <!-- Site Header -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest - Excellence with Integrity">
         <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
           <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
@@ -75,7 +110,7 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+        <button type="button" class="cart-toggle-btn js-cart-toggle">
           <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -98,7 +133,7 @@
 
   <!-- Mobile Navigation Pane -->
   <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
-  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true" inert>
     <div>
       <div class="mobile-nav-header">
         <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
@@ -153,6 +188,11 @@
                 src="assets/images/hero/hero-agro-assemblage.jpg"
                 alt="Kabod Crest Agro-Botanical Harvest Collection: Matte Royal Plum standup pouch, dehydrated Ugwu fluted pumpkin leaves, shelled Egusi seeds, and whole African spices"
                 class="hero-featured-image"
+                width="600"
+                height="450"
+                fetchpriority="high"
+                loading="eager"
+                decoding="async"
               />
             </div>
           </div>
@@ -273,7 +313,15 @@
     <section class="packaging-feature-section" aria-labelledby="packaging-heading" style="padding: var(--space-3xl) 0; background-color: var(--color-ivory);">
       <div class="container">
         <div class="packaging-spotlight-banner">
-          <img src="assets/images/packaging/shop-packaging-trio.jpg" alt="Kabod Crest standup barrier pouches in Royal Plum and unbleached kraft" class="packaging-spotlight-img" loading="lazy" />
+          <img
+            src="assets/images/packaging/shop-packaging-trio.jpg"
+            alt="Kabod Crest standup barrier pouches in Royal Plum and unbleached kraft"
+            class="packaging-spotlight-img"
+            width="600"
+            height="400"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="packaging-spotlight-caption">
             <div class="section-eyebrow" style="color: var(--color-gold); margin-bottom: var(--space-xs);">Kept Fresh</div>
             <h2 class="packaging-title" id="packaging-heading">Sealed for Freshness, Wherever You Are</h2>
@@ -400,7 +448,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Business Verticals</h4>
+          <h3 class="footer-heading">Business Verticals</h3>
           <ul class="footer-nav-list">
             <li><a href="shop.html">Food & Consumer Products</a> <span class="vertical-badge active">Active</span></li>
             <li><a href="events.html">Events & Experiences</a> <span class="vertical-badge upcoming">Upcoming</span></li>
@@ -410,7 +458,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Company & Contacts</h4>
+          <h3 class="footer-heading">Company & Contacts</h3>
           <ul class="footer-nav-list">
             <li><a href="about.html">About Kabod Crest</a></li>
             <li><a href="contact.html">Corporate Contact</a></li>
@@ -449,6 +497,8 @@
           pane.classList.add('open');
           backdrop.classList.add('open');
           pane.setAttribute('aria-hidden', 'false');
+          pane.removeAttribute('inert');
+          if (close) close.focus();
         }
       }
 
@@ -457,12 +507,19 @@
           pane.classList.remove('open');
           backdrop.classList.remove('open');
           pane.setAttribute('aria-hidden', 'true');
+          pane.setAttribute('inert', '');
         }
       }
 
       if (toggle) toggle.addEventListener('click', openMenu);
       if (close) close.addEventListener('click', closeMenu);
       if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pane && pane.classList.contains('open')) {
+          closeMenu();
+        }
+      });
     })();
   </script>
 </body>

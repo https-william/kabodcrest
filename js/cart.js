@@ -318,19 +318,29 @@
     const backdrop = document.getElementById('cart-backdrop');
     const closeBtn = document.getElementById('cart-close-btn');
 
-    if (!drawer || !backdrop) return;
+    let lastFocusedElement = null;
+
+    // Initially inert when closed
+    drawer.setAttribute('inert', '');
 
     function openDrawer() {
+      lastFocusedElement = document.activeElement;
       drawer.classList.add('open');
       backdrop.classList.add('open');
       drawer.setAttribute('aria-hidden', 'false');
+      drawer.removeAttribute('inert');
       renderDrawerItems();
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
     }
 
     function closeDrawer() {
       drawer.classList.remove('open');
       backdrop.classList.remove('open');
       drawer.setAttribute('aria-hidden', 'true');
+      drawer.setAttribute('inert', '');
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
     }
 
     toggles.forEach(btn => btn.addEventListener('click', openDrawer));

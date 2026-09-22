@@ -6,6 +6,22 @@
   <title>Shop Agro-Produce | Kabod Crest Foods</title>
   <meta name="description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
 
+  <link rel="canonical" href="https://kabodcrest.com/shop.html" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kabodcrest.com/shop.html" />
+  <meta property="og:title" content="Shop Agro-Produce | Kabod Crest Foods" />
+  <meta property="og:description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
+  <meta property="og:image" content="https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://kabodcrest.com/shop.html" />
+  <meta name="twitter:title" content="Shop Agro-Produce | Kabod Crest Foods" />
+  <meta name="twitter:description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
+  <meta name="twitter:image" content="https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg" />
+
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,33 +35,49 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/shop.css" />
 
-  <!-- JSON-LD Structured Data: ItemList -->
+  <!-- JSON-LD Structured Data: Store & ItemList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Kabod Crest Foods Product Catalog",
-    "description": "Premium Nigerian botanical agro-produce, spices, dehydrated vegetables, and traditional provisions.",
-    "url": "https://kabodcrest.com/shop.html",
-    "numberOfItems": 14,
-    "itemListElement": [
+    "@graph": [
       {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Dehydrated Ugwu",
-        "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ugwu"
+        "@type": "Store",
+        "@id": "https://kabodcrest.com/shop.html#store",
+        "name": "Kabod Crest Foods",
+        "url": "https://kabodcrest.com/shop.html",
+        "description": "Authentic Nigerian agro-produce, dehydrated vegetables, stone-ground spices, and traditional provisions.",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Kabod Crest Limited",
+          "url": "https://kabodcrest.com"
+        }
       },
       {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Dehydrated Ginger Powder",
-        "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ginger"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Jollof Rice Spice",
-        "url": "https://kabodcrest.com/product-detail.html?id=jollof-spice"
+        "@type": "ItemList",
+        "name": "Kabod Crest Foods Product Catalog",
+        "description": "Premium Nigerian botanical agro-produce, spices, dehydrated vegetables, and traditional provisions.",
+        "url": "https://kabodcrest.com/shop.html",
+        "numberOfItems": 14,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Dehydrated Ugwu",
+            "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ugwu"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Dehydrated Ginger Powder",
+            "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ginger"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Jollof Rice Spice",
+            "url": "https://kabodcrest.com/product-detail.html?id=jollof-rice-spice"
+          }
+        ]
       }
     ]
   }
@@ -58,7 +90,7 @@
     <div class="container header-inner">
       <!-- Brand Logo -->
       <!-- NOTE: Logo asset is treated as mood-board geometry per kabod-crest-brand guidelines until final vector master is locked -->
-      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest Home">
+      <a href="index.html" class="brand-logo-link" aria-label="Kabod Crest - Excellence with Integrity">
         <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
           <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
@@ -84,7 +116,7 @@
 
       <!-- Header Actions -->
       <div class="header-actions">
-        <button type="button" class="cart-toggle-btn js-cart-toggle" aria-label="Open pre-order bag">
+        <button type="button" class="cart-toggle-btn js-cart-toggle">
           <svg class="cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -107,7 +139,7 @@
 
   <!-- Mobile Navigation Pane -->
   <div class="nav-backdrop js-nav-backdrop" id="mobile-nav-backdrop"></div>
-  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true">
+  <div class="mobile-nav-pane" id="mobile-nav-pane" aria-hidden="true" inert>
     <div>
       <div class="mobile-nav-header">
         <div class="brand-name" style="font-size: 1rem;">KABOD CREST</div>
@@ -265,7 +297,15 @@
 
         <!-- Packaging Preservation Standard Banner -->
         <div class="shop-packaging-feature">
-          <img src="assets/images/packaging/shop-packaging-trio.jpg" alt="Kabod Crest high-barrier standup pouches in Royal Plum and unbleached kraft" class="shop-packaging-feature-img" loading="lazy" />
+          <img
+            src="assets/images/packaging/shop-packaging-trio.jpg"
+            alt="Kabod Crest high-barrier standup pouches in Royal Plum and unbleached kraft"
+            class="shop-packaging-feature-img"
+            width="600"
+            height="380"
+            loading="lazy"
+            decoding="async"
+          />
           <div class="shop-packaging-feature-content">
             <span class="shop-packaging-badge">Kept Fresh</span>
             <h3 class="shop-packaging-title">Sealed in Moisture-Barrier Standup Pouches</h3>
@@ -331,7 +371,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Business Verticals</h4>
+          <h3 class="footer-heading">Business Verticals</h3>
           <ul class="footer-nav-list">
             <li>
               <a href="shop.html">Food & Consumer Products</a>
@@ -353,7 +393,7 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Company & Ordering</h4>
+          <h3 class="footer-heading">Company & Ordering</h3>
           <ul class="footer-nav-list">
             <li><a href="about.html">About Kabod Crest</a></li>
             <li><a href="contact.html">Corporate Contact</a></li>
@@ -397,6 +437,8 @@
           pane.classList.add('open');
           backdrop.classList.add('open');
           pane.setAttribute('aria-hidden', 'false');
+          pane.removeAttribute('inert');
+          if (close) close.focus();
         }
       }
 
@@ -405,12 +447,19 @@
           pane.classList.remove('open');
           backdrop.classList.remove('open');
           pane.setAttribute('aria-hidden', 'true');
+          pane.setAttribute('inert', '');
         }
       }
 
       if (toggle) toggle.addEventListener('click', openMenu);
       if (close) close.addEventListener('click', closeMenu);
       if (backdrop) backdrop.addEventListener('click', closeMenu);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && pane && pane.classList.contains('open')) {
+          closeMenu();
+        }
+      });
     })();
   </script>
 </body>
