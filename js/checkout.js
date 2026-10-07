@@ -573,7 +573,7 @@ if (typeof document !== 'undefined') {
     const cartItems = (typeof window !== 'undefined' && window.KabodCart) ? window.KabodCart.getItems() : [];
     if (cartItems.length === 0) {
       if (typeof window !== 'undefined' && window.location && !window.location.pathname.includes('test')) {
-        window.location.href = 'shop.html';
+        window.location.href = '/shop';
         return;
       }
     }
@@ -958,7 +958,7 @@ if (typeof document !== 'undefined') {
 
           // 4. Redirect to order confirmation
           if (typeof window !== 'undefined' && window.location) {
-            window.location.href = `order-confirmation.html?ref=${orderRef}`;
+            window.location.href = `/order-confirmation?ref=${orderRef}`;
           }
         }, (err) => {
           if (submitBtn) {

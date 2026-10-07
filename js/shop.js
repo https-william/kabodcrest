@@ -234,7 +234,7 @@ if (typeof document !== 'undefined') {
 
       return `
       <article class="product-card ${isLocked ? 'product-card-locked' : ''}" data-product-id="${product.id}" data-category="${product.category}">
-        <a href="product-detail.html?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
+        <a href="/product-detail?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
           ${thumbContent}
         </a>
 
@@ -245,7 +245,7 @@ if (typeof document !== 'undefined') {
           </div>
 
           <h2 class="product-title">
-            <a href="product-detail.html?id=${encodeURIComponent(product.id)}">${product.name}</a>
+            <a href="/product-detail?id=${encodeURIComponent(product.id)}">${product.name}</a>
           </h2>
           <div class="product-subtitle">${product.subtitle}</div>
 

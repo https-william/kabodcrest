@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const trackOrderLinkEl = document.getElementById('conf-track-order-link');
   if (trackOrderLinkEl) {
-    trackOrderLinkEl.href = `track-order.html?ref=${encodeURIComponent(order.orderRef)}`;
+    trackOrderLinkEl.href = `/track-order?ref=${encodeURIComponent(order.orderRef)}`;
   }
 
   const trackingEmailEl = document.getElementById('conf-tracking-email');

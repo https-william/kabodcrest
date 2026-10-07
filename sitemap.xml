@@ -8,43 +8,43 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/shop.html</loc>
+    <loc>https://kabodcrest.com/shop</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/about.html</loc>
+    <loc>https://kabodcrest.com/about</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/contact.html</loc>
+    <loc>https://kabodcrest.com/contact</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/track-order.html</loc>
+    <loc>https://kabodcrest.com/track-order</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/business-services.html</loc>
+    <loc>https://kabodcrest.com/business-services</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/hospitality.html</loc>
+    <loc>https://kabodcrest.com/hospitality</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/events.html</loc>
+    <loc>https://kabodcrest.com/events</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
@@ -52,85 +52,85 @@
 
   <!-- Live Agro-Produce Products -->
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=dehydrated-ugwu</loc>
+    <loc>https://kabodcrest.com/product-detail?id=dehydrated-ugwu</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=dehydrated-ginger</loc>
+    <loc>https://kabodcrest.com/product-detail?id=dehydrated-ginger</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=jollof-rice-spice</loc>
+    <loc>https://kabodcrest.com/product-detail?id=jollof-rice-spice</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=kulikuli-snack</loc>
+    <loc>https://kabodcrest.com/product-detail?id=kulikuli-snack</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=stockfish-cod</loc>
+    <loc>https://kabodcrest.com/product-detail?id=stockfish-cod</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=iru-locust-beans</loc>
+    <loc>https://kabodcrest.com/product-detail?id=iru-locust-beans</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=cassava-flakes-garri</loc>
+    <loc>https://kabodcrest.com/product-detail?id=cassava-flakes-garri</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=shea-butter-unrefined</loc>
+    <loc>https://kabodcrest.com/product-detail?id=shea-butter-unrefined</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=african-nutmeg-ehuru</loc>
+    <loc>https://kabodcrest.com/product-detail?id=african-nutmeg-ehuru</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=ashanti-pepper-uziza</loc>
+    <loc>https://kabodcrest.com/product-detail?id=ashanti-pepper-uziza</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=melon-seed-egusi</loc>
+    <loc>https://kabodcrest.com/product-detail?id=melon-seed-egusi</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=ogbono-dika-nut</loc>
+    <loc>https://kabodcrest.com/product-detail?id=ogbono-dika-nut</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=ponmo-dried-cowskin</loc>
+    <loc>https://kabodcrest.com/product-detail?id=ponmo-dried-cowskin</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://kabodcrest.com/product-detail.html?id=zobo-hibiscus-calyces</loc>
+    <loc>https://kabodcrest.com/product-detail?id=zobo-hibiscus-calyces</loc>
     <lastmod>2026-10-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.80</priority>

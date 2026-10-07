@@ -58,6 +58,11 @@ function createServer() {
     const safePath = path.normalize(reqPath).replace(/^(\.\.[\/\\])+/, '');
     let filePath = path.join(PUBLIC_DIR, safePath);
 
+    // Support Clean URLs (route /shop to shop.html, /about to about.html, etc.)
+    if (!fs.existsSync(filePath) && fs.existsSync(filePath + '.html')) {
+      filePath = filePath + '.html';
+    }
+
     fs.stat(filePath, (err, stats) => {
       if (err) {
         res.writeHead(404, {

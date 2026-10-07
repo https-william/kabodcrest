@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Populate Page Title & Meta Dynamically
   document.title = `${product.name} (${product.subtitle}) | Kabod Crest Foods`;
-  const productCanonicalUrl = `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}`;
+  const productCanonicalUrl = `https://kabodcrest.com/product-detail?id=${encodeURIComponent(product.id)}`;
   const productImageUrl = product.image ? `https://kabodcrest.com/${product.image}` : `https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg`;
   const productDesc = product.shortDescription || product.description || `Pure Nigerian ${product.name} prepared by Kabod Crest Foods.`;
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const breadcrumbProductEl = document.getElementById('breadcrumb-product');
   if (breadcrumbCategoryEl) {
     breadcrumbCategoryEl.textContent = product.category;
-    breadcrumbCategoryEl.href = `shop.html`;
+    breadcrumbCategoryEl.href = `/shop`;
   }
   if (breadcrumbProductEl) {
     breadcrumbProductEl.textContent = product.name;
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productSchemaGraph = [
       {
         "@type": "Product",
-        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#product`,
+        "@id": `https://kabodcrest.com/product-detail?id=${encodeURIComponent(product.id)}#product`,
         "name": product.name,
         "image": productImageUrl,
         "description": product.description || product.shortDescription,
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       {
         "@type": "BreadcrumbList",
-        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#breadcrumb`,
+        "@id": `https://kabodcrest.com/product-detail?id=${encodeURIComponent(product.id)}#breadcrumb`,
         "itemListElement": [
           {
             "@type": "ListItem",
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "@type": "ListItem",
             "position": 2,
             "name": "Foods & Shop",
-            "item": "https://kabodcrest.com/shop.html"
+            "item": "https://kabodcrest.com/shop"
           },
           {
             "@type": "ListItem",
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Array.isArray(product.faqs) && product.faqs.length > 0) {
       productSchemaGraph.push({
         "@type": "FAQPage",
-        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#faq`,
+        "@id": `https://kabodcrest.com/product-detail?id=${encodeURIComponent(product.id)}#faq`,
         "mainEntity": product.faqs.map(f => ({
           "@type": "Question",
           "name": f.question,
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${bp.id === product.id ? '<span class="bundle-current-badge">This Item</span>' : ''}
               </div>
               <div class="bundle-item-info">
-                <a href="product-detail.html?id=${encodeURIComponent(bp.id)}" class="bundle-item-title">${bp.name}</a>
+                <a href="/product-detail?id=${encodeURIComponent(bp.id)}" class="bundle-item-title">${bp.name}</a>
                 <div class="bundle-item-meta">${bp.category} • ${bp.weight}</div>
                 <div class="bundle-item-price">
                   ${bp.isLive && bp.price ? bp.priceDisplay : '<span class="bundle-soon-tag">Coming Soon</span>'}
@@ -648,7 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ${relBadge}
         </div>
 
-        <a href="product-detail.html?id=${encodeURIComponent(rel.id)}" class="product-thumb-wrap" aria-label="View details for ${rel.name}">
+        <a href="/product-detail?id=${encodeURIComponent(rel.id)}" class="product-thumb-wrap" aria-label="View details for ${rel.name}">
           <img
             src="${rel.image}"
             alt="Packaging for ${rel.name} (${rel.subtitle})"
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="product-card-body">
           <div class="product-category-label">${rel.category}</div>
           <h3 class="product-title">
-            <a href="product-detail.html?id=${encodeURIComponent(rel.id)}">${rel.name}</a>
+            <a href="/product-detail?id=${encodeURIComponent(rel.id)}">${rel.name}</a>
           </h3>
           <div class="product-subtitle">${rel.subtitle}</div>
 

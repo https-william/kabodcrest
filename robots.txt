@@ -4,8 +4,11 @@
 
 User-agent: *
 Allow: /
+Disallow: /cart
 Disallow: /cart.html
+Disallow: /checkout
 Disallow: /checkout.html
+Disallow: /order-confirmation
 Disallow: /order-confirmation.html
 
 # AI Answer Engines & Foundation Model Search Crawlers
