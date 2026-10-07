@@ -1,6 +1,6 @@
 /**
  * Kabod Crest - Business Services Controller
- * Handles lead capture inquiry validation, submission confirmation, and WhatsApp outreach.
+ * Handles lead capture inquiry validation, inline specific errors, submission confirmation, and WhatsApp outreach.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,8 +13,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!form) return;
 
+  const requiredFieldIds = ['inq-name', 'inq-email', 'inq-phone', 'inq-message'];
+
+  function validateInquiryField(id) {
+    const el = document.getElementById(id);
+    const errEl = document.getElementById(`${id}-error`);
+    if (!el) return true;
+
+    const val = el.value.trim();
+    let message = '';
+
+    if (id === 'inq-name') {
+      if (!val) {
+        message = 'Please enter your full name';
+      } else if (val.length < 2) {
+        message = 'Full name must be at least 2 characters';
+      }
+    } else if (id === 'inq-email') {
+      if (!val) {
+        message = 'Corporate email address is required';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        message = 'Please enter a valid email address (e.g. name@company.com)';
+      }
+    } else if (id === 'inq-phone') {
+      if (!val) {
+        message = 'Phone or WhatsApp number is required';
+      } else if (val.replace(/[\s()+-]/g, '').length < 7) {
+        message = 'Please enter a valid phone number (at least 7 digits)';
+      }
+    } else if (id === 'inq-message') {
+      if (!val) {
+        message = 'Please describe your business inquiry or collaboration idea';
+      } else if (val.length < 10) {
+        message = 'Please provide at least 10 characters describing your inquiry';
+      }
+    }
+
+    if (message) {
+      el.classList.add('is-invalid');
+      if (errEl) {
+        errEl.textContent = message;
+        errEl.classList.add('visible');
+      }
+      return false;
+    } else {
+      el.classList.remove('is-invalid');
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.classList.remove('visible');
+      }
+      return true;
+    }
+  }
+
+  // Real-time validation listeners: clear errors immediately as user corrects input
+  requiredFieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => validateInquiryField(id));
+      el.addEventListener('blur', () => validateInquiryField(id));
+    }
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    let isValid = true;
+    let firstInvalidEl = null;
+
+    requiredFieldIds.forEach(id => {
+      const valid = validateInquiryField(id);
+      if (!valid) {
+        isValid = false;
+        if (!firstInvalidEl) firstInvalidEl = document.getElementById(id);
+      }
+    });
+
+    // If validation fails, preserve all entered data (never clear) and focus first invalid field
+    if (!isValid) {
+      if (firstInvalidEl) {
+        firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => firstInvalidEl.focus(), 200);
+      }
+      return;
+    }
 
     const inquiry = {
       id: `INQ-${Date.now()}`,
@@ -56,6 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       form.reset();
+      requiredFieldIds.forEach(id => {
+        const el = document.getElementById(id);
+        const errEl = document.getElementById(`${id}-error`);
+        if (el) el.classList.remove('is-invalid');
+        if (errEl) {
+          errEl.textContent = '';
+          errEl.classList.remove('visible');
+        }
+      });
       form.style.display = 'block';
       if (successCard) {
         successCard.style.display = 'none';

@@ -25,7 +25,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
@@ -63,7 +63,31 @@
 
   <main class="confirmation-section">
     <div class="container">
-      <article class="confirmation-card" id="printable-receipt-card">
+
+      <!-- Unboxing View Mode Switcher -->
+      <div class="unboxing-view-nav no-print" role="tablist" aria-label="Order View Modes">
+        <button type="button" class="unboxing-view-btn active" id="tab-btn-receipt" role="tab" aria-selected="true" aria-controls="printable-receipt-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Official Order Receipt</span>
+        </button>
+        <button type="button" class="unboxing-view-btn" id="tab-btn-keepsake" role="tab" aria-selected="false" aria-controls="unboxing-keepsake-card">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+          <span>Physical Box Keepsake & Recipe Card</span>
+        </button>
+      </div>
+
+      <!-- VIEW 1: Official Order Receipt -->
+      <article class="confirmation-card" id="printable-receipt-card" role="tabpanel" aria-labelledby="tab-btn-receipt">
 
         <!-- Receipt Header -->
         <header class="confirmation-header">
@@ -81,7 +105,33 @@
             <div style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted);">Your Order Reference</div>
             <div class="order-ref-num" id="conf-order-ref">KC-2026-XXXX</div>
           </div>
+
+          <div class="order-tracking-quicklink-box no-print" style="margin-top: var(--space-sm);">
+            <a href="track-order.html" id="conf-track-order-link" class="btn-track-order-quick" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-structural); font-size: 0.8125rem; font-weight: 600; color: var(--color-gold); text-decoration: underline;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <span>Track Your Package Live &rarr;</span>
+            </a>
+            <div style="font-size: 0.75rem; color: rgba(247, 244, 236, 0.8); margin-top: 4px;">
+              A private tracking link has also been sent to <span id="conf-tracking-email" style="color: var(--color-text-light); font-weight: 600;">your email</span>.
+            </div>
+          </div>
         </header>
+
+        <!-- Warm Founder's Welcome Note -->
+        <div class="founder-welcome-banner">
+          <div class="founder-welcome-badge">From Lagos With Purpose</div>
+          <h2 class="founder-welcome-title">A Warm Welcome From Our Kitchen to Yours</h2>
+          <div class="founder-letter-text">
+            <p>Dear <strong id="conf-letter-name">Valued Customer</strong>,</p>
+            <p>When we founded Kabod Crest, we set out with a simple, quiet promise: to bring the true, unhurried aroma and honest flavor of authentic Nigerian agro-produce to discerning tables everywhere.</p>
+            <p>Your order has been personally logged into our Lagos packing room. Every single pack of vegetables, stone-ground seasonings, and pantry staples in your allocation is carefully inspected, weighed, and heat-sealed in airtight barrier pouches to preserve its natural vibrancy and living fragrance.</p>
+            <p>Thank you for inviting our harvests into your home. We are honored to be part of your cooking, your family gatherings, and your everyday nourishment.</p>
+          </div>
+          <div class="founder-signature-row">
+            <div class="founder-signature-name">The Kabod Crest Kitchen Team & Founder</div>
+            <div class="founder-signature-origin">Single-Origin Nigerian Agro-Produce • Lagos, Nigeria</div>
+          </div>
+        </div>
 
         <!-- Receipt Details Body -->
         <div class="confirmation-body">
@@ -182,36 +232,56 @@
             </div>
           </div>
 
-          <!-- What Happens Next Timeline -->
-          <div class="next-steps-timeline">
-            <h2 style="font-family: var(--font-structural); font-size: 0.9375rem; font-weight: 700; color: var(--color-obsidian); margin-bottom: var(--space-xs);">What Happens Next:</h2>
-
-            <div class="timeline-step">
-              <div class="timeline-step-icon">1</div>
-              <div>
-                <div class="timeline-step-title">Order Received & Logged</div>
-                <div class="timeline-step-desc">We have your order recorded and your selected pantry items secured in our queue.</div>
-              </div>
+          <!-- Elevated 4-Stage Fulfillment Journey Tracker -->
+          <div class="fulfillment-journey-section">
+            <div class="journey-header">
+              <h2 class="journey-title">Fulfillment & Delivery Journey</h2>
+              <span class="journey-badge in-progress">Live Operational Tracking</span>
             </div>
-
-            <div class="timeline-step">
-              <div class="timeline-step-icon">2</div>
-              <div>
-                <div class="timeline-step-title">Inspected & Sealed Fresh</div>
-                <div class="timeline-step-desc">Each pack is checked, weighed, and sealed in multi-layer barrier packaging at our Lagos facility.</div>
+            <div class="journey-grid">
+              <div class="journey-step completed">
+                <div class="journey-step-indicator">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div class="journey-step-info">
+                  <span class="journey-step-status">Completed</span>
+                  <div class="journey-step-heading">Order Logged & Reserved</div>
+                  <div class="journey-step-copy">Items secured directly from our fresh pantry reserve.</div>
+                </div>
               </div>
-            </div>
 
-            <div class="timeline-step">
-              <div class="timeline-step-icon">3</div>
-              <div>
-                <div class="timeline-step-title">Dispatched Straight to You</div>
-                <div class="timeline-step-desc">We hand your package to our delivery courier and send full tracking details directly to your phone and email.</div>
+              <div class="journey-step current">
+                <div class="journey-step-indicator">
+                  <span class="journey-pulse-dot"></span>
+                </div>
+                <div class="journey-step-info">
+                  <span class="journey-step-status">In Progress</span>
+                  <div class="journey-step-heading">Inspected & Heat-Sealed</div>
+                  <div class="journey-step-copy">Hand-inspected in multi-layer barrier pouches in Lagos.</div>
+                </div>
+              </div>
+
+              <div class="journey-step upcoming">
+                <div class="journey-step-indicator">3</div>
+                <div class="journey-step-info">
+                  <span class="journey-step-status">Next Step</span>
+                  <div class="journey-step-heading">Courier Dispatch</div>
+                  <div class="journey-step-copy">Waybill tracking details sent via WhatsApp and email.</div>
+                </div>
+              </div>
+
+              <div class="journey-step upcoming">
+                <div class="journey-step-indicator">4</div>
+                <div class="journey-step-info">
+                  <span class="journey-step-status">Final Destination</span>
+                  <div class="journey-step-heading">Arrives in Your Kitchen</div>
+                  <div class="journey-step-copy">Cupboard-fresh produce ready for your family's cooking pot.</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons (Print & WhatsApp) -->
+          <!-- Action Buttons (Print, WhatsApp & Keepsake Switcher) -->
           <div class="receipt-action-buttons no-print">
             <button type="button" class="btn-primary-action" id="btn-print-receipt" style="flex: 1;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -228,6 +298,15 @@
               </svg>
               <span>Message Us on WhatsApp</span>
             </a>
+
+            <button type="button" class="btn-primary-action btn-view-keepsake" id="btn-switch-keepsake" style="flex: 1;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+              <span>View Box Keepsake Card &rarr;</span>
+            </button>
           </div>
 
           <div style="text-align: center; margin-top: var(--space-xl);" class="no-print">
@@ -238,6 +317,119 @@
         </div>
 
       </article>
+
+      <!-- VIEW 2: Physical Box Keepsake & Recipe Card (Unboxing Experience) -->
+      <article class="keepsake-card-container" id="unboxing-keepsake-card" style="display: none;" role="tabpanel" aria-labelledby="tab-btn-keepsake">
+        <header class="keepsake-header">
+          <div class="keepsake-crest-wrap">
+            <svg class="brand-crest-mark" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M 24 16 L 50 40 L 76 16 L 76 38" />
+              <path d="M 24 16 L 24 66 L 50 90 L 76 66 L 76 52" />
+              <path d="M 24 45 L 48 45 L 64 29" />
+              <path d="M 38 45 L 62 72" />
+            </svg>
+          </div>
+          <div class="keepsake-title-meta">
+            <span class="keepsake-kicker">Physical Box Unboxing Keepsake</span>
+            <h1 class="keepsake-headline">Kitchen Pantry Keepsake & Recipe Companion</h1>
+            <p class="keepsake-subline">Packed fresh in Lagos for <strong id="conf-keepsake-name">Valued Customer</strong> • Box #<span id="conf-keepsake-ref">KC-2026-XXXX</span></p>
+          </div>
+        </header>
+
+        <div class="keepsake-body">
+          <!-- The Four Harvest Quality Guarantees -->
+          <div class="keepsake-pillars-grid">
+            <div class="keepsake-pillar-item">
+              <div class="keepsake-pillar-num">01</div>
+              <div class="keepsake-pillar-title">Gently Warm-Air Preserved</div>
+              <p class="keepsake-pillar-desc">Dehydrated with gentle warm air so leaves hold their natural color, fresh aroma, and honest garden vitamins.</p>
+            </div>
+            <div class="keepsake-pillar-item">
+              <div class="keepsake-pillar-num">02</div>
+              <div class="keepsake-pillar-title">Stone-Ground Purity</div>
+              <p class="keepsake-pillar-desc">Whole spices ground in small batches with zero anti-caking agents, starch fillers, or chemical preservatives.</p>
+            </div>
+            <div class="keepsake-pillar-item">
+              <div class="keepsake-pillar-num">03</div>
+              <div class="keepsake-pillar-title">Zero Artificial Additives</div>
+              <p class="keepsake-pillar-desc">Single-origin Nigerian produce with botanical integrity. What is on the label is purely what is inside the pouch.</p>
+            </div>
+            <div class="keepsake-pillar-item">
+              <div class="keepsake-pillar-num">04</div>
+              <div class="keepsake-pillar-title">Multi-Layer Sealed Fresh</div>
+              <p class="keepsake-pillar-desc">Heat-sealed inside moisture-barrier pouches with an airtight zip to preserve kitchen freshness for up to 12 months.</p>
+            </div>
+          </div>
+
+          <!-- Dynamic Culinary Notes for Ordered Items -->
+          <div class="keepsake-culinary-section">
+            <div class="keepsake-section-tag">Pantry Handling & Care</div>
+            <h2 class="keepsake-section-title">Cooking Secrets for Your Selected Items</h2>
+            <div class="keepsake-items-guidance" id="conf-keepsake-guidance">
+              <!-- Dynamically populated by js/order-confirmation.js -->
+            </div>
+          </div>
+
+          <!-- Traditional Heritage Recipe (Only Site Products) -->
+          <div class="keepsake-recipe-box">
+            <div class="recipe-badge">Featured Kitchen Recipe</div>
+            <h3 class="recipe-title">The Kabod Crest Heritage Egusi & Ugwu Pot</h3>
+            <p class="recipe-subtitle">A celebration of golden melon seeds, aromatic uziza, savory stockfish, and vibrant fluted pumpkin leaves.</p>
+
+            <div class="recipe-details-grid">
+              <div class="recipe-column">
+                <h4 class="recipe-col-title">Pantry Ingredients (From This Store):</h4>
+                <ul class="recipe-list">
+                  <li>2 cups Kabod Crest Melon Seed (Egusi)</li>
+                  <li>1 pack Kabod Crest Dehydrated Ugwu (warm-water soaked for 5 minutes)</li>
+                  <li>1 tablespoon Kabod Crest Fermented Iru (Locust Beans)</li>
+                  <li>1 tablespoon Kabod Crest Ashanti Pepper (Uziza)</li>
+                  <li>2 pieces Kabod Crest Stockfish Cod & Ponmo</li>
+                  <li>Serve alongside Kabod Crest Cassava Flakes (Garri)</li>
+                </ul>
+              </div>
+              <div class="recipe-column">
+                <h4 class="recipe-col-title">Preparation Steps:</h4>
+                <ol class="recipe-list numbered">
+                  <li>Slow-simmer stockfish and ponmo in water with fermented Iru for 15 minutes to build a rich savory broth foundation.</li>
+                  <li>Blend melon seeds (egusi) with warm water into a thick paste; drop in gentle lumps into the simmering broth.</li>
+                  <li>Allow the egusi lumps to set and gently puff up without excessive stirring so they form tender curd pillows.</li>
+                  <li>Stir in stone-ground Ashanti pepper (uziza) and fold in the rehydrated Ugwu leaves during the final 3 minutes of cooking.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- Culinary Concierge Callout -->
+          <div class="keepsake-concierge-callout">
+            <div class="concierge-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12.031 2C6.496 2 2 6.486 2 12.012c0 1.766.46 3.49 1.332 5.006L2 22l5.127-1.343c1.464.8 3.11 1.222 4.904 1.222 5.536 0 10.031-4.486 10.031-10.012C22.062 6.486 17.568 2 12.031 2zm5.828 14.154c-.244.688-1.218 1.272-1.742 1.348-.48.068-1.106.1-3.238-.784-2.726-1.128-4.478-3.904-4.614-4.086-.134-.182-1.104-1.468-1.104-2.8 0-1.332.698-1.986.944-2.254.246-.268.536-.334.714-.334.18 0 .358.002.514.01.168.008.39-.064.61.464.226.544.77 1.88.836 2.016.068.136.112.296.022.474-.088.178-.134.288-.266.442-.134.156-.28.348-.4.468-.134.134-.274.28-.118.548.156.268.694 1.144 1.488 1.85 1.022.91 1.882 1.192 2.15 1.326.268.134.424.112.58-.068.158-.178.67-.78 1.002-1.048.334-.268.668-.224.89-.134.224.088 1.424.672 1.67.794.244.122.408.178.468.28.06.102.06.592-.184 1.28z"/>
+              </svg>
+            </div>
+            <div class="concierge-text-box">
+              <h3 class="concierge-heading">Personal Culinary Support</h3>
+              <p class="concierge-desc">Have a question while cooking with these ingredients? Our kitchen team is on standby on WhatsApp at <strong>+234 905 380 7722</strong> to help you get the finest flavor out of your pot.</p>
+            </div>
+          </div>
+
+          <!-- Keepsake Action Buttons -->
+          <div class="receipt-action-buttons no-print">
+            <button type="button" class="btn-primary-action" id="btn-print-keepsake" style="flex: 1;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Download / Print Keepsake Card</span>
+            </button>
+            <button type="button" class="btn-primary-action btn-switch-receipt" id="btn-switch-receipt-bottom" style="flex: 1;">
+              <span>&larr; Switch Back to Order Receipt</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
     </div>
   </main>
 

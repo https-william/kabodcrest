@@ -88,25 +88,32 @@ const KabodValidator = {
 
     const normCountry = (country || 'Nigeria').trim().toLowerCase();
     if (normCountry === 'nigeria') {
-      if (clean.startsWith('+234')) {
-        const digits = clean.slice(4);
+      let checkNum = clean;
+      if (checkNum.startsWith('+2340')) {
+        checkNum = '+234' + checkNum.slice(5);
+      } else if (checkNum.startsWith('2340')) {
+        checkNum = '234' + checkNum.slice(4);
+      }
+
+      if (checkNum.startsWith('+234')) {
+        const digits = checkNum.slice(4);
         if (digits.length === 10 && /^[789]\d{9}$/.test(digits)) {
-          return { valid: true, sanitized: clean };
+          return { valid: true, sanitized: checkNum };
         }
         return { valid: false, message: 'Nigerian international number must be +234 followed by 10 digits' };
-      } else if (clean.startsWith('234') && clean.length === 13) {
-        const digits = clean.slice(3);
+      } else if (checkNum.startsWith('234') && checkNum.length === 13) {
+        const digits = checkNum.slice(3);
         if (/^[789]\d{9}$/.test(digits)) {
-          return { valid: true, sanitized: '+' + clean };
+          return { valid: true, sanitized: '+' + checkNum };
         }
         return { valid: false, message: 'Nigerian number must be 11 digits starting with 0' };
-      } else if (/^0[7-9]\d{9}$/.test(clean)) {
-        return { valid: true, sanitized: clean };
+      } else if (/^0[7-9]\d{9}$/.test(checkNum)) {
+        return { valid: true, sanitized: checkNum };
       } else {
-        if (clean.length < 11) {
+        if (checkNum.length < 11) {
           return { valid: false, message: 'Nigerian phone number must be 11 digits' };
         }
-        if (clean.length > 11) {
+        if (checkNum.length > 11) {
           return { valid: false, message: 'Nigerian phone number exceeds 11 digits' };
         }
         return { valid: false, message: 'Invalid Nigerian mobile prefix (expected 070, 080, 081, 090, etc.)' };
@@ -160,22 +167,40 @@ function validateField(inputEl) {
   } else if (id === 'cust-phone') {
     res = KabodValidator.validatePhone(val, country);
   } else if (id === 'delivery-address') {
-    res = KabodValidator.validateRequired(val, 'Delivery address', 5);
+    res = KabodValidator.validateRequired(val, 'Street address', 5);
   } else if (id === 'delivery-city') {
     res = KabodValidator.validateRequired(val, 'City', 2);
   } else if (id === 'delivery-state') {
-    res = KabodValidator.validateRequired(val, 'State', 2);
+    res = (val && val.trim().length >= 2)
+      ? { valid: true, sanitized: val.trim() }
+      : { valid: false, message: 'Please select a delivery state or province' };
+  } else if (id === 'delivery-postal') {
+    const isNigeria = !country || country.toLowerCase() === 'nigeria';
+    if (!isNigeria) {
+      res = KabodValidator.validateRequired(val, 'Postal or ZIP code', 2);
+    }
   }
+
+  const doc = (typeof document !== 'undefined') ? document : null;
+  const errorEl = doc ? doc.getElementById(`${id}-error`) : null;
 
   if (inputEl.classList) {
     if (res.valid) {
       inputEl.classList.remove('is-invalid');
       inputEl.setAttribute('aria-invalid', 'false');
+      if (errorEl) {
+        errorEl.textContent = '';
+        if (errorEl.classList) errorEl.classList.remove('visible');
+      }
     } else {
       if (!inputEl.classList.contains('is-invalid')) {
         inputEl.classList.add('is-invalid');
       }
       inputEl.setAttribute('aria-invalid', 'true');
+      if (errorEl) {
+        errorEl.textContent = res.message || 'Please check this field';
+        if (errorEl.classList) errorEl.classList.add('visible');
+      }
     }
   }
   return res.valid;
@@ -250,14 +275,134 @@ class PaystackPaymentProvider {
     `;
   }
 
+  showSimulationModal(orderData, onSuccess, onError) {
+    if (typeof document === 'undefined' || !document.body) {
+      onSuccess({
+        status: 'success',
+        method: 'paystack',
+        reference: `PSTK_${orderData.orderRef}_${Date.now()}`,
+        channel: 'card'
+      });
+      return;
+    }
+
+    const existingModal = document.getElementById('paystack-sim-modal-container');
+    if (existingModal) existingModal.remove();
+
+    const formatFn = (typeof formatNaira === 'function') ? formatNaira : (n => `₦${(n || 0).toLocaleString('en-NG')}`);
+    const grandTotalText = orderData.formattedGrandTotal || formatFn(orderData.grandTotal);
+
+    const modalContainer = document.createElement('div');
+    modalContainer.id = 'paystack-sim-modal-container';
+    modalContainer.className = 'paystack-sim-backdrop';
+    modalContainer.innerHTML = `
+      <div class="paystack-sim-dialog" role="dialog" aria-modal="true" aria-labelledby="paystack-sim-title">
+        <div class="paystack-sim-header">
+          <div class="paystack-sim-brand">
+            <span class="paystack-sim-logo-badge">Paystack</span>
+            <span class="paystack-sim-mode-tag">Test Sandbox</span>
+          </div>
+          <button type="button" class="paystack-sim-close" id="paystack-sim-close-btn" aria-label="Close dialog">&times;</button>
+        </div>
+
+        <div class="paystack-sim-body">
+          <div class="paystack-sim-amount-banner">
+            <span class="paystack-sim-label">Total Allocation Payable</span>
+            <span class="paystack-sim-amount" id="paystack-sim-title">${grandTotalText}</span>
+          </div>
+
+          <div class="paystack-sim-details-list">
+            <div class="paystack-sim-row">
+              <span>Merchant:</span>
+              <strong>Kabod Crest Limited</strong>
+            </div>
+            <div class="paystack-sim-row">
+              <span>Customer:</span>
+              <span>${orderData.customer ? orderData.customer.name : 'Customer'}</span>
+            </div>
+            <div class="paystack-sim-row">
+              <span>Email:</span>
+              <span>${orderData.customer ? orderData.customer.email : ''}</span>
+            </div>
+            <div class="paystack-sim-row">
+              <span>Order Reference:</span>
+              <code>${orderData.orderRef}</code>
+            </div>
+          </div>
+
+          <div class="paystack-sim-notice">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#20783c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div>
+              <strong>Pre-Order Simulation Mode:</strong>
+              Merchant verification is in progress. No real funds are deducted. Click below to simulate an approved transaction and generate your official order confirmation.
+            </div>
+          </div>
+        </div>
+
+        <div class="paystack-sim-actions">
+          <button type="button" class="btn-primary-action" id="paystack-sim-confirm-btn" style="padding: 13px;">
+            Simulate Approved Payment &rarr;
+          </button>
+          <button type="button" class="btn-secondary-action" id="paystack-sim-cancel-btn">
+            Return to Checkout
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modalContainer);
+
+    const confirmBtn = document.getElementById('paystack-sim-confirm-btn');
+    const cancelBtn = document.getElementById('paystack-sim-cancel-btn');
+    const closeBtn = document.getElementById('paystack-sim-close-btn');
+
+    if (confirmBtn) {
+      setTimeout(() => {
+        try { confirmBtn.focus(); } catch (e) {}
+      }, 50);
+
+      confirmBtn.addEventListener('click', () => {
+        confirmBtn.disabled = true;
+        confirmBtn.textContent = 'Verifying with Paystack...';
+        setTimeout(() => {
+          modalContainer.remove();
+          onSuccess({
+            status: 'success',
+            method: 'paystack',
+            reference: `PSTK_${orderData.orderRef}_${Date.now()}`,
+            channel: 'card'
+          });
+        }, 400);
+      });
+    }
+
+    const handleClose = () => {
+      modalContainer.remove();
+      if (onError) onError('Payment cancelled by customer');
+    };
+
+    if (cancelBtn) cancelBtn.addEventListener('click', handleClose);
+    if (closeBtn) closeBtn.addEventListener('click', handleClose);
+  }
+
   processPayment(orderData, onSuccess, onError) {
     const amountInKobo = Math.round((orderData.grandTotal || 0) * 100);
 
-    // If PaystackPop is present in browser window:
-    if (typeof window !== 'undefined' && typeof window.PaystackPop !== 'undefined' && window.PaystackPop.setup) {
+    const configuredKey = (typeof window !== 'undefined' && (window.KABOD_PAYSTACK_KEY || window.PAYSTACK_PUBLIC_KEY))
+      ? (window.KABOD_PAYSTACK_KEY || window.PAYSTACK_PUBLIC_KEY)
+      : null;
+
+    const isPlaceholderKey = !configuredKey || configuredKey === 'pk_live_kabod_crest_live_key' || configuredKey.includes('kabod_crest_live');
+
+    // Only attempt live Paystack inline popup if a real, non-placeholder public key is supplied
+    if (!isPlaceholderKey && typeof window !== 'undefined' && typeof window.PaystackPop !== 'undefined' && window.PaystackPop.setup) {
       try {
         const handler = window.PaystackPop.setup({
-          key: 'pk_live_kabod_crest_live_key',
+          key: configuredKey,
           email: orderData.customer.email,
           amount: amountInKobo,
           ref: orderData.orderRef,
@@ -279,6 +424,13 @@ class PaystackPaymentProvider {
       } catch (err) {
         console.warn('Paystack popup exception, falling back:', err);
       }
+    }
+
+    // In a real browser environment without an active merchant key, render the simulation dialog
+    const isRealBrowser = typeof window !== 'undefined' && typeof window.navigator !== 'undefined' && typeof document !== 'undefined' && document.body;
+    if (isRealBrowser) {
+      this.showSimulationModal(orderData, onSuccess, onError);
+      return;
     }
 
     // Default or headless test fallback
@@ -352,15 +504,37 @@ function attachSubmitHandler(form) {
     const addressEl = doc ? doc.getElementById('delivery-address') : null;
 
     let isFormValid = true;
+    let firstInvalidEl = null;
     [nameEl, emailEl, phoneEl, cityEl, addressEl].forEach(el => {
       if (el) {
         const valid = validateField(el);
-        if (!valid) isFormValid = false;
+        if (!valid) {
+          isFormValid = false;
+          if (!firstInvalidEl) firstInvalidEl = el;
+        }
       }
     });
 
     if (!isFormValid) {
       if (e.preventDefault) e.preventDefault();
+
+      if (doc) {
+        const banner = doc.getElementById('checkout-validation-banner');
+        if (banner) {
+          banner.style.display = 'flex';
+          const bannerText = doc.getElementById('checkout-validation-text');
+          if (bannerText) {
+            bannerText.textContent = 'Please review the highlighted delivery information above to proceed.';
+          }
+        }
+        if (firstInvalidEl && typeof firstInvalidEl.scrollIntoView === 'function') {
+          firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => {
+            try { firstInvalidEl.focus({ preventScroll: true }); } catch (err) { firstInvalidEl.focus(); }
+          }, 250);
+        }
+      }
+
       return false;
     }
   });
@@ -493,46 +667,49 @@ if (typeof document !== 'undefined') {
     function renderShippingTiers() {
       if (!shippingContainer || typeof KABOD_SHIPPING_CONFIG === 'undefined') return;
 
-      shippingContainer.innerHTML = KABOD_SHIPPING_CONFIG.tiers.map(tier => `
-        <label class="shipping-tier-option ${tier.id === selectedShippingTier ? 'selected' : ''}" data-tier-id="${tier.id}">
+      const activeTier = (typeof KABOD_SHIPPING_CONFIG.getTierById === 'function')
+        ? KABOD_SHIPPING_CONFIG.getTierById(selectedShippingTier)
+        : (KABOD_SHIPPING_CONFIG.tiers.find(t => t.id === selectedShippingTier) || KABOD_SHIPPING_CONFIG.tiers[0]);
+
+      let estimateHtml = '';
+      if (typeof window !== 'undefined' && window.KabodCurrency && typeof window.KabodCurrency.formatEstimate === 'function') {
+        const est = window.KabodCurrency.formatEstimate(activeTier.rateAmount || 1000);
+        if (est) {
+          estimateHtml = ` <span class="shipping-currency-estimate" style="font-weight: 500; font-size: 0.8125rem; color: var(--color-text-muted);">${est}</span>`;
+        }
+      }
+
+      shippingContainer.innerHTML = `
+        <div class="shipping-tier-option selected shipping-confirmation-card" data-tier-id="${activeTier.id}">
           <input
             type="radio"
             name="shipping_tier"
-            value="${tier.id}"
+            value="${activeTier.id}"
             class="shipping-tier-radio"
-            ${tier.id === selectedShippingTier ? 'checked' : ''}
+            checked
+            style="display: none;"
           />
           <div class="shipping-tier-info">
             <div class="shipping-tier-header">
-              <span class="shipping-tier-name">${tier.name}</span>
-              <span class="shipping-tier-rate">${tier.rateText}</span>
+              <div class="shipping-tier-title-wrap">
+                <span class="shipping-confirmation-badge">Flat Rate Dispatch</span>
+                <span class="shipping-tier-name">${activeTier.name}</span>
+              </div>
+              <div class="shipping-tier-rate-wrap">
+                <span class="shipping-tier-rate">${activeTier.rateText}</span>${estimateHtml}
+              </div>
             </div>
-            <p class="shipping-tier-desc">${tier.description}</p>
+            <p class="shipping-tier-desc">${activeTier.description}. Vacuum-sealed to preserve farm-fresh aroma.</p>
           </div>
-        </label>
-      `).join('');
-
-      shippingContainer.querySelectorAll('.shipping-tier-option').forEach(el => {
-        el.addEventListener('click', () => {
-          const id = el.getAttribute('data-tier-id');
-          setShippingTier(id);
-        });
-      });
+        </div>
+      `;
 
       updateShippingSummary();
     }
 
     function setShippingTier(tierId) {
       selectedShippingTier = tierId;
-      if (shippingContainer) {
-        shippingContainer.querySelectorAll('.shipping-tier-option').forEach(el => {
-          const isTarget = el.getAttribute('data-tier-id') === tierId;
-          el.classList.toggle('selected', isTarget);
-          const radio = el.querySelector('input[type="radio"]');
-          if (radio) radio.checked = isTarget;
-        });
-      }
-      updateShippingSummary();
+      renderShippingTiers();
     }
 
     function updateShippingSummary() {
@@ -551,6 +728,14 @@ if (typeof document !== 'undefined') {
             const grandTotal = subtotal + tier.rateAmount;
             const formatFn = (typeof formatNaira === 'function') ? formatNaira : (n => `₦${n.toLocaleString('en-NG')}`);
             summaryGrandTotalEl.textContent = formatFn(grandTotal);
+
+            const totalPayableEl = document.getElementById('checkout-total-payable');
+            if (totalPayableEl) totalPayableEl.textContent = formatFn(grandTotal);
+
+            const estimateEl = document.getElementById('checkout-estimate-payable');
+            if (estimateEl && typeof window !== 'undefined' && window.KabodCurrency && typeof window.KabodCurrency.formatEstimate === 'function') {
+              estimateEl.textContent = window.KabodCurrency.formatEstimate(grandTotal);
+            }
           } else {
             summaryGrandTotalEl.textContent = `${totals.formattedSubtotal} + [Freight TBC]`;
           }
@@ -587,17 +772,37 @@ if (typeof document !== 'undefined') {
     if (countrySelect) countrySelect.addEventListener('change', checkSuggestedShipping);
     if (stateSelect) stateSelect.addEventListener('change', checkSuggestedShipping);
 
+    function checkClearBanner() {
+      const banner = document.getElementById('checkout-validation-banner');
+      if (banner && banner.style.display !== 'none') {
+        const stillInvalid = document.querySelector('.form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid');
+        if (!stillInvalid) {
+          banner.style.display = 'none';
+        }
+      }
+    }
+
     // Attach real-time validation listeners to form inputs
-    const inputsToValidate = ['cust-name', 'cust-email', 'cust-phone', 'delivery-city', 'delivery-address'];
+    const inputsToValidate = ['cust-name', 'cust-email', 'cust-phone', 'delivery-state', 'delivery-city', 'delivery-postal', 'delivery-address'];
     inputsToValidate.forEach(id => {
       const el = document.getElementById(id);
       if (el) {
-        el.addEventListener('blur', () => validateField(el));
+        el.addEventListener('blur', () => {
+          validateField(el);
+          checkClearBanner();
+        });
         el.addEventListener('input', () => {
           if (el.classList.contains('is-invalid')) {
             validateField(el);
+            checkClearBanner();
           }
         });
+        if (el.tagName === 'SELECT') {
+          el.addEventListener('change', () => {
+            validateField(el);
+            checkClearBanner();
+          });
+        }
       }
     });
 
@@ -616,21 +821,50 @@ if (typeof document !== 'undefined') {
         const country = countrySelect ? countrySelect.value : 'Nigeria';
         const state = stateSelect ? stateSelect.value : '';
 
-        // Validate all required fields
+        // Validate all required fields without modifying or clearing user input
         let isFormValid = true;
-        [nameEl, emailEl, phoneEl, cityEl, addressEl].forEach(el => {
+        let firstInvalidEl = null;
+        [nameEl, emailEl, phoneEl, stateSelect, cityEl, postalEl, addressEl].forEach(el => {
           if (el) {
             const valid = validateField(el);
-            if (!valid) isFormValid = false;
+            if (!valid) {
+              isFormValid = false;
+              if (!firstInvalidEl) firstInvalidEl = el;
+            }
           }
         });
 
+        const banner = document.getElementById('checkout-validation-banner');
+
         if (!isFormValid) {
           e.preventDefault();
+          if (banner) {
+            banner.style.display = 'flex';
+            const bannerText = document.getElementById('checkout-validation-text');
+            if (bannerText) {
+              bannerText.textContent = 'Please review the highlighted delivery information above to proceed.';
+            }
+          }
+          if (firstInvalidEl && typeof firstInvalidEl.scrollIntoView === 'function') {
+            firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+              try { firstInvalidEl.focus({ preventScroll: true }); } catch (err) { firstInvalidEl.focus(); }
+            }, 250);
+          }
           return false;
         }
 
+        if (banner) {
+          banner.style.display = 'none';
+        }
+
         e.preventDefault();
+
+        const submitBtn = document.getElementById('checkout-submit-btn');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Securing Allocation &hellip;';
+        }
 
         const customer = {
           name: KabodValidator.sanitizeText(nameEl ? nameEl.value : ''),
@@ -724,6 +958,11 @@ if (typeof document !== 'undefined') {
           // 4. Redirect to order confirmation
           if (typeof window !== 'undefined' && window.location) {
             window.location.href = `order-confirmation.html?ref=${orderRef}`;
+          }
+        }, (err) => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Proceed to Payment &rarr;';
           }
         });
       });

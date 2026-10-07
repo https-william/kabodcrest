@@ -142,18 +142,14 @@ if (typeof document !== 'undefined') {
     // Update headings
     if (activeCategoryTitleEl) {
       if (query) {
-        activeCategoryTitleEl.textContent = `Search results for "${query}"`;
+        activeCategoryTitleEl.textContent = `Results for "${query}"`;
       } else {
-        activeCategoryTitleEl.textContent = (category === 'all') ? 'All Nigerian Agro-Produce' : category;
+        activeCategoryTitleEl.textContent = (category === 'all') ? 'All Pantry' : category;
       }
     }
 
     if (catalogCountEl) {
-      if (filtered.length === products.length) {
-        catalogCountEl.textContent = `Showing all ${filtered.length} pantry items`;
-      } else {
-        catalogCountEl.textContent = `Showing ${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
-      }
+      catalogCountEl.textContent = `${filtered.length} item${filtered.length === 1 ? '' : 's'}`;
     }
 
     // Handle Empty State
@@ -178,10 +174,10 @@ if (typeof document !== 'undefined') {
       const originDisplay = product.origin ? product.origin.split(',')[0].trim() : 'Nigeria';
       const isLocked = !product.isLive || product.isComingSoon;
 
-      // Pricing markup
+      // Pricing markup - concise, single source of price or quiet weight
       let priceMarkup = '';
       if (isLocked) {
-        priceMarkup = `<span class="product-price-coming-soon">Coming Soon</span>`;
+        priceMarkup = '';
       } else if (product.price && typeof product.price === 'number') {
         const estimate = (window.KabodCurrency) ? window.KabodCurrency.formatEstimate(product.price) : '';
         priceMarkup = `
@@ -204,11 +200,6 @@ if (typeof document !== 'undefined') {
           onerror="this.src='assets/images/logo/icon-gold.png'; this.style.padding='40px';"
         />
       `;
-
-      // Top badge
-      const badgeMarkup = isLocked
-        ? `<span class="product-status-tag locked">Coming Soon</span>`
-        : `<span class="product-status-tag live">Ready to Order</span>`;
 
       // Action button
       let actionBtnMarkup = '';
@@ -243,10 +234,6 @@ if (typeof document !== 'undefined') {
 
       return `
       <article class="product-card ${isLocked ? 'product-card-locked' : ''}" data-product-id="${product.id}" data-category="${product.category}">
-        <div class="product-card-badge-row">
-          ${badgeMarkup}
-        </div>
-
         <a href="product-detail.html?id=${encodeURIComponent(product.id)}" class="product-thumb-wrap" aria-label="View details for ${product.name}">
           ${thumbContent}
         </a>

@@ -61,35 +61,32 @@ describe('Tier 1: Feature F6 - Active Courier Freight Configuration', () => {
     env = setupShippingTestEnv();
   });
 
-  it('F6-T1-1: Lagos shipping tier rate is exactly ₦2,500 with rateAmount 2500', () => {
+  it('F6-T1-1: Lagos shipping tier rate is exactly ₦1,000 with rateAmount 1000', () => {
     const config = env.window.KABOD_SHIPPING_CONFIG;
     assert.ok(config, 'KABOD_SHIPPING_CONFIG must be defined');
     const lagos = config.tiers.find(t => t.id === 'lagos');
     assert.ok(lagos, 'Lagos shipping tier must exist');
-    assert.strictEqual(lagos.rateAmount, 2500, 'Lagos rateAmount must be 2500');
-    assert.strictEqual(lagos.rateText, '₦2,500', 'Lagos rateText must be ₦2,500');
+    assert.strictEqual(lagos.rateAmount, 1000, 'Lagos rateAmount must be 1000');
+    assert.strictEqual(lagos.rateText, '₦1,000', 'Lagos rateText must be ₦1,000');
     assert.strictEqual(lagos.isTBC, false, 'Lagos isTBC must be false');
   });
 
-  it('F6-T1-2: Rest of Nigeria shipping tier rate is exactly ₦4,500 with rateAmount 4500', () => {
+  it('F6-T1-2: Rest of Nigeria shipping tier rate is exactly ₦1,000 with rateAmount 1000', () => {
     const config = env.window.KABOD_SHIPPING_CONFIG;
     const ron = config.tiers.find(t => t.id === 'rest-of-nigeria');
     assert.ok(ron, 'Rest of Nigeria shipping tier must exist');
-    assert.strictEqual(ron.rateAmount, 4500, 'Rest of Nigeria rateAmount must be 4500');
-    assert.strictEqual(ron.rateText, '₦4,500', 'Rest of Nigeria rateText must be ₦4,500');
+    assert.strictEqual(ron.rateAmount, 1000, 'Rest of Nigeria rateAmount must be 1000');
+    assert.strictEqual(ron.rateText, '₦1,000', 'Rest of Nigeria rateText must be ₦1,000');
     assert.strictEqual(ron.isTBC, false, 'Rest of Nigeria isTBC must be false');
   });
 
-  it('F6-T1-3: International Air Cargo tier is configured with TBC quote status', () => {
+  it('F6-T1-3: International Air Cargo tier is configured with flat ₦1,000 rate', () => {
     const config = env.window.KABOD_SHIPPING_CONFIG;
     const intl = config.tiers.find(t => t.id === 'international-air');
     assert.ok(intl, 'International shipping tier must exist');
-    assert.strictEqual(intl.rateAmount, null, 'International rateAmount must be null');
-    assert.ok(
-      intl.rateText.includes('TBC'),
-      `International rateText (${intl.rateText}) must indicate TBC quote`
-    );
-    assert.strictEqual(intl.isTBC, true, 'International isTBC must be true');
+    assert.strictEqual(intl.rateAmount, 1000, 'International rateAmount must be 1000');
+    assert.strictEqual(intl.rateText, '₦1,000', 'International rateText must be ₦1,000');
+    assert.strictEqual(intl.isTBC, false, 'International isTBC must be false');
   });
 
   it('F6-T1-4: getTierById returns correct tier configuration object', () => {
@@ -97,11 +94,11 @@ describe('Tier 1: Feature F6 - Active Courier Freight Configuration', () => {
     assert.ok(typeof config.getTierById === 'function', 'getTierById method must exist on config');
     const lagos = config.getTierById('lagos');
     assert.strictEqual(lagos.id, 'lagos');
-    assert.strictEqual(lagos.rateAmount, 2500);
+    assert.strictEqual(lagos.rateAmount, 1000);
 
     const ron = config.getTierById('rest-of-nigeria');
     assert.strictEqual(ron.id, 'rest-of-nigeria');
-    assert.strictEqual(ron.rateAmount, 4500);
+    assert.strictEqual(ron.rateAmount, 1000);
   });
 
   it('F6-T1-5: Default tier is lagos', () => {
@@ -121,7 +118,7 @@ describe('Tier 1: Feature F7 - Destination State/Country Auto-Detection', () => 
     assert.ok(typeof config.getTierForDestination === 'function', 'getTierForDestination method must exist');
     const tier = config.getTierForDestination('Nigeria', 'Lagos');
     assert.strictEqual(tier.id, 'lagos');
-    assert.strictEqual(tier.rateAmount, 2500);
+    assert.strictEqual(tier.rateAmount, 1000);
   });
 
   it('F7-T1-2: Destination Nigeria + Abuja (FCT) auto-selects Rest of Nigeria tier', () => {
@@ -129,7 +126,7 @@ describe('Tier 1: Feature F7 - Destination State/Country Auto-Detection', () => 
     assert.ok(typeof config.getTierForDestination === 'function', 'getTierForDestination method must exist');
     const tier = config.getTierForDestination('Nigeria', 'Abuja (FCT)');
     assert.strictEqual(tier.id, 'rest-of-nigeria');
-    assert.strictEqual(tier.rateAmount, 4500);
+    assert.strictEqual(tier.rateAmount, 1000);
   });
 
   it('F7-T1-3: Destination Nigeria + Rivers/Oyo/Kano/Enugu auto-selects Rest of Nigeria tier', () => {
@@ -138,7 +135,7 @@ describe('Tier 1: Feature F7 - Destination State/Country Auto-Detection', () => 
     for (const state of ['Rivers', 'Oyo', 'Kano', 'Enugu', 'Delta', 'Kaduna']) {
       const tier = config.getTierForDestination('Nigeria', state);
       assert.strictEqual(tier.id, 'rest-of-nigeria', `State ${state} should map to rest-of-nigeria`);
-      assert.strictEqual(tier.rateAmount, 4500);
+      assert.strictEqual(tier.rateAmount, 1000);
     }
   });
 
@@ -147,7 +144,7 @@ describe('Tier 1: Feature F7 - Destination State/Country Auto-Detection', () => 
     assert.ok(typeof config.getTierForDestination === 'function', 'getTierForDestination method must exist');
     const tier = config.getTierForDestination('United Kingdom', 'Greater London');
     assert.strictEqual(tier.id, 'international-air');
-    assert.strictEqual(tier.isTBC, true);
+    assert.strictEqual(tier.rateAmount, 1000);
   });
 
   it('F7-T1-5: Destination United States / Canada / Australia auto-selects International tier', () => {
@@ -156,6 +153,7 @@ describe('Tier 1: Feature F7 - Destination State/Country Auto-Detection', () => 
     for (const country of ['United States', 'Canada', 'Australia', 'South Africa', 'Ghana']) {
       const tier = config.getTierForDestination(country, 'Any State');
       assert.strictEqual(tier.id, 'international-air', `Country ${country} should map to international-air`);
+      assert.strictEqual(tier.rateAmount, 1000);
     }
   });
 });
@@ -166,44 +164,44 @@ describe('Tier 1: Feature F8 - Checkout Subtotal & Grand Total Display', () => {
     env = setupShippingTestEnv();
   });
 
-  it('F8-T1-1: Grand total in Lagos adds exactly ₦2,500 to subtotal', () => {
+  it('F8-T1-1: Grand total in Lagos adds exactly ₦1,000 to subtotal', () => {
     const config = env.window.KABOD_SHIPPING_CONFIG;
     const subtotal = 5700;
     const tier = config.tiers.find(t => t.id === 'lagos');
     const grandTotal = subtotal + (tier.rateAmount || 0);
-    assert.strictEqual(grandTotal, 8200, '5700 + 2500 must equal 8200');
+    assert.strictEqual(grandTotal, 6700, '5700 + 1000 must equal 6700');
   });
 
-  it('F8-T1-2: Grand total in Rest of Nigeria adds exactly ₦4,500 to subtotal', () => {
+  it('F8-T1-2: Grand total in Rest of Nigeria adds exactly ₦1,000 to subtotal', () => {
     const config = env.window.KABOD_SHIPPING_CONFIG;
     const subtotal = 5700;
     const tier = config.tiers.find(t => t.id === 'rest-of-nigeria');
     const grandTotal = subtotal + (tier.rateAmount || 0);
-    assert.strictEqual(grandTotal, 10200, '5700 + 4500 must equal 10200');
+    assert.strictEqual(grandTotal, 6700, '5700 + 1000 must equal 6700');
   });
 
-  it('F8-T1-3: Grand total for International freight formats subtotal with TBC freight indicator', () => {
+  it('F8-T1-3: Grand total for International freight formats subtotal with flat rate', () => {
     const subtotal = 5700;
-    const tier = { id: 'international-air', rateAmount: null, isTBC: true, rateText: '[TBC prior to dispatch]' };
-    // Formatting helper should display subtotal and preserve TBC note without NaN
-    const display = tier.rateAmount === null ? `₦5,700 + [Freight TBC]` : `₦${subtotal + tier.rateAmount}`;
+    const tier = { id: 'international-air', rateAmount: 1000, isTBC: false, rateText: '₦1,000' };
+    const grandTotal = subtotal + tier.rateAmount;
+    const display = `₦${grandTotal.toLocaleString('en-NG')}`;
     assert.ok(!display.includes('NaN'), 'Grand total display must never contain NaN');
-    assert.ok(display.includes('5,700') && display.includes('TBC'));
+    assert.strictEqual(display, '₦6,700');
   });
 
-  it('F8-T1-4: Dynamic tier switch recalculates grand total from ₦8,200 to ₦10,200', () => {
+  it('F8-T1-4: Dynamic tier switch maintains grand total with ₦1,000 flat rate', () => {
     const subtotal = 5700;
-    let rate = 2500;
-    assert.strictEqual(subtotal + rate, 8200);
+    let rate = 1000;
+    assert.strictEqual(subtotal + rate, 6700);
 
-    rate = 4500; // Customer changed state from Lagos to Abuja
-    assert.strictEqual(subtotal + rate, 10200);
+    rate = 1000; // Customer changed state from Lagos to Abuja
+    assert.strictEqual(subtotal + rate, 6700);
   });
 
   it('F8-T1-5: Zero subtotal + freight calculates grand total as freight only', () => {
     const subtotal = 0;
-    const rate = 2500;
-    assert.strictEqual(subtotal + rate, 2500);
+    const rate = 1000;
+    assert.strictEqual(subtotal + rate, 1000);
   });
 });
 
@@ -307,18 +305,18 @@ describe('Tier 2: Boundary & Corner Cases (F6-F8)', () => {
   });
 
   // F8 Boundary Cases
-  it('F8-T2-1: Grand total calculation prevents string concatenation (e.g. "5700" + 2500 != "57002500")', () => {
+  it('F8-T2-1: Grand total calculation prevents string concatenation (e.g. "5700" + 1000 != "57001000")', () => {
     const subtotal = Number('5700');
-    const rate = 2500;
+    const rate = 1000;
     const grandTotal = subtotal + rate;
-    assert.strictEqual(grandTotal, 8200);
-    assert.notStrictEqual(grandTotal, '57002500');
+    assert.strictEqual(grandTotal, 6700);
+    assert.notStrictEqual(grandTotal, '57001000');
   });
 
-  it('F8-T2-2: Grand total calculation handles large subtotal (e.g. ₦5,000,000 + ₦4,500 = ₦5,004,500)', () => {
+  it('F8-T2-2: Grand total calculation handles large subtotal (e.g. ₦5,000,000 + ₦1,000 = ₦5,001,000)', () => {
     const subtotal = 5000000;
-    const rate = 4500;
-    assert.strictEqual(subtotal + rate, 5004500);
+    const rate = 1000;
+    assert.strictEqual(subtotal + rate, 5001000);
   });
 
   it('F8-T2-3: Grand total handles null shipping fee cleanly', () => {
@@ -337,12 +335,12 @@ describe('Tier 2: Boundary & Corner Cases (F6-F8)', () => {
 
   it('F8-T2-5: Grand total handles multiple rapid tier changes without drifting', () => {
     const subtotal = 10000;
-    let currentRate = 2500;
-    assert.strictEqual(subtotal + currentRate, 12500);
-    currentRate = 4500;
-    assert.strictEqual(subtotal + currentRate, 14500);
-    currentRate = 2500;
-    assert.strictEqual(subtotal + currentRate, 12500);
+    let currentRate = 1000;
+    assert.strictEqual(subtotal + currentRate, 11000);
+    currentRate = 1000;
+    assert.strictEqual(subtotal + currentRate, 11000);
+    currentRate = 1000;
+    assert.strictEqual(subtotal + currentRate, 11000);
   });
 });
 
@@ -352,9 +350,9 @@ describe('Tier 2: Boundary & Corner Cases (F6-F8)', () => {
 
 describe('Tier 3: Pairwise Combinations (Shipping Tiers x Subtotals)', () => {
   const tiers = [
-    { id: 'lagos', rate: 2500 },
-    { id: 'rest-of-nigeria', rate: 4500 },
-    { id: 'international-air', rate: null }
+    { id: 'lagos', rate: 1000 },
+    { id: 'rest-of-nigeria', rate: 1000 },
+    { id: 'international-air', rate: 1000 }
   ];
 
   const testSubtotals = [2400, 2850, 5700, 15000, 100000];

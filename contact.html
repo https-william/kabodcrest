@@ -25,7 +25,7 @@
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
@@ -298,11 +298,12 @@
               </p>
             </div>
 
-            <form id="general-contact-form">
+            <form id="general-contact-form" novalidate>
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="c-name" class="form-label">Full Name <span class="required-mark">*</span></label>
-                  <input type="text" id="c-name" class="form-input" placeholder="Your name and title" required />
+                  <input type="text" id="c-name" class="form-input" placeholder="Your name and title" required aria-describedby="c-name-error" />
+                  <span class="field-error-msg" id="c-name-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="c-org" class="form-label">Company / Entity <span style="font-weight: 400; color: var(--color-text-subtle);">(Optional)</span></label>
@@ -313,17 +314,19 @@
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="c-email" class="form-label">Email Address <span class="required-mark">*</span></label>
-                  <input type="email" id="c-email" class="form-input" placeholder="name@company.com" required />
+                  <input type="email" id="c-email" class="form-input" placeholder="name@company.com" required aria-describedby="c-email-error" />
+                  <span class="field-error-msg" id="c-email-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="c-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
-                  <input type="tel" id="c-phone" class="form-input" placeholder="+234 ..." required />
+                  <input type="tel" id="c-phone" class="form-input" placeholder="+234 ..." required aria-describedby="c-phone-error" />
+                  <span class="field-error-msg" id="c-phone-error" role="alert" aria-live="polite"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="c-dept" class="form-label">Department / Inquiry Nature <span class="required-mark">*</span></label>
-                <select id="c-dept" class="form-select" required>
+                <select id="c-dept" class="form-select" required aria-describedby="c-dept-error">
                   <option value="" disabled selected>Select nature of inquiry...</option>
                   <option value="Food Pre-Order & Retail">Food Pre-Orders & Product Availability</option>
                   <option value="Wholesale & Bulk Supply">Wholesale, Export & Supermarket Supply</option>
@@ -332,11 +335,13 @@
                   <option value="Hospitality & Food Services">Hospitality & Food Service Concepts</option>
                   <option value="Media & Institutional">Media, Press & Regulatory Correspondence</option>
                 </select>
+                <span class="field-error-msg" id="c-dept-error" role="alert" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
                 <label for="c-message" class="form-label">Message / Strategic Brief <span class="required-mark">*</span></label>
-                <textarea id="c-message" class="form-textarea" rows="4" placeholder="Detail your inquiry, requested quantities, or strategic collaboration proposal..." required></textarea>
+                <textarea id="c-message" class="form-textarea" rows="4" placeholder="Detail your inquiry, requested quantities, or strategic collaboration proposal..." required aria-describedby="c-message-error"></textarea>
+                <span class="field-error-msg" id="c-message-error" role="alert" aria-live="polite"></span>
               </div>
 
               <button type="submit" class="btn-send-message" style="margin-top: var(--space-md);">
@@ -533,9 +538,80 @@
       const waLink = document.getElementById('contact-whatsapp-link');
       const resetBtn = document.getElementById('btn-contact-reset');
 
+      function validateContactField(id) {
+        const el = document.getElementById(id);
+        const errEl = document.getElementById(id + '-error');
+        if (!el) return true;
+        const val = el.value.trim();
+        let message = '';
+
+        if (id === 'c-name') {
+          if (!val) message = 'Please enter your full name';
+          else if (val.length < 2) message = 'Full name must be at least 2 characters';
+        } else if (id === 'c-email') {
+          if (!val) message = 'Email address is required';
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) message = 'Please enter a valid email address (e.g. name@company.com)';
+        } else if (id === 'c-phone') {
+          if (!val) message = 'Phone or WhatsApp number is required';
+          else if (val.replace(/[\s\(\)-]/g, '').length < 7) message = 'Please enter a valid phone number';
+        } else if (id === 'c-dept') {
+          if (!val) message = 'Please select the nature of your inquiry';
+        } else if (id === 'c-message') {
+          if (!val) message = 'Please enter your message or strategic brief';
+          else if (val.length < 10) message = 'Message must be at least 10 characters';
+        }
+
+        if (message) {
+          el.classList.add('is-invalid');
+          if (errEl) {
+            errEl.textContent = message;
+            errEl.classList.add('visible');
+          }
+          return false;
+        } else {
+          el.classList.remove('is-invalid');
+          if (errEl) {
+            errEl.textContent = '';
+            errEl.classList.remove('visible');
+          }
+          return true;
+        }
+      }
+
+      ['c-name', 'c-email', 'c-phone', 'c-dept', 'c-message'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => validateContactField(id));
+          el.addEventListener('blur', () => validateContactField(id));
+          if (el.tagName === 'SELECT') {
+            el.addEventListener('change', () => validateContactField(id));
+          }
+        }
+      });
+
       if (form) {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
+
+          let isValid = true;
+          let firstInvalidEl = null;
+          ['c-name', 'c-email', 'c-phone', 'c-dept', 'c-message'].forEach(id => {
+            const valid = validateContactField(id);
+            if (!valid) {
+              isValid = false;
+              if (!firstInvalidEl) firstInvalidEl = document.getElementById(id);
+            }
+          });
+
+          // If validation fails, preserve all user input and focus the first invalid field
+          if (!isValid) {
+            if (firstInvalidEl) {
+              firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              setTimeout(() => firstInvalidEl.focus(), 250);
+            }
+            return;
+          }
+
           const name = document.getElementById('c-name').value.trim();
           const org = document.getElementById('c-org').value.trim();
           const email = document.getElementById('c-email').value.trim();
@@ -569,6 +645,15 @@
         resetBtn.addEventListener('click', function() {
           if (form) {
             form.reset();
+            ['c-name', 'c-email', 'c-phone', 'c-dept', 'c-message'].forEach(id => {
+              const el = document.getElementById(id);
+              const errEl = document.getElementById(id + '-error');
+              if (el) el.classList.remove('is-invalid');
+              if (errEl) {
+                errEl.textContent = '';
+                errEl.classList.remove('visible');
+              }
+            });
             form.style.display = 'block';
           }
           if (successCard) successCard.style.display = 'none';

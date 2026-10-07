@@ -253,24 +253,25 @@
 }
 
 .section-title {
-  font-family: var(--font-structural);
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 2.25rem;
+  font-weight: 600;
   color: var(--color-text-dark);
-  line-height: 1.25;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   margin-bottom: var(--space-md);
 }
 
 @media (min-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: 2.85rem;
   }
 }
 
 .section-intro-text {
   font-size: 1.0625rem;
-  color: var(--color-text-dark);
-  line-height: 1.65;
+  color: var(--color-text-muted);
+  line-height: 1.68;
   max-width: 72ch;
   margin-bottom: var(--space-2xl);
 }
@@ -289,13 +290,13 @@
 
 .vmv-card {
   background-color: var(--color-ivory-surface);
-  border: 1px solid rgba(50, 26, 74, 0.12);
-  border-top: 4px solid var(--color-plum);
+  border: var(--border-ink-crisp);
+  border-top: 3px solid var(--color-plum);
   border-radius: var(--radius-card);
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -308,16 +309,16 @@
   font-family: var(--font-structural);
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-plum);
   margin-bottom: var(--space-xs);
 }
 
 .vmv-card-title {
-  font-family: var(--font-structural);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 1.35rem;
+  font-weight: 600;
   color: var(--color-text-dark);
   margin-bottom: var(--space-xs);
 }
@@ -386,18 +387,18 @@
 
 .biz-card {
   background-color: var(--color-ivory-surface);
-  border: 1px solid rgba(50, 26, 74, 0.12);
+  border: var(--border-ink-crisp);
   border-radius: var(--radius-card);
   padding: var(--space-xl);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .biz-card.biz-active {
-  border-left: 5px solid var(--color-plum);
-  background-color: #FAF7F2;
+  border-left: 4px solid var(--color-plum);
+  background-color: #FAF6EE;
 }
 
 .biz-card:hover {
@@ -417,7 +418,7 @@
   font-family: var(--font-structural);
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: var(--radius-badge);
@@ -431,13 +432,13 @@
 .biz-status-pill.future {
   background-color: rgba(50, 26, 74, 0.06);
   color: var(--color-text-subtle);
-  border: 1px solid rgba(50, 26, 74, 0.15);
+  border: var(--border-ink-crisp);
 }
 
 .biz-title {
-  font-family: var(--font-structural);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 1.4rem;
+  font-weight: 600;
   color: var(--color-text-dark);
   margin-bottom: var(--space-xs);
 }
@@ -494,12 +495,12 @@
 
 .spotlight-cat-card {
   background-color: var(--color-ivory-surface);
-  border: 1px solid rgba(50, 26, 74, 0.12);
+  border: var(--border-ink-crisp);
   border-radius: var(--radius-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -535,9 +536,9 @@
 }
 
 .spotlight-cat-title {
-  font-family: var(--font-structural);
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--color-text-dark);
   margin-bottom: var(--space-2xs);
 }
@@ -545,7 +546,7 @@
 .spotlight-cat-desc {
   font-size: 0.8125rem;
   color: var(--color-text-muted);
-  line-height: 1.55;
+  line-height: 1.6;
   margin-bottom: var(--space-md);
   flex-grow: 1;
 }
@@ -554,7 +555,7 @@
 .packaging-spotlight-banner {
   margin-top: var(--space-2xl);
   background: var(--color-plum-deep);
-  border: 1px solid rgba(200, 164, 93, 0.3);
+  border: var(--border-gold-rule);
   border-radius: var(--radius-card);
   overflow: hidden;
   display: grid;
@@ -596,11 +597,11 @@
 }
 
 .packaging-title {
-  font-family: var(--font-structural);
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 1.625rem;
+  font-weight: 600;
   color: var(--color-text-light);
-  line-height: 1.25;
+  line-height: 1.2;
   margin-bottom: var(--space-sm);
 }
 
@@ -641,12 +642,12 @@
 
 .standard-card {
   background-color: var(--color-ivory-surface);
-  border: 1px solid rgba(50, 26, 74, 0.12);
+  border: var(--border-ink-crisp);
   border-radius: var(--radius-card);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-sm);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
@@ -664,9 +665,9 @@
 }
 
 .standard-title {
-  font-family: var(--font-structural);
-  font-size: 1.0625rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  font-weight: 600;
   color: var(--color-text-dark);
   margin-bottom: var(--space-2xs);
 }

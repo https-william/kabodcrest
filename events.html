@@ -25,7 +25,7 @@
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
@@ -311,11 +311,12 @@
 
           <!-- Right: Event Brief Form -->
           <div class="event-form-card" id="event-form-card">
-            <form id="event-inquiry-form">
+            <form id="event-inquiry-form" novalidate>
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="event-name" class="form-label">Full Name <span class="required-mark">*</span></label>
-                  <input type="text" id="event-name" class="form-input" placeholder="Your name" required />
+                  <input type="text" id="event-name" class="form-input" placeholder="Your name" required aria-describedby="event-name-error" />
+                  <span class="field-error-msg" id="event-name-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="event-org" class="form-label">Company / Family <span style="font-weight: 400; color: var(--color-text-subtle);">(Optional)</span></label>
@@ -326,18 +327,20 @@
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="event-email" class="form-label">Email Address <span class="required-mark">*</span></label>
-                  <input type="email" id="event-email" class="form-input" placeholder="name@domain.com" required />
+                  <input type="email" id="event-email" class="form-input" placeholder="name@domain.com" required aria-describedby="event-email-error" />
+                  <span class="field-error-msg" id="event-email-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="event-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
-                  <input type="tel" id="event-phone" class="form-input" placeholder="+234 ..." required />
+                  <input type="tel" id="event-phone" class="form-input" placeholder="+234 ..." required aria-describedby="event-phone-error" />
+                  <span class="field-error-msg" id="event-phone-error" role="alert" aria-live="polite"></span>
                 </div>
               </div>
 
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="event-type" class="form-label">Event Nature <span class="required-mark">*</span></label>
-                  <select id="event-type" class="form-select" required>
+                  <select id="event-type" class="form-select" required aria-describedby="event-type-error">
                     <option value="" disabled selected>Select event category...</option>
                     <option value="Executive Summit">Executive Summit / Conference</option>
                     <option value="Private Celebration">Private / Cultural Celebration</option>
@@ -345,6 +348,7 @@
                     <option value="Stakeholder Dinner">Curated Stakeholder Dinner</option>
                     <option value="Other">Other Bespoke Experience</option>
                   </select>
+                  <span class="field-error-msg" id="event-type-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="form-group">
                   <label for="event-guests" class="form-label">Estimated Guest Count</label>
@@ -364,7 +368,8 @@
 
               <div class="form-group">
                 <label for="event-notes" class="form-label">Brief Vision & Concept Notes <span class="required-mark">*</span></label>
-                <textarea id="event-notes" class="form-textarea" rows="4" placeholder="Briefly describe your desired atmosphere, venue preferences, or strategic objectives..." required></textarea>
+                <textarea id="event-notes" class="form-textarea" rows="4" placeholder="Briefly describe your desired atmosphere, venue preferences, or strategic objectives..." required aria-describedby="event-notes-error"></textarea>
+                <span class="field-error-msg" id="event-notes-error" role="alert" aria-live="polite"></span>
               </div>
 
               <button type="submit" class="btn-event-submit" style="margin-top: var(--space-md);">
@@ -521,9 +526,99 @@
       const waLink = document.getElementById('event-whatsapp-link');
       const resetBtn = document.getElementById('btn-event-reset');
 
+      const requiredEventFieldIds = ['event-name', 'event-email', 'event-phone', 'event-type', 'event-notes'];
+
+      function validateEventField(id) {
+        const el = document.getElementById(id);
+        const errEl = document.getElementById(id + '-error');
+        if (!el) return true;
+
+        const val = el.value.trim();
+        let message = '';
+
+        if (id === 'event-name') {
+          if (!val) {
+            message = 'Please enter your full name';
+          } else if (val.length < 2) {
+            message = 'Full name must be at least 2 characters';
+          }
+        } else if (id === 'event-email') {
+          if (!val) {
+            message = 'Email address is required';
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+            message = 'Please enter a valid email address (e.g. name@domain.com)';
+          }
+        } else if (id === 'event-phone') {
+          if (!val) {
+            message = 'Phone or WhatsApp number is required';
+          } else if (val.replace(/[\s()+-]/g, '').length < 7) {
+            message = 'Please enter a valid phone number (at least 7 digits)';
+          }
+        } else if (id === 'event-type') {
+          if (!val) {
+            message = 'Please select an event category';
+          }
+        } else if (id === 'event-notes') {
+          if (!val) {
+            message = 'Please share your vision, timeline, or concept notes';
+          } else if (val.length < 10) {
+            message = 'Please provide at least 10 characters for your event brief';
+          }
+        }
+
+        if (message) {
+          el.classList.add('is-invalid');
+          if (errEl) {
+            errEl.textContent = message;
+            errEl.classList.add('visible');
+          }
+          return false;
+        } else {
+          el.classList.remove('is-invalid');
+          if (errEl) {
+            errEl.textContent = '';
+            errEl.classList.remove('visible');
+          }
+          return true;
+        }
+      }
+
+      // Real-time error clearing as user types or selects
+      requiredEventFieldIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', () => validateEventField(id));
+          el.addEventListener('blur', () => validateEventField(id));
+          if (el.tagName === 'SELECT') {
+            el.addEventListener('change', () => validateEventField(id));
+          }
+        }
+      });
+
       if (form) {
         form.addEventListener('submit', function(e) {
           e.preventDefault();
+
+          let isValid = true;
+          let firstInvalidEl = null;
+
+          requiredEventFieldIds.forEach(id => {
+            const valid = validateEventField(id);
+            if (!valid) {
+              isValid = false;
+              if (!firstInvalidEl) firstInvalidEl = document.getElementById(id);
+            }
+          });
+
+          // If validation fails, preserve all entered data (never clear) and focus first invalid field
+          if (!isValid) {
+            if (firstInvalidEl) {
+              firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              setTimeout(() => firstInvalidEl.focus(), 200);
+            }
+            return;
+          }
+
           const name = document.getElementById('event-name').value.trim();
           const org = document.getElementById('event-org').value.trim();
           const email = document.getElementById('event-email').value.trim();
@@ -561,6 +656,15 @@
         resetBtn.addEventListener('click', function() {
           if (form) {
             form.reset();
+            requiredEventFieldIds.forEach(id => {
+              const el = document.getElementById(id);
+              const errEl = document.getElementById(id + '-error');
+              if (el) el.classList.remove('is-invalid');
+              if (errEl) {
+                errEl.textContent = '';
+                errEl.classList.remove('visible');
+              }
+            });
             form.style.display = 'block';
           }
           if (successCard) successCard.style.display = 'none';

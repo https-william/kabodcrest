@@ -25,7 +25,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
@@ -227,10 +227,11 @@
 
           <!-- Right: Inquiry Form Card -->
           <div class="inquiry-form-card" id="inquiry-form-card">
-            <form id="business-inquiry-form">
+            <form id="business-inquiry-form" novalidate>
               <div class="form-group">
                 <label for="inq-name" class="form-label">Full Name <span class="required-mark">*</span></label>
-                <input type="text" id="inq-name" class="form-input" placeholder="Your name and title" required />
+                <input type="text" id="inq-name" class="form-input" placeholder="Your name and title" required aria-describedby="inq-name-error" />
+                <span class="field-error-msg" id="inq-name-error" role="alert" aria-live="polite"></span>
               </div>
 
               <div class="form-group">
@@ -241,18 +242,21 @@
               <div class="form-grid-2">
                 <div class="form-group">
                   <label for="inq-email" class="form-label">Corporate Email <span class="required-mark">*</span></label>
-                  <input type="email" id="inq-email" class="form-input" placeholder="name@company.com" required />
+                  <input type="email" id="inq-email" class="form-input" placeholder="name@company.com" required aria-describedby="inq-email-error" />
+                  <span class="field-error-msg" id="inq-email-error" role="alert" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                   <label for="inq-phone" class="form-label">Phone / WhatsApp <span class="required-mark">*</span></label>
-                  <input type="tel" id="inq-phone" class="form-input" placeholder="+234 ..." required />
+                  <input type="tel" id="inq-phone" class="form-input" placeholder="+234 ..." required aria-describedby="inq-phone-error" />
+                  <span class="field-error-msg" id="inq-phone-error" role="alert" aria-live="polite"></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="inq-message" class="form-label">What are you looking for? <span class="required-mark">*</span></label>
-                <textarea id="inq-message" class="form-textarea" rows="4" placeholder="Briefly describe your strategic interest, collaboration proposal, or business inquiry..." required></textarea>
+                <textarea id="inq-message" class="form-textarea" rows="4" placeholder="Briefly describe your strategic interest, collaboration proposal, or business inquiry..." required aria-describedby="inq-message-error"></textarea>
+                <span class="field-error-msg" id="inq-message-error" role="alert" aria-live="polite"></span>
               </div>
 
               <button type="submit" class="btn-partner-cta" style="margin-top: var(--space-md);">

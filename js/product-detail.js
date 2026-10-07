@@ -92,6 +92,79 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
+  // 4b. Populate Culinary Pairings & Sensory Strip
+  const culinaryStripEl = document.getElementById('product-culinary-strip');
+  if (culinaryStripEl) {
+    let culinaryHtml = '';
+    if (Array.isArray(product.culinaryPairings) && product.culinaryPairings.length > 0) {
+      culinaryHtml += `
+        <div class="culinary-pairings-box">
+          <div class="culinary-pairings-label">Traditional Dish Pairings</div>
+          <div class="culinary-chips-row">
+            ${product.culinaryPairings.map(cp => `<span class="culinary-chip">${cp}</span>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+    if (product.sensoryProfile) {
+      const { aroma, flavor, finish } = product.sensoryProfile;
+      culinaryHtml += `
+        <div class="sensory-profile-box">
+          <div class="sensory-profile-label">Sensory Character</div>
+          <div class="sensory-profile-grid">
+            ${aroma ? `<div class="sensory-item"><span class="sensory-item-key">Aroma:</span> <span class="sensory-item-val">${aroma}</span></div>` : ''}
+            ${flavor ? `<div class="sensory-item"><span class="sensory-item-key">Flavor:</span> <span class="sensory-item-val">${flavor}</span></div>` : ''}
+            ${finish ? `<div class="sensory-item"><span class="sensory-item-key">Finish:</span> <span class="sensory-item-val">${finish}</span></div>` : ''}
+          </div>
+        </div>
+      `;
+    }
+    culinaryStripEl.innerHTML = culinaryHtml;
+  }
+
+  // 4c. Populate Rehydration or Preparation Guide
+  const rehydrationSectionEl = document.getElementById('product-rehydration-section');
+  if (rehydrationSectionEl) {
+    let rehydrationHtml = '';
+    if (Array.isArray(product.rehydrationSteps) && product.rehydrationSteps.length > 0) {
+      rehydrationHtml += `
+        <div class="rehydration-card">
+          <div class="rehydration-card-header">
+            <span class="rehydration-badge">Culinary Preparation</span>
+            <h3 class="rehydration-card-title">How to Prepare & Rehydrate</h3>
+          </div>
+          <div class="rehydration-steps-grid">
+            ${product.rehydrationSteps.map(s => `
+              <div class="rehydration-step-item">
+                <div class="rehydration-step-num">${s.step}</div>
+                <div class="rehydration-step-body">
+                  <div class="rehydration-step-title">${s.title}</div>
+                  <p class="rehydration-step-desc">${s.desc}</p>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+    if (product.culinaryTip) {
+      rehydrationHtml += `
+        <div class="culinary-tip-box">
+          <div class="culinary-tip-header">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span class="culinary-tip-label">Kitchen Preparation Note</span>
+          </div>
+          <p class="culinary-tip-text">${product.culinaryTip}</p>
+        </div>
+      `;
+    }
+    rehydrationSectionEl.innerHTML = rehydrationHtml;
+  }
+
   // Populate Schema.org Product JSON-LD
   const jsonLdEl = document.getElementById('product-jsonld');
   if (jsonLdEl) {
@@ -225,6 +298,147 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(`Added ${currentQty}× ${product.name} to your bag`);
       }
     });
+  }
+
+  // 6b. Mobile Sticky Purchase Dock (Fitts's Law / Thumb-Zone Ergonomics)
+  const stickyDockEl = document.getElementById('mobile-sticky-dock');
+  const stickyDockImgEl = document.getElementById('sticky-dock-img');
+  const stickyDockTitleEl = document.getElementById('sticky-dock-title');
+  const stickyDockPriceEl = document.getElementById('sticky-dock-price');
+  const stickyDockBtnEl = document.getElementById('sticky-dock-btn');
+  const actionsBoxEl = document.getElementById('product-actions-box');
+
+  if (stickyDockEl) {
+    if (stickyDockImgEl && product.image) {
+      stickyDockImgEl.src = product.image;
+      stickyDockImgEl.alt = product.name;
+    }
+    if (stickyDockTitleEl) {
+      stickyDockTitleEl.textContent = product.name;
+    }
+    if (stickyDockPriceEl) {
+      if (isLocked) {
+        stickyDockPriceEl.textContent = 'Coming Soon';
+      } else if (product.price) {
+        const est = window.KabodCurrency ? window.KabodCurrency.formatEstimate(product.price) : '';
+        stickyDockPriceEl.innerHTML = `<span>${product.priceDisplay}</span> <span class="sticky-estimate" style="font-size: 0.75rem; color: var(--color-gold); font-weight: 500;">${est}</span>`;
+      } else {
+        stickyDockPriceEl.textContent = product.priceDisplay || 'Price: [TBC]';
+      }
+    }
+
+    if (stickyDockBtnEl) {
+      if (isLocked) {
+        stickyDockBtnEl.disabled = true;
+        stickyDockBtnEl.classList.add('btn-disabled');
+        stickyDockBtnEl.innerHTML = '<span>Coming Soon</span>';
+      } else {
+        stickyDockBtnEl.addEventListener('click', () => {
+          if (window.KabodCart) {
+            window.KabodCart.addItem(product, currentQty);
+            showToast(`Added ${currentQty}× ${product.name} to your bag`);
+          }
+        });
+      }
+    }
+
+    if (actionsBoxEl) {
+      const handleScrollDock = () => {
+        const rect = actionsBoxEl.getBoundingClientRect();
+        if (rect.bottom < 60) {
+          stickyDockEl.classList.add('is-active');
+          stickyDockEl.setAttribute('aria-hidden', 'false');
+        } else {
+          stickyDockEl.classList.remove('is-active');
+          stickyDockEl.setAttribute('aria-hidden', 'true');
+        }
+      };
+
+      window.addEventListener('scroll', handleScrollDock, { passive: true });
+      handleScrollDock();
+    }
+  }
+
+  // 6c. Frequently Cooked Together Pantry Bundle (Option 3)
+  const bundleContainer = document.getElementById('cooked-together-container');
+  const bundle = (typeof window.getBundleForProduct === 'function') 
+    ? window.getBundleForProduct(product.id) 
+    : (typeof getBundleForProduct === 'function' ? getBundleForProduct(product.id) : null);
+
+  if (bundleContainer && bundle && Array.isArray(bundle.products) && bundle.products.length > 0) {
+    const liveItems = bundle.products.filter(p => p.isLive && p.price);
+    const hasLiveItems = liveItems.length > 0;
+    const bundleTotalPrice = liveItems.reduce((acc, p) => acc + (p.price || 0), 0);
+    const formattedBundleTotal = `₦${bundleTotalPrice.toLocaleString('en-NG')}`;
+
+    bundleContainer.innerHTML = `
+      <header class="bundle-section-header">
+        <span class="bundle-badge">Pantry Pairings</span>
+        <h2 class="bundle-section-title" id="cooked-together-heading">Frequently Cooked Together</h2>
+        <p class="bundle-section-subtitle">Authentic Nigerian agro-produce from our pantry that complete this traditional cooking pot.</p>
+      </header>
+
+      <div class="bundle-card">
+        <div class="bundle-products-strip">
+          ${bundle.products.map((bp, idx) => `
+            <div class="bundle-product-item ${bp.id === product.id ? 'current-item' : ''}">
+              <div class="bundle-item-thumb-box">
+                <img src="${bp.image}" alt="${bp.name}" class="bundle-item-img" />
+                ${bp.id === product.id ? '<span class="bundle-current-badge">This Item</span>' : ''}
+              </div>
+              <div class="bundle-item-info">
+                <a href="product-detail.html?id=${encodeURIComponent(bp.id)}" class="bundle-item-title">${bp.name}</a>
+                <div class="bundle-item-meta">${bp.category} • ${bp.weight}</div>
+                <div class="bundle-item-price">
+                  ${bp.isLive && bp.price ? bp.priceDisplay : '<span class="bundle-soon-tag">Coming Soon</span>'}
+                </div>
+              </div>
+            </div>
+            ${idx < bundle.products.length - 1 ? '<div class="bundle-plus-separator" aria-hidden="true">+</div>' : ''}
+          `).join('')}
+        </div>
+
+        <div class="bundle-dock">
+          <div class="bundle-dock-details">
+            <span class="bundle-dock-tag">Traditional Heritage Pairing</span>
+            <h3 class="bundle-dock-title">${bundle.title}</h3>
+            <p class="bundle-dock-desc">${bundle.description}</p>
+            <div class="bundle-dock-tip">
+              <strong>Kitchen Secret:</strong> ${bundle.heritageTip}
+            </div>
+          </div>
+
+          <div class="bundle-dock-action">
+            <div class="bundle-dock-price-box">
+              <span class="bundle-dock-label">Bundle Price:</span>
+              <div class="bundle-dock-amount">${hasLiveItems ? formattedBundleTotal : 'Allocation Reserved'}</div>
+              ${hasLiveItems ? `<span class="bundle-dock-count">${liveItems.length} pantry item${liveItems.length === 1 ? '' : 's'} ready for dispatch</span>` : '<span class="bundle-dock-count">Seasonal agro-allocation</span>'}
+            </div>
+
+            <button type="button" class="btn-bundle-buy ${!hasLiveItems ? 'btn-disabled' : ''}" id="btn-add-bundle-cart" ${!hasLiveItems ? 'disabled' : ''}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              <span>Add Bundle to Bag</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const addBundleBtn = document.getElementById('btn-add-bundle-cart');
+    if (addBundleBtn && hasLiveItems) {
+      addBundleBtn.addEventListener('click', () => {
+        if (window.KabodCart) {
+          liveItems.forEach(item => {
+            window.KabodCart.addItem(item, 1);
+          });
+          showToast(`Added ${bundle.title} (${liveItems.length} items) to your bag`);
+        }
+      });
+    }
   }
 
   // 7. Information Accordions (How to Use, How to Store, FAQs)

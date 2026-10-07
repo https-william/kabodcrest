@@ -18,14 +18,25 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--color-ivory);
-  color: var(--color-text-dark);
-  line-height: 1.6;
+  color: var(--color-text-muted);
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: clip;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035; /* Tactile unbleached paper grain overlay */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 999;
 }
 
 /* Accessibility Focus States */
@@ -34,13 +45,57 @@ body {
   outline-offset: 3px;
 }
 
-/* Typography Utility Classes */
+/* Literary Typography & Editorial Hierarchy */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-structural);
+  font-family: var(--font-editorial);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.18;
   color: var(--color-text-dark);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+}
+
+.editorial-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-plum);
+}
+
+.editorial-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background-color: var(--color-gold);
+}
+
+.editorial-rule {
+  border: none;
+  border-top: 1px solid var(--border-gold-rule);
+  border-bottom: 1px solid rgba(24, 21, 23, 0.08);
+  height: 3px;
+  margin: var(--space-2xl) 0;
+}
+
+.editorial-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid rgba(200, 164, 93, 0.45);
+  border-radius: var(--radius-badge);
+  background-color: var(--color-paper-flax);
+  font-family: var(--font-structural);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
 }
 
 p {
@@ -665,9 +720,9 @@ button {
   display: block;
   box-sizing: border-box;
   padding: 12px 16px;
-  background-color: var(--color-white);
-  border: 1px solid rgba(50, 26, 74, 0.18);
-  border-radius: var(--radius-subtle); /* 8px rounded corners */
+  background-color: var(--color-paper-pure);
+  border: var(--border-ink-crisp);
+  border-radius: var(--radius-subtle);
   font-family: var(--font-body);
   font-size: 0.9375rem;
   color: var(--color-text-dark);
@@ -688,8 +743,8 @@ button {
   outline: 2px solid var(--color-gold);
   outline-offset: 1px;
   border-color: var(--color-plum);
-  background-color: var(--color-white);
-  box-shadow: 0 0 0 4px rgba(200, 164, 93, 0.15);
+  background-color: var(--color-paper-pure);
+  box-shadow: 0 0 0 3px rgba(200, 164, 93, 0.2);
 }
 
 .form-hint {
@@ -726,7 +781,7 @@ button {
   display: block;
 }
 
-/* Universal Buttons */
+/* Universal Buttons - Letterpress & Tactile Accents */
 .btn-primary-action {
   display: inline-flex;
   align-items: center;
@@ -735,19 +790,20 @@ button {
   padding: 12px 24px;
   background-color: var(--color-plum);
   color: var(--color-text-light);
-  border: 1px solid var(--color-plum);
-  border-radius: var(--radius-btn); /* 10px rounded corners */
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-btn);
   font-family: var(--font-structural);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-primary-action:hover {
   background-color: var(--color-plum-hover);
-  border-color: var(--color-gold);
+  border-color: var(--color-gold-hover);
   transform: translateY(-1px);
   box-shadow: var(--shadow-card);
 }
@@ -760,18 +816,20 @@ button {
   padding: 12px 24px;
   background-color: transparent;
   color: var(--color-text-dark);
-  border: 1px solid rgba(50, 26, 74, 0.25);
-  border-radius: var(--radius-btn); /* 10px rounded corners */
+  border: 1px solid rgba(24, 21, 23, 0.22);
+  border-radius: var(--radius-btn);
   font-family: var(--font-structural);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   transition: all var(--transition-fast);
 }
 
 .btn-secondary-action:hover {
   background-color: rgba(50, 26, 74, 0.06);
   border-color: var(--color-plum);
+  color: var(--color-plum);
 }
 
 /* Success Card for Leads */

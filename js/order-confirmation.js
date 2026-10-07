@@ -249,10 +249,147 @@ document.addEventListener('DOMContentLoaded', () => {
     whatsappBtn.href = `https://wa.me/2349053807722?text=${msg}`;
   }
 
-  // 7. Download / Print Receipt Handler
+  // 7. Founder Welcome Note & Keepsake Population
+  const letterNameEl = document.getElementById('conf-letter-name');
+  if (letterNameEl) letterNameEl.textContent = order.customer.name || 'Valued Customer';
+
+  const keepsakeNameEl = document.getElementById('conf-keepsake-name');
+  if (keepsakeNameEl) keepsakeNameEl.textContent = order.customer.name || 'Valued Customer';
+
+  const keepsakeRefEl = document.getElementById('conf-keepsake-ref');
+  if (keepsakeRefEl) keepsakeRefEl.textContent = order.orderRef;
+
+  const trackOrderLinkEl = document.getElementById('conf-track-order-link');
+  if (trackOrderLinkEl) {
+    trackOrderLinkEl.href = `track-order.html?ref=${encodeURIComponent(order.orderRef)}`;
+  }
+
+  const trackingEmailEl = document.getElementById('conf-tracking-email');
+  if (trackingEmailEl && order.customer && order.customer.email) {
+    trackingEmailEl.textContent = order.customer.email;
+  }
+
+  // Populate Dynamic Culinary Secrets for Customer's Items
+  const keepsakeGuidanceEl = document.getElementById('conf-keepsake-guidance');
+  if (keepsakeGuidanceEl && Array.isArray(order.items)) {
+    const guidanceCards = order.items.map(item => {
+      const itemName = (item.name || '').toLowerCase();
+      let prepTitle = 'Pantry Storage & Use';
+      let prepTip = 'Keep sealed in its moisture-proof barrier pouch away from humidity. Reseal zip firmly after each use.';
+      let pairNote = 'Authentic Nigerian home cooking';
+
+      if (itemName.includes('ugwu') || itemName.includes('pumpkin')) {
+        prepTitle = 'Dehydrated Ugwu Leaves (Fluted Pumpkin)';
+        prepTip = 'Submerge in warm (not boiling) water for 5 to 7 minutes until tender leaves fully expand. Squeeze lightly or pour leaves along with the mineral-rich soaking water directly into your soup pot during the final 3 minutes.';
+        pairNote = 'Essential for Edikang Ikong, Egusi Soup, and Yam Pottage.';
+      } else if (itemName.includes('bitterleaf') || itemName.includes('onugbu')) {
+        prepTitle = 'Dehydrated Bitterleaf (Onugbu)';
+        prepTip = 'Already gently washed before warm-air drying. Soak in warm water for 6 to 8 minutes. Gives a clean, authentic bitter note without mud or grit.';
+        pairNote = 'Ideal for traditional Ofe Onugbu and bitterleaf pepper soup.';
+      } else if (itemName.includes('utazi')) {
+        prepTitle = 'Dehydrated Utazi Leaves';
+        prepTip = 'Brief 3-minute warm-water dip. Adds that distinctive peppery-bitter aroma that lifts meat and broth dishes.';
+        pairNote = 'Perfect garnish for Nkwobi, Isi Ewu, and Ofe Nsala.';
+      } else if (itemName.includes('ukazi') || itemName.includes('afang')) {
+        prepTitle = 'Dehydrated Ukazi / Afang Leaves';
+        prepTip = 'Firm-textured wild forest leaves. Soak for 8 to 10 minutes in hot water, or pound lightly in a mortar after soaking before folding into your pot.';
+        pairNote = 'Indispensable for authentic Afang soup and Ofe Okazi.';
+      } else if (itemName.includes('uziza')) {
+        prepTitle = 'Stone-Ground Uziza Seed';
+        prepTip = 'Rich in piperine and natural aromatic oils. Bloom lightly in warm broth or oil in the final 5 minutes of simmering to release full warmth.';
+        pairNote = 'Brings unforgettable peppery depth to seafood stews and pepper soup.';
+      } else if (itemName.includes('ginger')) {
+        prepTitle = 'Dehydrated Ginger Powder';
+        prepTip = 'Northern Kaduna high-pungency ginger. Single-origin and unadulterated. Half a teaspoon delivers the heat and aroma of 2 fresh thumbs.';
+        pairNote = 'Essential for marinades, pepper soup, and ginger tea.';
+      } else if (itemName.includes('jollof')) {
+        prepTitle = 'Kabod Heritage Jollof Rice Spice';
+        prepTip = 'Stone-ground blend of nutmeg, thyme, ginger, and aromatic peppers. Bloom in hot palm oil or vegetable oil with onions before adding tomato paste.';
+        pairNote = 'Guarantees that classic smoky, festive Nigerian party jollof aroma.';
+      } else if (itemName.includes('ogbono')) {
+        prepTitle = 'Ogbono Dika Nut Kernels';
+        prepTip = 'Pure whole kernels with maximum viscosity. When milling, blend off-heat with lukewarm oil or stock before cooking to prevent curdling and achieve maximum draw.';
+        pairNote = 'Creates smooth, glossy draw soup with rich earthy flavor.';
+      } else if (itemName.includes('egusi') || itemName.includes('melon')) {
+        prepTitle = 'Melon Seed (Egusi)';
+        prepTip = 'Hand-shelled white melon seeds. Form into small lumps with warm onion paste before dropping into boiling broth for that coveted fluffy curd texture.';
+        pairNote = 'The bedrock of Nigerian festive dining.';
+      } else if (itemName.includes('kulikuli')) {
+        prepTitle = 'Handmade Kulikuli Produce';
+        prepTip = 'Traditional groundnut crunch. Ready to enjoy straight from the pouch, or crumble over roasted plantains and garri.';
+        pairNote = 'Traditional savory protein snack.';
+      }
+
+      return `
+        <div class="keepsake-item-pill">
+          <div class="keepsake-item-badge">${item.name} (${item.weight || ''})</div>
+          <h3 class="keepsake-item-name">${prepTitle}</h3>
+          <p class="keepsake-item-text">${prepTip}</p>
+          <div class="keepsake-item-pair"><strong>Dish Pairing:</strong> ${pairNote}</div>
+        </div>
+      `;
+    }).join('');
+
+    keepsakeGuidanceEl.innerHTML = guidanceCards;
+  }
+
+  // 8. Tab View Navigation (Receipt vs Physical Keepsake Card)
+  const tabReceiptBtn = document.getElementById('tab-btn-receipt');
+  const tabKeepsakeBtn = document.getElementById('tab-btn-keepsake');
+  const receiptCard = document.getElementById('printable-receipt-card');
+  const keepsakeCard = document.getElementById('unboxing-keepsake-card');
+  const switchKeepsakeBtn = document.getElementById('btn-switch-keepsake');
+  const switchReceiptBottomBtn = document.getElementById('btn-switch-receipt-bottom');
+
+  function showReceiptView() {
+    if (receiptCard) receiptCard.style.display = 'block';
+    if (keepsakeCard) keepsakeCard.style.display = 'none';
+    if (tabReceiptBtn) {
+      tabReceiptBtn.classList.add('active');
+      tabReceiptBtn.setAttribute('aria-selected', 'true');
+    }
+    if (tabKeepsakeBtn) {
+      tabKeepsakeBtn.classList.remove('active');
+      tabKeepsakeBtn.setAttribute('aria-selected', 'false');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showKeepsakeView() {
+    if (receiptCard) receiptCard.style.display = 'none';
+    if (keepsakeCard) keepsakeCard.style.display = 'block';
+    if (tabReceiptBtn) {
+      tabReceiptBtn.classList.remove('active');
+      tabReceiptBtn.setAttribute('aria-selected', 'false');
+    }
+    if (tabKeepsakeBtn) {
+      tabKeepsakeBtn.classList.add('active');
+      tabKeepsakeBtn.setAttribute('aria-selected', 'true');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  if (tabReceiptBtn) tabReceiptBtn.addEventListener('click', showReceiptView);
+  if (tabKeepsakeBtn) tabKeepsakeBtn.addEventListener('click', showKeepsakeView);
+  if (switchKeepsakeBtn) switchKeepsakeBtn.addEventListener('click', showKeepsakeView);
+  if (switchReceiptBottomBtn) switchReceiptBottomBtn.addEventListener('click', showReceiptView);
+
+  // 9. Download / Print Handlers
   if (printBtn) {
     printBtn.addEventListener('click', () => {
+      document.body.classList.remove('print-mode-keepsake');
       window.print();
+    });
+  }
+
+  const printKeepsakeBtn = document.getElementById('btn-print-keepsake');
+  if (printKeepsakeBtn) {
+    printKeepsakeBtn.addEventListener('click', () => {
+      document.body.classList.add('print-mode-keepsake');
+      window.print();
+      setTimeout(() => {
+        document.body.classList.remove('print-mode-keepsake');
+      }, 1000);
     });
   }
 });

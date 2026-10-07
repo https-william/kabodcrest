@@ -146,13 +146,13 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
 
     // 3. Select destination: Lagos, Nigeria
     const shippingConfig = env.window.KABOD_SHIPPING_CONFIG;
-    let freight = 2500;
+    let freight = 1000;
     if (shippingConfig && typeof shippingConfig.getTierForDestination === 'function') {
       const tier = shippingConfig.getTierForDestination('Nigeria', 'Lagos');
       freight = tier.rateAmount;
     }
     const grandTotal = subtotal + freight;
-    assert.strictEqual(grandTotal, 8200, 'Grand total must be 5700 + 2500 = 8200');
+    assert.strictEqual(grandTotal, 6700, 'Grand total must be 5700 + 1000 = 6700');
 
     // 4. Fill customer details
     const customer = {
@@ -170,7 +170,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
 
     // 5. Paystack inline conversion to kobo
     const amountInKobo = Math.round(grandTotal * 100);
-    assert.strictEqual(amountInKobo, 820000);
+    assert.strictEqual(amountInKobo, 670000);
 
     // 6. Simulate checkout submission & order generation
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
@@ -181,15 +181,15 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
       createdAt: new Date().toISOString(),
       customer,
       delivery,
-      shippingTier: { id: 'lagos', name: 'Lagos Delivery', rateAmount: 2500, rateText: '₦2,500', isTBC: false },
+      shippingTier: { id: 'lagos', name: 'Lagos Delivery', rateAmount: 1000, rateText: '₦1,000', isTBC: false },
       items,
       totalCount: 2,
       subtotal,
-      shippingFee: 2500,
+      shippingFee: 1000,
       grandTotal,
       formattedSubtotal: '₦5,700',
-      formattedShipping: '₦2,500',
-      formattedGrandTotal: '₦8,200',
+      formattedShipping: '₦1,000',
+      formattedGrandTotal: '₦6,700',
       paymentMethod: 'paystack',
       paymentStatus: 'paid',
       paymentDetails: { reference: 'pstk_ref_live_001', channel: 'card' }
@@ -208,7 +208,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
     const retrievedHistory = JSON.parse(env.localStorage.getItem('kabod_order_history'));
     const matchedOrder = retrievedHistory.find(o => o.orderRef === orderRef);
     assert.ok(matchedOrder, 'Order must be found in history');
-    assert.strictEqual(matchedOrder.grandTotal, 8200);
+    assert.strictEqual(matchedOrder.grandTotal, 6700);
     assert.strictEqual(matchedOrder.paymentStatus, 'paid');
     assert.strictEqual(matchedOrder.customer.name, 'Babatunde Alabi');
   });
@@ -236,10 +236,10 @@ describe('Tier 4: Scenario 2 - Regional Pre-Order / B2B Allocation (Rest of Nige
     assert.strictEqual(cart.getTotalCount(), 5);
     const subtotal = 12000;
 
-    // 2. Destination: Abuja (FCT) -> Rest of Nigeria tier (₦4,500)
-    const freight = 4500;
+    // 2. Destination: Abuja (FCT) -> Rest of Nigeria tier (₦1,000)
+    const freight = 1000;
     const grandTotal = subtotal + freight;
-    assert.strictEqual(grandTotal, 16500, 'Grand total must be 12000 + 4500 = 16500');
+    assert.strictEqual(grandTotal, 13000, 'Grand total must be 12000 + 1000 = 13000');
 
     // 3. Customer selects Manual Corporate Bank Transfer
     const orderRef = 'KC-2026-7890';
@@ -257,15 +257,15 @@ describe('Tier 4: Scenario 2 - Regional Pre-Order / B2B Allocation (Rest of Nige
         city: 'Garki 2',
         address: 'Plot 12 Ahmadu Bello Way, Abuja'
       },
-      shippingTier: { id: 'rest-of-nigeria', name: 'Rest of Nigeria', rateAmount: 4500, rateText: '₦4,500', isTBC: false },
+      shippingTier: { id: 'rest-of-nigeria', name: 'Rest of Nigeria', rateAmount: 1000, rateText: '₦1,000', isTBC: false },
       items: cart.getItems(),
       totalCount: 5,
       subtotal,
-      shippingFee: 4500,
+      shippingFee: 1000,
       grandTotal,
       formattedSubtotal: '₦12,000',
-      formattedShipping: '₦4,500',
-      formattedGrandTotal: '₦16,500',
+      formattedShipping: '₦1,000',
+      formattedGrandTotal: '₦13,000',
       paymentMethod: 'manual_bank_transfer',
       paymentStatus: 'pending_invoice',
       paymentDetails: {
@@ -284,7 +284,7 @@ describe('Tier 4: Scenario 2 - Regional Pre-Order / B2B Allocation (Rest of Nige
     const pending = JSON.parse(env.localStorage.getItem('kabod_pending_order'));
     assert.strictEqual(pending.paymentStatus, 'pending_invoice');
     assert.strictEqual(pending.paymentMethod, 'manual_bank_transfer');
-    assert.strictEqual(pending.grandTotal, 16500);
+    assert.strictEqual(pending.grandTotal, 13000);
   });
 });
 

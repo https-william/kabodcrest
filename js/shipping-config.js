@@ -5,30 +5,32 @@
  */
 
 const KABOD_SHIPPING_CONFIG = {
+  flatRate: 1000,
+  formattedFlatRate: "₦1,000",
   tiers: [
     {
       id: "lagos",
-      name: "Lagos Delivery (Mainland & Island)",
+      name: "Lagos Delivery",
       description: "Direct door-to-door dispatch within Lagos State",
-      rateText: "₦2,500",
-      rateAmount: 2500,
+      rateText: "₦1,000",
+      rateAmount: 1000,
       isTBC: false
     },
     {
       id: "rest-of-nigeria",
       name: "Rest of Nigeria (35 States & FCT)",
       description: "Nationwide regional courier network dispatch",
-      rateText: "₦4,500",
-      rateAmount: 4500,
+      rateText: "₦1,000",
+      rateAmount: 1000,
       isTBC: false
     },
     {
       id: "international-air",
-      name: "International Freight (UK, US, Canada, AU, Worldwide)",
-      description: "Priority international air cargo with tracking & export documentation",
-      rateText: "[TBC prior to dispatch]",
-      rateAmount: null,
-      isTBC: true
+      name: "International Priority Air Freight",
+      description: "Priority international air dispatch with export care and tracking",
+      rateText: "₦1,000",
+      rateAmount: 1000,
+      isTBC: false
     }
   ],
   defaultTier: "lagos",

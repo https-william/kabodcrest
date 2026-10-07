@@ -1,6 +1,6 @@
-# DESIGN.md — Kabod Crest Limited Design System
+# DESIGN.md - Kabod Crest Limited Design System
 
-> **Archetype**: Quiet Authority — Refined Modern Afro-Botanical Purveyor  
+> **Archetype**: Quiet Authority: Refined Modern Afro-Botanical Purveyor  
 > **Brand Line**: "Building with Purpose. Creating with Distinction."  
 > **Tagline**: "Excellence with Integrity."  
 > **Source of Truth**: `.agent/skills/kabod-crest-brand/SKILL.md` & `.agent/skills/awesome-design-md/SKILL.md`  
@@ -14,7 +14,7 @@ Kabod Crest Limited is a newly registered Nigerian diversified enterprise. Food 
 
 * **Aesthetic Direction**: **Quiet Authority**. Refined, credible, purposeful, premium, modern African, and trustworthy.
 * **Tone of Voice**: Friendly-professional, clear, human, confident, warm, and restrained.
-* **Anti-Slop Posture**: Reject generic AI-generated aesthetics — no floating drop-shadow SaaS cards, no unmotivated gradient pills, no centered icon discs in colored circles, no fake scarcity tickers, and no em-dashes.
+* **Anti-Slop Posture**: Reject generic AI-generated aesthetics: no floating drop-shadow SaaS cards, no unmotivated gradient pills, no centered icon discs in colored circles, no fake scarcity tickers, and no em-dashes.
 
 ---
 
@@ -32,11 +32,11 @@ Obsidian [40%]            Royal Plum [25%]         Champagne Gold [20%]   Warm I
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Obsidian** | `--color-obsidian` | `#0B0B0B` | `rgb(11, 11, 11)` | **40%** | Structural grounding, high-contrast hero sections, dark footer, dominant deep typography. |
 | **Royal Plum** | `--color-plum` | `#321A4A` | `rgb(50, 26, 74)` | **25%** | Primary brand identity hue. Used for primary CTA buttons, hero highlights, editorial accents, brand framing. |
-| **Deep Plum** | `--color-plum-deep` | `#1E0F2D` | `rgb(30, 15, 45)` | — | Dark mode / high-contrast containers and rich header accents. |
+| **Deep Plum** | `--color-plum-deep` | `#1E0F2D` | `rgb(30, 15, 45)` | N/A | Dark mode / high-contrast containers and rich header accents. |
 | **Champagne Gold** | `--color-gold` | `#C8A45D` | `rgb(200, 164, 93)` | **20% max** | **Scarce Accent ONLY**. Structural dividers, active navigation indicators, badge borders, icon highlights. |
-| **Gold Hover** | `--color-gold-hover`| `#D8B775` | `rgb(216, 183, 117)`| — | Interactive hover and active focus states. |
+| **Gold Hover** | `--color-gold-hover`| `#D8B775` | `rgb(216, 183, 117)`| N/A | Interactive hover and active focus states. |
 | **Warm Ivory** | `--color-ivory` | `#F4F0E8` | `rgb(244, 240, 232)`| **10%** | Primary light surface background. Creates a warm, natural paper-like canvas. |
-| **Ivory Surface**| `--color-ivory-surface`| `#FCFAF6`| `rgb(252, 250, 246)`| — | Card surfaces, container elevation, input background. |
+| **Ivory Surface**| `--color-ivory-surface`| `#FCFAF6`| `rgb(252, 250, 246)`| N/A | Card surfaces, container elevation, input background. |
 | **Stone** | `--color-stone` | `#B8B1A5` | `rgb(184, 177, 165)`| **5%** | Secondary neutral. Precision 1px borders, subtle divider rules, muted metadata tags. |
 
 ### 2.2 Semantic Functional Colors

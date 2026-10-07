@@ -6,7 +6,7 @@
 .shop-hero {
   background-color: var(--color-plum-deep);
   color: var(--color-text-light);
-  padding: var(--space-3xl) 0 var(--space-2xl);
+  padding: var(--space-2xl) 0 var(--space-xl);
   border-bottom: 1px solid rgba(200, 164, 93, 0.25);
   position: relative;
 }
@@ -35,18 +35,18 @@
 }
 
 .shop-hero-title {
-  font-family: var(--font-structural);
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-family: var(--font-editorial);
+  font-size: 2.75rem;
+  font-weight: 500;
   color: var(--color-text-light);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
   margin-bottom: var(--space-sm);
 }
 
 @media (min-width: 768px) {
   .shop-hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -62,21 +62,21 @@
 .shop-hero-desc {
   font-size: 0.9375rem;
   color: var(--color-text-light-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* ==========================================================================
-   Catalog Controls & Category Tabs (Frosted Floating Subheader)
+   Catalog Controls & Category Tabs (Warm Paper Subheader)
    ========================================================================== */
 .shop-controls-bar {
-  background: rgba(244, 240, 232, 0.95);
+  background: rgba(242, 236, 224, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(50, 26, 74, 0.1);
+  border-bottom: var(--border-ink-crisp);
   position: sticky;
   top: var(--header-height);
   z-index: 80;
-  box-shadow: 0 4px 14px rgba(11, 11, 11, 0.04);
+  box-shadow: 0 2px 10px rgba(24, 21, 23, 0.04);
   transition: top var(--transition-fast);
 }
 
@@ -128,7 +128,7 @@
 .shop-search-input:focus {
   border-color: var(--color-plum);
   box-shadow: 0 0 0 3px rgba(50, 26, 74, 0.12);
-  background-color: #ffffff;
+  background-color: var(--color-paper-pure);
 }
 
 .shop-search-input:focus ~ .shop-search-icon {
@@ -210,8 +210,8 @@
    Reassurance & Psychological Trust Pillars Strip
    ========================================================================== */
 .shop-trust-strip {
-  background-color: var(--color-ivory-surface);
-  border-bottom: 1px solid rgba(50, 26, 74, 0.1);
+  background-color: var(--color-paper-flax);
+  border-bottom: var(--border-ink-crisp);
   padding: var(--space-md) 0;
 }
 
@@ -251,8 +251,10 @@
 
 .shop-trust-title {
   font-family: var(--font-structural);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-dark);
   line-height: 1.25;
   margin-bottom: 2px;
@@ -261,7 +263,7 @@
 .shop-trust-desc {
   font-size: 0.75rem;
   color: var(--color-text-muted);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 /* ==========================================================================
@@ -275,18 +277,19 @@
 .catalog-header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--space-lg);
+  align-items: center;
+  margin-bottom: var(--space-md);
   padding-bottom: var(--space-xs);
   border-bottom: 1px solid var(--color-stone-muted);
 }
 
 .catalog-heading {
-  font-family: var(--font-structural);
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  font-family: var(--font-editorial);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--color-text-dark);
+  margin: 0;
 }
 
 .catalog-subheading {
@@ -297,7 +300,10 @@
 }
 
 .catalog-meta {
-  font-size: 0.8125rem;
+  font-family: var(--font-structural);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--color-text-subtle);
   white-space: nowrap;
 }
@@ -332,31 +338,31 @@
 
 /* ==========================================================================
    Product Card
-   Quiet Authority styling: Soft rounded corners, gentle elevation, readable copy
+   Warm-Editorial styling: Refined placard geometry, crisp ink border, tactile paper
    ========================================================================== */
 .product-card {
   background-color: var(--color-ivory-surface);
-  border: 1px solid rgba(50, 26, 74, 0.12);
+  border: var(--border-ink-crisp);
   border-radius: var(--radius-card);
   display: flex;
   flex-direction: column;
   position: relative;
-  box-shadow: var(--shadow-card);
-  transition: border-color 400ms cubic-bezier(0.25, 1, 0.5, 1), transform 400ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 400ms cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1), transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
 .product-card:not(.product-card-locked):hover {
   border-color: var(--color-gold);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(50, 26, 74, 0.08);
+  box-shadow: var(--shadow-card);
 }
 
 /* Locked / Coming Soon Product Card Styling */
 .product-card.product-card-locked {
   cursor: default;
   opacity: 0.88;
-  border-color: rgba(50, 26, 74, 0.1);
+  border-color: var(--border-ink-crisp);
   box-shadow: none;
 }
 
@@ -545,10 +551,10 @@
 }
 
 .product-title {
-  font-family: var(--font-structural);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  line-height: 1.25;
+  font-family: var(--font-editorial);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.22;
   color: var(--color-text-dark);
   margin-bottom: 2px;
   overflow: hidden;
@@ -560,7 +566,7 @@
 
 @media (min-width: 768px) {
   .product-title {
-    font-size: 1.0625rem;
+    font-size: 1.25rem;
     margin-bottom: 3px;
   }
 }

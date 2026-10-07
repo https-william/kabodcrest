@@ -25,7 +25,7 @@
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Favicon (KC Shield Monogram placeholder) -->
   <link rel="icon" type="image/svg+xml" href="assets/images/logo/kc-crest.svg" />
@@ -173,8 +173,13 @@
               <div class="spec-pill">Origin: <strong id="spec-origin-pill">Nigeria</strong></div>
             </div>
 
+            <!-- Culinary Pairings & Sensory Strip -->
+            <div class="product-culinary-strip" id="product-culinary-strip">
+              <!-- Rendered dynamically by js/product-detail.js -->
+            </div>
+
             <!-- Action Controls -->
-            <div class="product-actions-box">
+            <div class="product-actions-box" id="product-actions-box">
               <div class="product-qty-row">
                 <label for="qty-input" class="qty-label">Quantity:</label>
                 <div class="qty-picker" role="group" aria-label="Quantity Picker">
@@ -206,6 +211,11 @@
               <h2 class="product-narrative-heading">About This Harvest</h2>
               <p class="product-narrative-p" id="product-short-desc"></p>
 
+              <!-- Rehydration or Preparation Guide (if applicable) -->
+              <div id="product-rehydration-section" class="rehydration-guide-section">
+                <!-- Rendered dynamically by js/product-detail.js -->
+              </div>
+
               <h2 class="product-narrative-heading" style="margin-top: var(--space-md);">Quality & Processing Standard</h2>
               <ul class="features-list" id="product-features-list">
                 <!-- Features rendered dynamically -->
@@ -214,6 +224,13 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- Frequently Cooked Together Section (Option 3: Pantry Bundles) -->
+    <section class="cooked-together-section" id="cooked-together-section" aria-labelledby="cooked-together-heading">
+      <div class="container" id="cooked-together-container">
+        <!-- Rendered dynamically by js/product-detail.js -->
       </div>
     </section>
 
@@ -280,6 +297,22 @@
         </div>
       </div>
     </section>
+
+    <!-- Mobile Sticky Purchase Dock (UX Cognitive Ergonomics / Fitts's Law) -->
+    <div class="mobile-sticky-dock" id="mobile-sticky-dock" aria-hidden="true">
+      <div class="sticky-dock-inner">
+        <div class="sticky-dock-media">
+          <img id="sticky-dock-img" src="" alt="" class="sticky-dock-thumb" />
+          <div class="sticky-dock-info">
+            <span class="sticky-dock-title" id="sticky-dock-title">Product Name</span>
+            <div class="sticky-dock-price" id="sticky-dock-price">₦0</div>
+          </div>
+        </div>
+        <button type="button" class="btn-sticky-dock-action" id="sticky-dock-btn">
+          <span>Add to Bag</span>
+        </button>
+      </div>
+    </div>
   </main>
 
   <!-- Slide-out Cart Drawer -->

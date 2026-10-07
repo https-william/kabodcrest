@@ -318,6 +318,8 @@
     const backdrop = document.getElementById('cart-backdrop');
     const closeBtn = document.getElementById('cart-close-btn');
 
+    if (!drawer) return;
+
     let lastFocusedElement = null;
 
     // Initially inert when closed
