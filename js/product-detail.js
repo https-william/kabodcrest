@@ -24,8 +24,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 2. Populate Page Title & Meta
+  // 2. Populate Page Title & Meta Dynamically
   document.title = `${product.name} (${product.subtitle}) | Kabod Crest Foods`;
+  const productCanonicalUrl = `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}`;
+  const productImageUrl = product.image ? `https://kabodcrest.com/${product.image}` : `https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg`;
+  const productDesc = product.shortDescription || product.description || `Pure Nigerian ${product.name} prepared by Kabod Crest Foods.`;
+
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.content = productDesc;
+  const canonicalLink = document.querySelector('link[rel="canonical"]');
+  if (canonicalLink) canonicalLink.href = productCanonicalUrl;
+
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.content = `${product.name} | Kabod Crest Foods`;
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) ogDesc.content = productDesc;
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.content = productCanonicalUrl;
+  const ogImg = document.querySelector('meta[property="og:image"]');
+  if (ogImg) ogImg.content = productImageUrl;
+
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if (twTitle) twTitle.content = `${product.name} | Kabod Crest Foods`;
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if (twDesc) twDesc.content = productDesc;
+  const twUrl = document.querySelector('meta[name="twitter:url"]');
+  if (twUrl) twUrl.content = productCanonicalUrl;
+  const twImg = document.querySelector('meta[name="twitter:image"]');
+  if (twImg) twImg.content = productImageUrl;
 
   // 3. Populate Breadcrumb
   const breadcrumbCategoryEl = document.getElementById('breadcrumb-category');
@@ -165,30 +191,103 @@ document.addEventListener('DOMContentLoaded', () => {
     rehydrationSectionEl.innerHTML = rehydrationHtml;
   }
 
-  // Populate Schema.org Product JSON-LD
+  // Populate Schema.org Product, BreadcrumbList & FAQPage JSON-LD
   const jsonLdEl = document.getElementById('product-jsonld');
   if (jsonLdEl) {
-    const productSchema = {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": product.name,
-      "image": "https://kabodcrest.com/" + product.image,
-      "description": product.description || product.shortDescription,
-      "brand": {
-        "@type": "Brand",
-        "name": "Kabod Crest"
+    const productSchemaGraph = [
+      {
+        "@type": "Product",
+        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#product`,
+        "name": product.name,
+        "image": productImageUrl,
+        "description": product.description || product.shortDescription,
+        "sku": product.id,
+        "brand": {
+          "@type": "Brand",
+          "name": "Kabod Crest Foods"
+        },
+        "category": product.category,
+        "countryOfOrigin": {
+          "@type": "Country",
+          "name": "Nigeria"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "NGN",
+          "price": product.price || 0,
+          "priceValidUntil": "2027-12-31",
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": product.isLive ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
+          "url": productCanonicalUrl,
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "1000",
+              "currency": "NGN"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "NG"
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "NG",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 7,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          }
+        }
       },
-      "category": product.category,
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "NGN",
-        "price": product.price || 0,
-        "availability": product.isLive ? "https://schema.org/InStock" : "https://schema.org/PreOrder",
-        "url": "https://kabodcrest.com/product-detail.html?id=" + encodeURIComponent(product.id)
+      {
+        "@type": "BreadcrumbList",
+        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#breadcrumb`,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://kabodcrest.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Foods & Shop",
+            "item": "https://kabodcrest.com/shop.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": product.name,
+            "item": productCanonicalUrl
+          }
+        ]
       }
-    };
-    jsonLdEl.textContent = JSON.stringify(productSchema, null, 2);
+    ];
+
+    if (Array.isArray(product.faqs) && product.faqs.length > 0) {
+      productSchemaGraph.push({
+        "@type": "FAQPage",
+        "@id": `https://kabodcrest.com/product-detail.html?id=${encodeURIComponent(product.id)}#faq`,
+        "mainEntity": product.faqs.map(f => ({
+          "@type": "Question",
+          "name": f.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": f.answer
+          }
+        }))
+      });
+    }
+
+    jsonLdEl.textContent = JSON.stringify({
+      "@context": "https://schema.org/",
+      "@graph": productSchemaGraph
+    }, null, 2);
   }
+
 
   // 5. Initialize Image Gallery
   const mainImageEl = document.getElementById('gallery-main-image');

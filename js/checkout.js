@@ -392,13 +392,14 @@ class PaystackPaymentProvider {
   processPayment(orderData, onSuccess, onError) {
     const amountInKobo = Math.round((orderData.grandTotal || 0) * 100);
 
+    const LIVE_PAYSTACK_PUBLIC_KEY = 'pk_live_c1eab7135d1e3c4114b78b0fab50b450f91d8217';
     const configuredKey = (typeof window !== 'undefined' && (window.KABOD_PAYSTACK_KEY || window.PAYSTACK_PUBLIC_KEY))
       ? (window.KABOD_PAYSTACK_KEY || window.PAYSTACK_PUBLIC_KEY)
-      : null;
+      : LIVE_PAYSTACK_PUBLIC_KEY;
 
     const isPlaceholderKey = !configuredKey || configuredKey === 'pk_live_kabod_crest_live_key' || configuredKey.includes('kabod_crest_live');
 
-    // Only attempt live Paystack inline popup if a real, non-placeholder public key is supplied
+    // Attempt live Paystack inline popup when PaystackPop script is loaded
     if (!isPlaceholderKey && typeof window !== 'undefined' && typeof window.PaystackPop !== 'undefined' && window.PaystackPop.setup) {
       try {
         const handler = window.PaystackPop.setup({

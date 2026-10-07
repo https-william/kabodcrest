@@ -4,23 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shop Agro-Produce | Kabod Crest Foods</title>
-  <meta name="description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
+  <meta name="description" content="Official pantry catalog for Kabod Crest Foods. Clean-room dehydrated Nigerian vegetables, single-origin spices, and traditional provisions sealed in barrier pouches." />
+  <meta name="keywords" content="Nigerian agro-produce, buy dehydrated ugwu, fluted pumpkin leaves, nigerian spices online, kaduna ginger, jollof rice spice, buy egusi online, stockfish, iru locust beans, lagos nigeria pantry staples" />
+  <meta name="author" content="Kabod Crest Limited" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <link rel="canonical" href="https://kabodcrest.com/shop.html" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kabod Crest" />
+  <meta property="og:locale" content="en_NG" />
+  <meta property="og:locale:alternate" content="en_GB" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:url" content="https://kabodcrest.com/shop.html" />
   <meta property="og:title" content="Shop Agro-Produce | Kabod Crest Foods" />
-  <meta property="og:description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
+  <meta property="og:description" content="Official pantry catalog for Kabod Crest Foods. Clean-room dehydrated Nigerian vegetables, single-origin spices, and traditional provisions sealed in barrier pouches." />
   <meta property="og:image" content="https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kabod Crest Foods Pantry Catalog" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@kabodcrest" />
+  <meta name="twitter:creator" content="@kabodcrest" />
   <meta name="twitter:url" content="https://kabodcrest.com/shop.html" />
   <meta name="twitter:title" content="Shop Agro-Produce | Kabod Crest Foods" />
-  <meta name="twitter:description" content="Official pre-order catalog for Kabod Crest Foods. Wholesome Nigerian agro-produce including Dehydrated Ugwu, Egusi, Ogbono, Kulikuli, and authentic spices." />
+  <meta name="twitter:description" content="Official pantry catalog for Kabod Crest Foods. Clean-room dehydrated Nigerian vegetables, single-origin spices, and traditional provisions." />
   <meta name="twitter:image" content="https://kabodcrest.com/assets/images/packaging/shop-packaging-trio.jpg" />
+  <meta name="twitter:image:alt" content="Kabod Crest Foods Pantry Catalog" />
 
   <!-- Google Fonts: Montserrat (Structural), Cormorant Garamond (Editorial), Inter (Workhorse Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,34 +48,60 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/shop.css" />
 
-  <!-- JSON-LD Structured Data: Store & ItemList -->
+  <!-- JSON-LD Structured Data: CollectionPage, Store, BreadcrumbList & ItemList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "CollectionPage",
+        "@id": "https://kabodcrest.com/shop.html#webpage",
+        "url": "https://kabodcrest.com/shop.html",
+        "name": "Shop Agro-Produce | Kabod Crest Foods",
+        "description": "Official agro-produce pantry catalog of Kabod Crest Foods. Wholesome Nigerian harvests including Dehydrated Ugwu, Ginger, Jollof Spice, Egusi, and Ogbono.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://kabodcrest.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Foods & Shop",
+              "item": "https://kabodcrest.com/shop.html"
+            }
+          ]
+        }
+      },
+      {
         "@type": "Store",
         "@id": "https://kabodcrest.com/shop.html#store",
         "name": "Kabod Crest Foods",
         "url": "https://kabodcrest.com/shop.html",
-        "description": "Authentic Nigerian agro-produce, dehydrated vegetables, stone-ground spices, and traditional provisions.",
+        "description": "Authentic Nigerian agro-produce, clean-room dehydrated vegetables, stone-ground spices, and traditional provisions.",
         "parentOrganization": {
           "@type": "Organization",
           "name": "Kabod Crest Limited",
           "url": "https://kabodcrest.com"
-        }
+        },
+        "currenciesAccepted": "NGN, USD, GBP, EUR",
+        "paymentAccepted": "Paystack, Debit Card, Credit Card, Bank Transfer"
       },
       {
         "@type": "ItemList",
-        "name": "Kabod Crest Foods Product Catalog",
+        "@id": "https://kabodcrest.com/shop.html#itemlist",
+        "name": "Kabod Crest Foods Pantry Catalog",
         "description": "Premium Nigerian botanical agro-produce, spices, dehydrated vegetables, and traditional provisions.",
-        "url": "https://kabodcrest.com/shop.html",
         "numberOfItems": 14,
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Dehydrated Ugwu",
+            "name": "Dehydrated Ugwu (Fluted Pumpkin Leaves)",
             "url": "https://kabodcrest.com/product-detail.html?id=dehydrated-ugwu"
           },
           {
@@ -76,6 +115,72 @@
             "position": 3,
             "name": "Jollof Rice Spice",
             "url": "https://kabodcrest.com/product-detail.html?id=jollof-rice-spice"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Kulikuli Crunchy Groundnut Snack",
+            "url": "https://kabodcrest.com/product-detail.html?id=kulikuli-snack"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Stockfish Dried Cod",
+            "url": "https://kabodcrest.com/product-detail.html?id=stockfish-cod"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Iru Fermented Locust Beans",
+            "url": "https://kabodcrest.com/product-detail.html?id=iru-locust-beans"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Cassava Flakes (Ijebu Garri)",
+            "url": "https://kabodcrest.com/product-detail.html?id=cassava-flakes-garri"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Unrefined Shea Butter",
+            "url": "https://kabodcrest.com/product-detail.html?id=shea-butter-unrefined"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "name": "African Nutmeg (Ehuru)",
+            "url": "https://kabodcrest.com/product-detail.html?id=african-nutmeg-ehuru"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "name": "Ashanti Pepper (Uziza)",
+            "url": "https://kabodcrest.com/product-detail.html?id=ashanti-pepper-uziza"
+          },
+          {
+            "@type": "ListItem",
+            "position": 11,
+            "name": "Melon Seed / Shelled Egusi",
+            "url": "https://kabodcrest.com/product-detail.html?id=melon-seed-egusi"
+          },
+          {
+            "@type": "ListItem",
+            "position": 12,
+            "name": "Wild Ogbono (Dika Nut)",
+            "url": "https://kabodcrest.com/product-detail.html?id=ogbono-dika-nut"
+          },
+          {
+            "@type": "ListItem",
+            "position": 13,
+            "name": "Smoked & Dried Ponmo",
+            "url": "https://kabodcrest.com/product-detail.html?id=ponmo-dried-cowskin"
+          },
+          {
+            "@type": "ListItem",
+            "position": 14,
+            "name": "Zobo Hibiscus Calyces",
+            "url": "https://kabodcrest.com/product-detail.html?id=zobo-hibiscus-calyces"
           }
         ]
       }

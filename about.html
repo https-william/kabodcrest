@@ -4,23 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Kabod Crest | Purpose, Distinction & Integrity</title>
-  <meta name="description" content="Discover the story, vision, and core values of Kabod Crest Limited. A newly registered Nigerian enterprise built on quiet authority and uncompromising standards." />
+  <meta name="description" content="Discover the foundational story, mission, and operating verticals of Kabod Crest Limited. A registered Nigerian enterprise built on quiet authority, agro-processing integrity, and enduring craft." />
+  <meta name="keywords" content="About Kabod Crest, Nigerian enterprise, agro processing Nigeria, CAC registered Nigerian company, African food export, Lagos Nigeria business" />
+  <meta name="author" content="Kabod Crest Limited" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
   <link rel="canonical" href="https://kabodcrest.com/about.html" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kabod Crest" />
+  <meta property="og:locale" content="en_NG" />
+  <meta property="og:locale:alternate" content="en_GB" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:url" content="https://kabodcrest.com/about.html" />
   <meta property="og:title" content="About Kabod Crest | Purpose, Distinction & Integrity" />
-  <meta property="og:description" content="Discover the story, vision, and core values of Kabod Crest Limited. A newly registered Nigerian enterprise built on quiet authority and uncompromising standards." />
+  <meta property="og:description" content="Discover the foundational story, mission, and operating verticals of Kabod Crest Limited. A registered Nigerian enterprise built on quiet authority, agro-processing integrity, and enduring craft." />
   <meta property="og:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kabod Crest Limited - Building with Purpose. Creating with Distinction." />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@kabodcrest" />
+  <meta name="twitter:creator" content="@kabodcrest" />
   <meta name="twitter:url" content="https://kabodcrest.com/about.html" />
   <meta name="twitter:title" content="About Kabod Crest | Purpose, Distinction & Integrity" />
-  <meta name="twitter:description" content="Discover the story, vision, and core values of Kabod Crest Limited." />
+  <meta name="twitter:description" content="Discover the foundational story, mission, and operating verticals of Kabod Crest Limited." />
   <meta name="twitter:image" content="https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png" />
+  <meta name="twitter:image:alt" content="Kabod Crest Limited - Excellence with Integrity" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,19 +49,65 @@
   <link rel="stylesheet" href="css/shop.css" />
   <link rel="stylesheet" href="css/about.css" />
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD Structured Data: AboutPage, Organization & BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "Kabod Crest Limited",
-      "url": "https://kabodcrest.com",
-      "logo": "https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png",
-      "slogan": "Building with Purpose. Creating with Distinction.",
-      "description": "A premier Nigerian enterprise operating across food production and agro-processing, events, hospitality, and business advisory."
-    }
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://kabodcrest.com/about.html#webpage",
+        "url": "https://kabodcrest.com/about.html",
+        "name": "About Kabod Crest | Purpose, Distinction & Integrity",
+        "description": "Discover the foundational story, mission, and operating verticals of Kabod Crest Limited.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://kabodcrest.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://kabodcrest.com/about.html"
+            }
+          ]
+        },
+        "mainEntity": {
+          "@type": "Organization",
+          "@id": "https://kabodcrest.com/#organization",
+          "name": "Kabod Crest Limited",
+          "legalName": "Kabod Crest Limited",
+          "url": "https://kabodcrest.com",
+          "logo": "https://kabodcrest.com/assets/images/logo/Kabod_Crest_Asset_05_Horizontal_With_Tagline.png",
+          "slogan": "Building with Purpose. Creating with Distinction.",
+          "description": "A premier Nigerian diversified enterprise operating across food production and agro-processing, events, hospitality, and business advisory.",
+          "foundingLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Lagos",
+              "addressCountry": "NG"
+            }
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lagos",
+            "addressCountry": "NG"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+2349053807722",
+            "contactType": "customer service",
+            "email": "kabodcrest@gmail.com"
+          }
+        }
+      }
+    ]
   }
   </script>
 </head>

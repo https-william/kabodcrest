@@ -729,3 +729,80 @@
     flex-direction: row;
   }
 }
+
+/* ==========================================================================
+   Section: Generative & Answer Engine FAQ Section (AEO / GEO)
+   ========================================================================== */
+.home-faq-section {
+  padding: var(--space-3xl) 0;
+  background-color: var(--color-surface, #FDFBF7);
+  border-top: 1px solid rgba(200, 164, 93, 0.2);
+}
+
+.faq-accordion-list {
+  max-width: 860px;
+  margin: var(--space-2xl) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.faq-accordion-item {
+  border: 1px solid rgba(200, 164, 93, 0.25);
+  border-radius: var(--radius-sm, 6px);
+  background-color: #FFFFFF;
+  transition: border-color var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
+  overflow: hidden;
+}
+
+.faq-accordion-item:hover {
+  border-color: rgba(200, 164, 93, 0.6);
+  box-shadow: 0 4px 14px rgba(26, 26, 26, 0.04);
+}
+
+.faq-accordion-item[open] {
+  border-color: var(--color-gold, #C8A45D);
+  box-shadow: 0 6px 18px rgba(74, 21, 37, 0.06);
+}
+
+.faq-accordion-summary {
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-structural, Montserrat, sans-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-obsidian, #1a1a1a);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  user-select: none;
+  list-style: none;
+}
+
+.faq-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-gold, #C8A45D);
+  transition: transform 0.25s ease;
+}
+
+.faq-accordion-item[open] .faq-summary-icon {
+  transform: rotate(180deg);
+}
+
+.faq-accordion-answer {
+  padding: 0 var(--space-lg) var(--space-lg);
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  color: var(--color-text-muted, #555555);
+  border-top: 1px solid rgba(200, 164, 93, 0.12);
+  margin-top: var(--space-2xs);
+  padding-top: var(--space-md);
+}
+
