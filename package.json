@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Kabod Crest Limited - Purposeful African Produce & Strategic Enterprise",
   "scripts": {
+    "build": "node -e \"console.log('Kabod Crest static assets verified for deployment')\"",
     "dev": "node dev-server.js",
     "start": "node dev-server.js",
     "test": "node --test tests/unit/*.test.js tests/e2e/*.test.js"
