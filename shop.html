@@ -211,10 +211,18 @@
       <!-- Primary Navigation -->
       <nav class="primary-nav" aria-label="Primary Navigation">
         <a href="/" class="nav-link">Home</a>
-        <a href="/shop" class="nav-link active" aria-current="page">Foods & Shop</a>
-        <a href="/events" class="nav-link">Events</a>
-        <a href="/hospitality" class="nav-link">Hospitality</a>
-        <a href="/business-services" class="nav-link">Business Services</a>
+        <a href="/shop" class="nav-link active" aria-current="page">Shop</a>
+        <div class="nav-dropdown">
+          <a href="/business-services" class="nav-link nav-dropdown-trigger">
+            Ventures
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/events" class="dropdown-item" role="menuitem">Events &amp; Experiences</a>
+            <a href="/hospitality" class="dropdown-item" role="menuitem">Hospitality &amp; Dining</a>
+            <a href="/business-services" class="dropdown-item" role="menuitem">Business Services</a>
+          </div>
+        </div>
         <a href="/about" class="nav-link">About</a>
         <a href="/contact" class="nav-link">Contact</a>
       </nav>
@@ -252,10 +260,12 @@
       </div>
       <nav class="mobile-nav-links">
         <a href="/" class="nav-link">Home</a>
-        <a href="/shop" class="nav-link active">Foods & Shop</a>
-        <a href="/events" class="nav-link">Events</a>
-        <a href="/hospitality" class="nav-link">Hospitality</a>
-        <a href="/business-services" class="nav-link">Business Services</a>
+        <a href="/shop" class="nav-link active">Shop</a>
+        <div class="mobile-nav-section-title">Ventures</div>
+        <a href="/events" class="nav-link mobile-sublink">Events &amp; Experiences</a>
+        <a href="/hospitality" class="nav-link mobile-sublink">Hospitality &amp; Dining</a>
+        <a href="/business-services" class="nav-link mobile-sublink">Business Services</a>
+        <div class="mobile-nav-divider"></div>
         <a href="/about" class="nav-link">About</a>
         <a href="/contact" class="nav-link">Contact</a>
       </nav>

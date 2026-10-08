@@ -8,7 +8,7 @@
 .home-hero {
   background-color: var(--color-obsidian);
   color: var(--color-text-light);
-  padding: var(--space-3xl) 0 var(--space-3xl);
+  padding: var(--space-2xl) 0;
   border-bottom: 1px solid rgba(200, 164, 93, 0.22);
   position: relative;
   overflow: hidden;
@@ -139,31 +139,37 @@
   background-color: rgba(255, 255, 255, 0.04);
 }
 
-/* Visceral Hero Proof Points & Trust Bar */
-.hero-trust-bar {
+/* Dedicated Full-Width Trust Ribbon (Under Hero per Taste Anti-Slop Directive) */
+.hero-trust-ribbon {
+  background: #140E1C;
+  border-bottom: 1px solid rgba(200, 164, 93, 0.22);
+  padding: 14px 0;
+}
+
+.trust-ribbon-inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   gap: var(--space-md);
-  margin-top: var(--space-lg);
-  padding-top: var(--space-sm);
 }
 
-.hero-trust-item {
+.trust-ribbon-item {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   font-family: var(--font-structural);
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.03em;
-  color: var(--color-text-light-muted);
+  letter-spacing: 0.04em;
+  color: var(--color-gold-light);
 }
 
-.hero-trust-item svg {
+.trust-ribbon-item svg {
   color: var(--color-gold);
   flex-shrink: 0;
 }
+
 
 
 /* Hero Showcase Visual */

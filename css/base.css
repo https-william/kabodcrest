@@ -312,11 +312,11 @@ button {
   display: none;
 }
 
-@media (min-width: 1080px) {
+@media (min-width: 992px) {
   .primary-nav {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 24px;
     background: transparent;
     border: none;
     padding: 0;
@@ -324,9 +324,9 @@ button {
   }
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1200px) {
   .primary-nav {
-    gap: 28px;
+    gap: 32px;
   }
 }
 
@@ -334,16 +334,19 @@ button {
   font-family: var(--font-structural);
   font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #D6CFBF;
-  padding: 8px 0;
+  padding: 6px 0;
   position: relative;
   transition: color var(--transition-fast);
   white-space: nowrap;
   background: transparent;
   border: none;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .nav-link:hover {
@@ -368,6 +371,78 @@ button {
   height: 2px;
   background-color: var(--color-gold);
   border-radius: 1px;
+}
+
+/* Nav Dropdown for Multi-Sector Ventures */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown-chevron {
+  transition: transform 0.2s ease;
+  color: var(--color-gold);
+  margin-left: 2px;
+}
+
+.nav-dropdown:hover .dropdown-chevron,
+.nav-dropdown:focus-within .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(18, 11, 26, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(200, 164, 93, 0.35);
+  border-radius: var(--radius-card);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  padding: 8px 0;
+  min-width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1), transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(2px);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 18px;
+  font-family: var(--font-structural);
+  font-size: 0.78125rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #D6CFBF;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: rgba(200, 164, 93, 0.12);
+  color: var(--color-gold);
+}
+
+.dropdown-item.active {
+  color: var(--color-gold);
+  font-weight: 600;
+  background: rgba(50, 26, 74, 0.35);
 }
 
 /* Header Right Actions */
@@ -461,7 +536,7 @@ button {
   border-color: rgba(200, 164, 93, 0.3);
 }
 
-@media (min-width: 1180px) {
+@media (min-width: 992px) {
   .mobile-menu-btn {
     display: none;
   }
@@ -510,13 +585,13 @@ button {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .mobile-nav-links .nav-link {
   font-size: 0.9375rem;
-  padding: 11px 16px;
-  border-radius: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -530,6 +605,31 @@ button {
   background: rgba(200, 164, 93, 0.16);
   color: var(--color-gold);
   border: 1px solid rgba(200, 164, 93, 0.35);
+}
+
+.mobile-nav-section-title {
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 12px;
+  margin-bottom: 4px;
+  padding-left: 12px;
+}
+
+.mobile-nav-links .nav-link.mobile-sublink {
+  padding-left: 20px;
+  font-size: 0.8125rem;
+  color: #D6CFBF;
+  opacity: 0.88;
+}
+
+.mobile-nav-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 10px 0;
 }
 
 .nav-backdrop {

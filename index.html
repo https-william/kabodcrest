@@ -197,10 +197,18 @@
       <!-- Primary Navigation -->
       <nav class="primary-nav" aria-label="Primary Navigation">
         <a href="/" class="nav-link active" aria-current="page">Home</a>
-        <a href="/shop" class="nav-link">Foods & Shop</a>
-        <a href="/events" class="nav-link">Events</a>
-        <a href="/hospitality" class="nav-link">Hospitality</a>
-        <a href="/business-services" class="nav-link">Business Services</a>
+        <a href="/shop" class="nav-link">Shop</a>
+        <div class="nav-dropdown">
+          <a href="/business-services" class="nav-link nav-dropdown-trigger">
+            Ventures
+            <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </a>
+          <div class="nav-dropdown-menu" role="menu">
+            <a href="/events" class="dropdown-item" role="menuitem">Events &amp; Experiences</a>
+            <a href="/hospitality" class="dropdown-item" role="menuitem">Hospitality &amp; Dining</a>
+            <a href="/business-services" class="dropdown-item" role="menuitem">Business Services</a>
+          </div>
+        </div>
         <a href="/about" class="nav-link">About</a>
         <a href="/contact" class="nav-link">Contact</a>
       </nav>
@@ -238,10 +246,12 @@
       </div>
       <nav class="mobile-nav-links">
         <a href="/" class="nav-link active">Home</a>
-        <a href="/shop" class="nav-link">Foods & Shop</a>
-        <a href="/events" class="nav-link">Events</a>
-        <a href="/hospitality" class="nav-link">Hospitality</a>
-        <a href="/business-services" class="nav-link">Business Services</a>
+        <a href="/shop" class="nav-link">Shop</a>
+        <div class="mobile-nav-section-title">Ventures</div>
+        <a href="/events" class="nav-link mobile-sublink">Events &amp; Experiences</a>
+        <a href="/hospitality" class="nav-link mobile-sublink">Hospitality &amp; Dining</a>
+        <a href="/business-services" class="nav-link mobile-sublink">Business Services</a>
+        <div class="mobile-nav-divider"></div>
         <a href="/about" class="nav-link">About</a>
         <a href="/contact" class="nav-link">Contact</a>
       </nav>
@@ -262,7 +272,7 @@
               <span class="brand-accent">Creating with Distinction.</span>
             </h1>
             <p class="home-hero-desc">
-              Welcome to Kabod Crest. We believe in doing things properly, with genuine care and quiet pride. Right now, our focus is bringing you pure, wholesome Nigerian vegetables, spices, and everyday pantry staples, prepared gently so you always have the best of home within reach.
+              Pure, wholesome Nigerian vegetables, spices, and everyday pantry staples, prepared gently so the best of home is always within reach.
             </p>
             <div class="home-hero-actions">
               <a href="/shop" class="btn-hero-primary btn-border-beam">
@@ -275,21 +285,6 @@
               <a href="#who-we-are" class="btn-hero-secondary">
                 <span>Discover Kabod Crest</span>
               </a>
-            </div>
-
-            <div class="hero-trust-bar">
-              <div class="hero-trust-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>100% Sand-Free Guaranteed</span>
-              </div>
-              <div class="hero-trust-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                <span>Clean-Room Dehydrated (&lt; 45&deg;C)</span>
-              </div>
-              <div class="hero-trust-item">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                <span>1 to 3 Day Delivery</span>
-              </div>
             </div>
           </div>
 
@@ -323,6 +318,24 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated Trust Ribbon (Directly Below Hero per Taste Anti-Slop Directive) -->
+    <section class="hero-trust-ribbon" aria-label="Quality commitments and delivery timeline">
+      <div class="container trust-ribbon-inner">
+        <div class="trust-ribbon-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>100% Sand-Free Guaranteed</span>
+        </div>
+        <div class="trust-ribbon-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Clean-Room Dehydrated (&lt; 45&deg;C)</span>
+        </div>
+        <div class="trust-ribbon-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          <span>1 to 3 Day Delivery Across Nigeria</span>
         </div>
       </div>
     </section>
