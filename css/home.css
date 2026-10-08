@@ -97,21 +97,23 @@
   justify-content: center;
   gap: var(--space-xs);
   padding: 14px 28px;
-  background-color: var(--color-plum);
-  color: var(--color-text-light);
+  background-color: var(--color-gold);
+  color: var(--color-obsidian);
   font-family: var(--font-structural);
   font-size: 0.875rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   border-radius: var(--radius-btn);
   border: 1px solid var(--color-gold);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 16px rgba(200, 164, 93, 0.25);
   transition: all var(--transition-fast);
 }
 
 .btn-hero-primary:hover {
-  background-color: var(--color-plum-hover);
-  box-shadow: 0 0 20px rgba(200, 164, 93, 0.35);
+  background-color: var(--color-gold-light);
+  color: var(--color-obsidian);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 6px 24px rgba(200, 164, 93, 0.45);
   transform: translateY(-1px);
 }
 
@@ -136,6 +138,33 @@
   color: var(--color-gold);
   background-color: rgba(255, 255, 255, 0.04);
 }
+
+/* Visceral Hero Proof Points & Trust Bar */
+.hero-trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+}
+
+.hero-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-structural);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-text-light-muted);
+}
+
+.hero-trust-item svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
 
 /* Hero Showcase Visual */
 .hero-visual-frame {

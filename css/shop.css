@@ -4,7 +4,9 @@
 
 /* Hero / Header Introduction */
 .shop-hero {
-  background-color: var(--color-plum-deep);
+  background: radial-gradient(circle at 85% 25%, rgba(200, 164, 93, 0.12) 0%, transparent 60%),
+              radial-gradient(circle at 10% 80%, rgba(50, 26, 74, 0.5) 0%, transparent 70%),
+              linear-gradient(180deg, #180D26 0%, #241338 100%);
   color: var(--color-text-light);
   padding: var(--space-2xl) 0 var(--space-xl);
   border-bottom: 1px solid rgba(200, 164, 93, 0.25);
@@ -64,6 +66,33 @@
   color: var(--color-text-light-muted);
   line-height: 1.65;
 }
+
+.shop-hero-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.shop-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-structural);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--color-text-light-muted);
+}
+
+.shop-trust-item svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
 
 /* ==========================================================================
    Catalog Controls & Category Tabs (Warm Paper Subheader)
@@ -520,11 +549,11 @@
 
 .product-meta-row {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 4px;
-  margin-bottom: 3px;
-  min-width: 0;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+  margin-bottom: 4px;
 }
 
 .product-category-label {
@@ -534,9 +563,6 @@
   letter-spacing: 0.04em;
   color: var(--color-plum);
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-origin-tag {
@@ -546,7 +572,6 @@
   letter-spacing: 0.04em;
   color: var(--color-gold-dark);
   text-transform: uppercase;
-  white-space: nowrap;
   flex-shrink: 0;
 }
 
