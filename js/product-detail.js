@@ -239,6 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
             "returnMethod": "https://schema.org/ReturnByMail",
             "returnFees": "https://schema.org/FreeReturn"
           }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "38",
+          "bestRating": "5",
+          "worstRating": "1"
         }
       },
       {
@@ -254,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Foods & Shop",
+            "name": "Shop",
             "item": "https://kabodcrest.com/shop"
           },
           {
