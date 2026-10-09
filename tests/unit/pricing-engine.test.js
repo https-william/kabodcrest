@@ -63,13 +63,13 @@ describe('Tier 1: Feature F1 - Product Catalog Pricing Sync', () => {
     env = setupTestEnv();
   });
 
-  it('F1-T1-1: Dehydrated Ugwu catalog price is exactly ₦2,850', () => {
+  it('F1-T1-1: Dehydrated Ugwu catalog price is exactly ₦10,000', () => {
     const products = env.window.KABOD_PRODUCTS;
     assert.ok(Array.isArray(products), 'KABOD_PRODUCTS must be an array');
     const ugwu = products.find(p => p.id === 'dehydrated-ugwu' || p.id === 'ugwu');
     assert.ok(ugwu, 'Dehydrated Ugwu must exist in KABOD_PRODUCTS');
-    assert.strictEqual(ugwu.price, 2850, 'Ugwu price must be 2850');
-    assert.strictEqual(ugwu.priceDisplay, '₦2,850', 'Ugwu priceDisplay must be ₦2,850');
+    assert.strictEqual(ugwu.price, 10000, 'Ugwu price must be 10000');
+    assert.strictEqual(ugwu.priceDisplay, '₦10,000', 'Ugwu priceDisplay must be ₦10,000');
     assert.strictEqual(ugwu.isLive, true, 'Ugwu must be marked as live');
     assert.strictEqual(ugwu.isPreOrder, false, 'Ugwu must not be marked as pre-order');
   });
@@ -191,10 +191,10 @@ describe('Tier 1: Feature F3 - Cart Drawer Subtotal UI & Line Totals', () => {
 
   it('F3-T1-2: Cart drawer renders line-item totals (price * quantity)', () => {
     const cart = env.window.KabodCart;
-    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 2850, priceDisplay: '₦2,850' }, 2);
+    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 10000, priceDisplay: '₦10,000' }, 2);
 
     const listEl = env.document.getElementById('cart-items-list');
-    assert.ok(listEl.innerHTML.includes('5,700') || listEl.innerHTML.includes('2,850'), 'Drawer must display item price or line total');
+    assert.ok(listEl.innerHTML.includes('20,000') || listEl.innerHTML.includes('10,000'), 'Drawer must display item price or line total');
   });
 
   it('F3-T1-3: Empty cart drawer hides footer subtotal or marks empty state', () => {
@@ -322,28 +322,28 @@ describe('Tier 1: Feature F5 - Cart Page Dynamic Subtotal & Totals', () => {
     const pricing = env.window.KabodPricing || env.window.KabodCart?.pricing;
     assert.ok(pricing, 'KabodPricing must be defined on window or KabodCart');
     const cart = env.window.KabodCart;
-    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 2850 }, 1);
+    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 10000 }, 1);
     let totals = pricing.calculateCartTotals(cart.getItems());
-    assert.strictEqual(totals.pricedSubtotal, 2850);
+    assert.strictEqual(totals.pricedSubtotal, 10000);
 
     cart.updateQuantity('dehydrated-ugwu', 3);
     totals = pricing.calculateCartTotals(cart.getItems());
-    assert.strictEqual(totals.pricedSubtotal, 8550);
-    assert.strictEqual(totals.formattedSubtotal, '₦8,550');
+    assert.strictEqual(totals.pricedSubtotal, 30000);
+    assert.strictEqual(totals.formattedSubtotal, '₦30,000');
   });
 
   it('F5-T1-3: Removing an item updates cart summary subtotal', () => {
     const pricing = env.window.KabodPricing || env.window.KabodCart?.pricing;
     assert.ok(pricing, 'KabodPricing must be defined on window or KabodCart');
     const cart = env.window.KabodCart;
-    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 2850 }, 2);
+    cart.addItem({ id: 'dehydrated-ugwu', name: 'Dehydrated Ugwu', price: 10000 }, 2);
     cart.addItem({ id: 'dehydrated-ginger', name: 'Dehydrated Ginger', price: 2400 }, 1);
     let totals = pricing.calculateCartTotals(cart.getItems());
-    assert.strictEqual(totals.pricedSubtotal, 8100);
+    assert.strictEqual(totals.pricedSubtotal, 22400);
 
     cart.removeItem('dehydrated-ginger');
     totals = pricing.calculateCartTotals(cart.getItems());
-    assert.strictEqual(totals.pricedSubtotal, 5700);
+    assert.strictEqual(totals.pricedSubtotal, 20000);
   });
 
   it('F5-T1-4: Clearing cart resets subtotal to zero', () => {

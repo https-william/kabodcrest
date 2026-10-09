@@ -174,38 +174,44 @@
           <!-- 3. Delivery Care & Dispatch -->
           <section class="checkout-card" id="shipping-tier-section" aria-labelledby="shipping-heading">
             <h2 class="checkout-card-title" id="shipping-heading">
-              <span>3. Delivery Care & Dispatch</span>
+              <span>3. Delivery Dispatch &amp; Logistics</span>
             </h2>
-            <p class="checkout-card-desc">Flat-rate dispatch handled with pantry care and sealed for freshness.</p>
+            <p class="checkout-card-desc">Delivery fees vary by location and are paid directly to your delivery courier upon handover.</p>
 
             <div class="shipping-tiers-container" id="shipping-tiers-options">
-              <!-- Dynamically populated from KABOD_SHIPPING_CONFIG by js/checkout.js -->
+              <div class="shipping-tier-option selected shipping-confirmation-card">
+                <div class="shipping-tier-info">
+                  <div class="shipping-tier-header">
+                    <div class="shipping-tier-title-wrap">
+                      <span class="shipping-confirmation-badge">Pay on Delivery</span>
+                      <span class="shipping-tier-name">Courier Delivery Service</span>
+                    </div>
+                    <div class="shipping-tier-rate-wrap">
+                      <span class="shipping-tier-rate">Direct to Courier</span>
+                    </div>
+                  </div>
+                  <p class="shipping-tier-desc">Delivery fees vary based on your exact address and distance. You will pay the courier service provider directly upon parcel handover. Kabod Crest charges only for your packaged produce.</p>
+                </div>
+              </div>
             </div>
           </section>
 
-          <!-- 4. Swappable Payment Step -->
+          <!-- 4. Payment Step -->
           <section class="checkout-card" aria-labelledby="payment-heading">
             <h2 class="checkout-card-title" id="payment-heading">
-              <span>4. How Would You Like to Pay?</span>
+              <span>4. Secure Payment (Paystack)</span>
             </h2>
             <div class="payment-selector-grid">
               <label class="payment-option-card selected" data-method="paystack">
                 <input type="radio" name="payment_method" value="paystack" checked />
                 <div class="payment-option-info">
-                  <div class="payment-option-title">Pay Online (Paystack)</div>
+                  <div class="payment-option-title">Pay Online via Paystack</div>
                   <div class="payment-option-desc">Fast, secure checkout via Card, Bank Transfer, USSD, or Apple Pay</div>
-                </div>
-              </label>
-              <label class="payment-option-card" data-method="manual_bank_transfer">
-                <input type="radio" name="payment_method" value="manual_bank_transfer" />
-                <div class="payment-option-info">
-                  <div class="payment-option-title">Direct Corporate Bank Transfer</div>
-                  <div class="payment-option-desc">Send payment directly to our corporate Zenith Bank account and receive your official invoice</div>
                 </div>
               </label>
             </div>
             <div id="payment-module-container">
-              <!-- Rendered by ActivePaymentProvider in js/checkout.js -->
+              <!-- Rendered by PaystackPaymentProvider in js/checkout.js -->
             </div>
           </section>
 
@@ -249,13 +255,13 @@
           </div>
 
           <div class="summary-line-item">
-            <span>Selected Shipping:</span>
-            <span id="checkout-shipping-tier-label" style="font-weight: 600; color: var(--color-plum);">Lagos Delivery</span>
+            <span>Delivery Method:</span>
+            <span id="checkout-shipping-tier-label" style="font-weight: 600; color: var(--color-plum);">Courier Dispatch</span>
           </div>
 
           <div class="summary-line-item">
-            <span>Freight & Handling:</span>
-            <span id="checkout-shipping-rate-label" style="font-weight: 600; color: var(--color-text-muted);">₦2,500</span>
+            <span>Delivery Fee:</span>
+            <span id="checkout-shipping-rate-label" style="font-weight: 600; color: var(--color-gold);">Paid to Courier</span>
           </div>
 
           <div class="summary-total-row">
@@ -266,7 +272,7 @@
           <div id="checkout-estimate-payable" style="text-align: right; font-size: 0.75rem; color: var(--color-gold); font-weight: 600; margin-top: 2px;"></div>
 
           <div class="summary-policy-notice">
-            <strong>Guaranteed Dispatch:</strong> Prepared fresh in our Lagos facility with clean-room dehydration and 100% sand-free certification. Dispatched with tracked delivery in 1 to 3 days.
+            <strong>Quality Dispatch Guarantee:</strong> Every batch is sorted by hand, multi-washed under strict internal hygiene standards, and gently dehydrated under 45°C to preserve nutrition and natural flavor. Packed fresh in airtight resealable pouches.
           </div>
         </aside>
       </form>
@@ -276,9 +282,21 @@
   <!-- Site Footer -->
   <footer class="site-footer">
     <div class="container">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: var(--space-md) 0; border-bottom: 1px solid var(--color-stone-muted); font-size: 0.8125rem; gap: 1rem;">
+        <div style="color: var(--color-text-muted);">
+          Official Inquiries: <a href="mailto:sales@kabodcrest.com" style="color: var(--color-plum); font-weight: 600;">sales@kabodcrest.com</a> &bull; Support: <a href="mailto:support@kabodcrest.com" style="color: var(--color-plum); font-weight: 600;">support@kabodcrest.com</a>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="/legal.html#privacy" style="color: var(--color-text-muted);">Privacy Policy</a>
+          <a href="/legal.html#delivery" style="color: var(--color-text-muted);">Delivery Policy</a>
+          <a href="/legal.html#returns" style="color: var(--color-text-muted);">Returns Policy</a>
+          <a href="/legal.html#food-safety" style="color: var(--color-text-muted);">Food Safety Standards</a>
+          <a href="/legal.html#terms" style="color: var(--color-text-muted);">Terms &amp; Conditions</a>
+        </div>
+      </div>
       <div class="footer-bottom">
         <div>&copy; 2026 Kabod Crest Limited. All rights reserved.</div>
-        <div class="footer-note">RC: Registered Nigerian Enterprise • Worldwide Delivery to UK, US, Australia, South Africa & Nationwide</div>
+        <div class="footer-note">RC: Registered Nigerian Enterprise &bull; Direct Deliveries Nationwide &amp; Diaspora Air Freight</div>
       </div>
     </div>
   </footer>

@@ -127,7 +127,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
       name: 'Dehydrated Ugwu',
       price: 2850,
       priceDisplay: '₦2,850',
-      weight: '250g',
+      weight: '500g',
       isPreOrder: false
     }, 2);
 
@@ -137,11 +137,11 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
 
     // 2. Compute cart subtotal
     const pricing = env.window.KabodPricing;
-    let subtotal = 5700;
+    let subtotal = 20000;
     if (pricing) {
       const totals = pricing.calculateCartTotals(items);
       subtotal = totals.pricedSubtotal;
-      assert.strictEqual(subtotal, 5700, 'Subtotal for 2 Ugwu must be 5700');
+      assert.strictEqual(subtotal, 20000, 'Subtotal for 2 Ugwu must be 20000');
     }
 
     // 3. Select destination: Lagos, Nigeria
@@ -152,7 +152,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
       freight = tier.rateAmount;
     }
     const grandTotal = subtotal + freight;
-    assert.strictEqual(grandTotal, 6700, 'Grand total must be 5700 + 1000 = 6700');
+    assert.strictEqual(grandTotal, 21000, 'Grand total must be 20000 + 1000 = 21000');
 
     // 4. Fill customer details
     const customer = {
@@ -170,7 +170,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
 
     // 5. Paystack inline conversion to kobo
     const amountInKobo = Math.round(grandTotal * 100);
-    assert.strictEqual(amountInKobo, 670000);
+    assert.strictEqual(amountInKobo, 2100000);
 
     // 6. Simulate checkout submission & order generation
     const randomSuffix = Math.floor(1000 + Math.random() * 9000);
@@ -208,7 +208,7 @@ describe('Tier 4: Scenario 1 - Standard Live Checkout (Lagos Delivery)', () => {
     const retrievedHistory = JSON.parse(env.localStorage.getItem('kabod_order_history'));
     const matchedOrder = retrievedHistory.find(o => o.orderRef === orderRef);
     assert.ok(matchedOrder, 'Order must be found in history');
-    assert.strictEqual(matchedOrder.grandTotal, 6700);
+    assert.strictEqual(matchedOrder.grandTotal, 21000);
     assert.strictEqual(matchedOrder.paymentStatus, 'paid');
     assert.strictEqual(matchedOrder.customer.name, 'Babatunde Alabi');
   });
@@ -317,7 +317,7 @@ describe('Tier 4: Scenario 3 - Mixed Cart with International Air Cargo', () => {
 
     // 2. Pricing engine identifies mixed cart
     const pricing = env.window.KabodPricing;
-    let pricedSubtotal = 2850;
+    let pricedSubtotal = 10000;
     if (pricing) {
       const totals = pricing.calculateCartTotals(cart.getItems());
       pricedSubtotal = totals.pricedSubtotal;
@@ -325,7 +325,7 @@ describe('Tier 4: Scenario 3 - Mixed Cart with International Air Cargo', () => {
       assert.strictEqual(totals.hasPriced, true);
       assert.strictEqual(totals.hasTbc, true);
     }
-    assert.strictEqual(pricedSubtotal, 2850);
+    assert.strictEqual(pricedSubtotal, 10000);
 
     // 3. International destination: United Kingdom
     const shippingTier = {

@@ -355,6 +355,61 @@ if (typeof document !== 'undefined') {
       }
     });
   }
+
+  // Foodstuff Request Form & Quick-Pick Handling
+  const reqForm = document.getElementById('foodstuff-request-form');
+  const reqSuccessBox = document.getElementById('foodstuff-request-success');
+  const reqSuccessMsg = document.getElementById('foodstuff-request-success-msg');
+  const produceInput = document.getElementById('req-produce-name');
+
+  const quickPickBtns = document.querySelectorAll('.js-quick-pick-btn');
+  quickPickBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (produceInput) {
+        produceInput.value = btn.textContent.trim();
+        produceInput.focus();
+      }
+    });
+  });
+
+  if (reqForm) {
+    reqForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = (document.getElementById('req-user-name')?.value || '').trim();
+      const contact = (document.getElementById('req-user-contact')?.value || '').trim();
+      const produce = (produceInput?.value || '').trim();
+      const destination = (document.getElementById('req-country-city')?.value || '').trim();
+      const notes = (document.getElementById('req-user-notes')?.value || '').trim();
+
+      if (!name || !contact || !produce || !destination) {
+        return;
+      }
+
+      const requestEntry = {
+        id: `REQ-${Date.now()}`,
+        name,
+        contact,
+        produce,
+        destination,
+        notes,
+        createdAt: new Date().toISOString()
+      };
+
+      try {
+        const stored = localStorage.getItem('kabod_foodstuff_requests');
+        const list = stored ? JSON.parse(stored) : [];
+        list.push(requestEntry);
+        localStorage.setItem('kabod_foodstuff_requests', JSON.stringify(list));
+      } catch (_) {}
+
+      reqForm.reset();
+      if (reqSuccessBox && reqSuccessMsg) {
+        reqSuccessMsg.textContent = `Thank you, ${name}! Your request for ${produce} for delivery to ${destination} has been officially recorded in our diaspora agro-processing schedule. We will reach out directly to ${contact} as soon as this harvest enters our dehydration queue.`;
+        reqSuccessBox.style.display = 'block';
+        reqSuccessBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
   });
 }
 

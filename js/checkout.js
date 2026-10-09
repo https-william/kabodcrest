@@ -569,41 +569,40 @@ if (typeof document !== 'undefined') {
     const shippingTierLabelEl = document.getElementById('checkout-shipping-tier-label');
     const shippingRateLabelEl = document.getElementById('checkout-shipping-rate-label');
 
-    // Verify cart has items
-    const cartItems = (typeof window !== 'undefined' && window.KabodCart) ? window.KabodCart.getItems() : [];
-    if (cartItems.length === 0) {
+    // Verify and load cart items with multiple persistence fallbacks
+    let cartItems = (typeof window !== 'undefined' && window.KabodCart) ? window.KabodCart.getItems() : [];
+    if ((!cartItems || cartItems.length === 0) && typeof localStorage !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('kabod_crest_cart_v1');
+        if (stored) {
+          cartItems = JSON.parse(stored);
+        }
+      } catch (_) {}
+    }
+
+    if (!cartItems || cartItems.length === 0) {
       if (typeof window !== 'undefined' && window.location && !window.location.pathname.includes('test')) {
-        window.location.href = '/shop';
+        const container = document.querySelector('.checkout-page-section .container');
+        if (container) {
+          container.innerHTML = `
+            <div style="text-align: center; padding: 60px 20px; background: var(--color-ivory-surface); border: var(--border-ink-crisp); border-radius: var(--radius-card); max-width: 600px; margin: 40px auto;">
+              <h2 style="font-family: var(--font-editorial); font-size: 2rem; margin-bottom: 12px; color: var(--color-text-dark);">Your Bag is Currently Empty</h2>
+              <p style="color: var(--color-text-muted); margin-bottom: 24px;">Please select items from our pantry catalog before proceeding to delivery and checkout.</p>
+              <a href="/shop" class="btn-primary-action" style="display: inline-flex; width: auto; padding: 12px 28px;">Return to Foods Catalog</a>
+            </div>
+          `;
+        }
         return;
       }
     }
 
-    // Active payment provider instance
-    let activePaymentMethod = 'paystack';
-    const paymentProviders = {
-      paystack: new PaystackPaymentProvider(),
-      manual_bank_transfer: new ManualPaymentProvider()
-    };
-
-    function getActiveProvider() {
-      return paymentProviders[activePaymentMethod] || paymentProviders.paystack;
-    }
-
-    // Initialize Payment Method Radios (if present in DOM)
-    const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
-    paymentRadios.forEach(radio => {
-      radio.addEventListener('change', (e) => {
-        activePaymentMethod = e.target.value;
-        renderPaymentUI();
-      });
-      if (radio.checked) {
-        activePaymentMethod = radio.value;
-      }
-    });
+    // Active payment provider instance - PAYSTACK ONLY
+    const activePaymentMethod = 'paystack';
+    const paystackProvider = new PaystackPaymentProvider();
 
     function renderPaymentUI() {
       if (paymentContainer) {
-        getActiveProvider().renderUI(paymentContainer, { items: cartItems });
+        paystackProvider.renderUI(paymentContainer, { items: cartItems });
       }
     }
     renderPaymentUI();
@@ -611,14 +610,20 @@ if (typeof document !== 'undefined') {
     // Render order summary sidebar
     const totals = (typeof window !== 'undefined' && window.KabodCart && typeof window.KabodCart.getTotals === 'function')
       ? window.KabodCart.getTotals()
-      : { pricedSubtotal: 0, formattedSubtotal: '₦0', totalCount: cartItems.length };
+      : (typeof calculateCartTotals === 'function' ? calculateCartTotals(cartItems) : { pricedSubtotal: 0, formattedSubtotal: '₦0', totalCount: cartItems.length });
 
     if (summaryCountEl) {
-      summaryCountEl.textContent = `${totals.totalCount} item${totals.totalCount === 1 ? '' : 's'}`;
+      summaryCountEl.textContent = `${totals.totalCount || cartItems.length} unit${(totals.totalCount || cartItems.length) === 1 ? '' : 's'}`;
     }
 
+    const subtotalFormatted = totals.formattedSubtotal || (typeof formatNaira === 'function' ? formatNaira(totals.pricedSubtotal || 0) : `₦${(totals.pricedSubtotal || 0).toLocaleString('en-NG')}`);
+
+    const visibleSubtotalEl = document.getElementById('checkout-subtotal-val');
+    if (visibleSubtotalEl) {
+      visibleSubtotalEl.textContent = subtotalFormatted;
+    }
     if (summarySubtotalEl) {
-      summarySubtotalEl.textContent = totals.formattedSubtotal;
+      summarySubtotalEl.textContent = subtotalFormatted;
     }
 
     if (summaryItemsList) {
@@ -627,10 +632,10 @@ if (typeof document !== 'undefined') {
           <img src="${item.image}" alt="${item.name}" style="width: 44px; height: 52px; object-fit: contain; background: var(--color-ivory-warm); border-radius: 2px; padding: 2px;" />
           <div style="flex-grow: 1;">
             <div style="font-family: var(--font-structural); font-size: 0.8125rem; font-weight: 600;">${item.name}</div>
-            <div style="font-size: 0.75rem; color: var(--color-text-light-muted);">${item.weight} • Qty: ${item.quantity}</div>
+            <div style="font-size: 0.75rem; color: var(--color-text-muted);">${item.weight} • Qty: ${item.quantity}</div>
           </div>
           <div style="font-family: var(--font-structural); font-size: 0.75rem; font-weight: 600; color: var(--color-plum);">
-            ${item.lineTotalDisplay || item.priceDisplay}
+            ${item.lineTotalDisplay || item.priceDisplay || ''}
           </div>
         </div>
       `).join('');
@@ -655,52 +660,30 @@ if (typeof document !== 'undefined') {
 
       countrySelect.addEventListener('change', (e) => {
         updateStates(e.target.value);
-        checkSuggestedShipping();
       });
 
       updateStates(countrySelect.value || 'Nigeria');
     }
 
-    // Initialize Shipping Tiers
+    // Initialize Shipping Information - Customer pays courier on delivery
     const shippingContainer = document.getElementById('shipping-tiers-options');
-    let selectedShippingTier = (typeof KABOD_SHIPPING_CONFIG !== 'undefined') ? KABOD_SHIPPING_CONFIG.defaultTier : 'lagos';
 
     function renderShippingTiers() {
-      if (!shippingContainer || typeof KABOD_SHIPPING_CONFIG === 'undefined') return;
-
-      const activeTier = (typeof KABOD_SHIPPING_CONFIG.getTierById === 'function')
-        ? KABOD_SHIPPING_CONFIG.getTierById(selectedShippingTier)
-        : (KABOD_SHIPPING_CONFIG.tiers.find(t => t.id === selectedShippingTier) || KABOD_SHIPPING_CONFIG.tiers[0]);
-
-      let estimateHtml = '';
-      if (typeof window !== 'undefined' && window.KabodCurrency && typeof window.KabodCurrency.formatEstimate === 'function') {
-        const est = window.KabodCurrency.formatEstimate(activeTier.rateAmount || 1000);
-        if (est) {
-          estimateHtml = ` <span class="shipping-currency-estimate" style="font-weight: 500; font-size: 0.8125rem; color: var(--color-text-muted);">${est}</span>`;
-        }
-      }
+      if (!shippingContainer) return;
 
       shippingContainer.innerHTML = `
-        <div class="shipping-tier-option selected shipping-confirmation-card" data-tier-id="${activeTier.id}">
-          <input
-            type="radio"
-            name="shipping_tier"
-            value="${activeTier.id}"
-            class="shipping-tier-radio"
-            checked
-            style="display: none;"
-          />
+        <div class="shipping-tier-option selected shipping-confirmation-card">
           <div class="shipping-tier-info">
             <div class="shipping-tier-header">
               <div class="shipping-tier-title-wrap">
-                <span class="shipping-confirmation-badge">Flat Rate Dispatch</span>
-                <span class="shipping-tier-name">${activeTier.name}</span>
+                <span class="shipping-confirmation-badge">Pay on Delivery</span>
+                <span class="shipping-tier-name">Courier Delivery Service</span>
               </div>
               <div class="shipping-tier-rate-wrap">
-                <span class="shipping-tier-rate">${activeTier.rateText}</span>${estimateHtml}
+                <span class="shipping-tier-rate">Direct to Courier</span>
               </div>
             </div>
-            <p class="shipping-tier-desc">${activeTier.description}. Vacuum-sealed to preserve farm-fresh aroma.</p>
+            <p class="shipping-tier-desc">Delivery fees vary based on your exact address and distance. You will pay the courier service provider directly upon parcel handover. Kabod Crest charges only for your packaged produce.</p>
           </div>
         </div>
       `;
@@ -708,39 +691,25 @@ if (typeof document !== 'undefined') {
       updateShippingSummary();
     }
 
-    function setShippingTier(tierId) {
-      selectedShippingTier = tierId;
-      renderShippingTiers();
-    }
-
     function updateShippingSummary() {
-      if (typeof KABOD_SHIPPING_CONFIG === 'undefined') return;
-      const tier = (typeof KABOD_SHIPPING_CONFIG.getTierById === 'function')
-        ? KABOD_SHIPPING_CONFIG.getTierById(selectedShippingTier)
-        : KABOD_SHIPPING_CONFIG.tiers.find(t => t.id === selectedShippingTier);
+      if (shippingTierLabelEl) shippingTierLabelEl.textContent = 'Courier Dispatch';
+      if (shippingRateLabelEl) shippingRateLabelEl.textContent = 'Paid directly to courier upon delivery';
 
-      if (tier) {
-        if (shippingTierLabelEl) shippingTierLabelEl.textContent = tier.name;
-        if (shippingRateLabelEl) shippingRateLabelEl.textContent = tier.rateText;
+      const subtotal = totals.pricedSubtotal || 0;
+      const formatFn = (typeof formatNaira === 'function') ? formatNaira : (n => `₦${n.toLocaleString('en-NG')}`);
+      const payableText = totals.formattedSubtotal || formatFn(subtotal);
 
-        const subtotal = totals.pricedSubtotal || 0;
-        if (summaryGrandTotalEl) {
-          if (tier.rateAmount !== null) {
-            const grandTotal = subtotal + tier.rateAmount;
-            const formatFn = (typeof formatNaira === 'function') ? formatNaira : (n => `₦${n.toLocaleString('en-NG')}`);
-            summaryGrandTotalEl.textContent = formatFn(grandTotal);
+      if (summaryGrandTotalEl) {
+        summaryGrandTotalEl.textContent = payableText;
+      }
+      const totalPayableEl = document.getElementById('checkout-total-payable');
+      if (totalPayableEl) {
+        totalPayableEl.textContent = payableText;
+      }
 
-            const totalPayableEl = document.getElementById('checkout-total-payable');
-            if (totalPayableEl) totalPayableEl.textContent = formatFn(grandTotal);
-
-            const estimateEl = document.getElementById('checkout-estimate-payable');
-            if (estimateEl && typeof window !== 'undefined' && window.KabodCurrency && typeof window.KabodCurrency.formatEstimate === 'function') {
-              estimateEl.textContent = window.KabodCurrency.formatEstimate(grandTotal);
-            }
-          } else {
-            summaryGrandTotalEl.textContent = `${totals.formattedSubtotal} + [Freight TBC]`;
-          }
-        }
+      const estimateEl = document.getElementById('checkout-estimate-payable');
+      if (estimateEl && typeof window !== 'undefined' && window.KabodCurrency && typeof window.KabodCurrency.formatEstimate === 'function') {
+        estimateEl.textContent = window.KabodCurrency.formatEstimate(subtotal);
       }
     }
 
@@ -882,13 +851,17 @@ if (typeof document !== 'undefined') {
           notes: KabodValidator.sanitizeText(notesEl ? notesEl.value : '')
         };
 
-        const tierObj = (typeof KABOD_SHIPPING_CONFIG !== 'undefined' && typeof KABOD_SHIPPING_CONFIG.getTierById === 'function')
-          ? KABOD_SHIPPING_CONFIG.getTierById(selectedShippingTier)
-          : { id: selectedShippingTier, name: selectedShippingTier, rateAmount: 2500, rateText: '₦2,500' };
+        const tierObj = {
+          id: 'courier-dispatch',
+          name: 'Courier Delivery Service',
+          rateAmount: 0,
+          rateText: 'Paid to Courier on Delivery',
+          description: 'Delivery fee is determined by exact destination address and paid directly to the courier service on delivery.'
+        };
 
         const subtotal = totals.pricedSubtotal || 0;
-        const shippingFee = (tierObj && tierObj.rateAmount !== null) ? tierObj.rateAmount : 0;
-        const grandTotal = subtotal + shippingFee;
+        const shippingFee = 0;
+        const grandTotal = subtotal;
 
         // Generate unique Order Reference number
         const randomSuffix = Math.floor(1000 + Math.random() * 9000);
@@ -908,18 +881,18 @@ if (typeof document !== 'undefined') {
           shippingFee: shippingFee,
           grandTotal: grandTotal,
           formattedSubtotal: totals.formattedSubtotal || formatFn(subtotal),
-          formattedShipping: tierObj.rateText || formatFn(shippingFee),
-          formattedGrandTotal: formatFn(grandTotal),
-          paymentMethod: activePaymentMethod,
-          paymentStatus: (activePaymentMethod === 'paystack') ? 'paid' : 'pending_invoice',
+          formattedShipping: 'Paid to Courier on Delivery',
+          formattedGrandTotal: totals.formattedSubtotal || formatFn(grandTotal),
+          paymentMethod: 'paystack',
+          paymentStatus: 'paid',
           paymentDetails: {
-            channel: (activePaymentMethod === 'paystack') ? 'card' : 'manual_invoice',
-            reference: (activePaymentMethod === 'paystack') ? `PSTK_${orderRef}` : orderRef
+            channel: 'card',
+            reference: `PSTK_${orderRef}`
           }
         };
 
-        // Process payment via active provider
-        const provider = getActiveProvider();
+        // Process payment via Paystack provider
+        const provider = paystackProvider;
         provider.processPayment(orderData, (res) => {
           if (res && res.reference) {
             orderData.paymentDetails.reference = res.reference;

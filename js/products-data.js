@@ -18,9 +18,9 @@ const KABOD_PRODUCTS = [
     name: "Dehydrated Ugwu",
     subtitle: "Fluted Pumpkin Leaves",
     category: "Dehydrated Vegetables",
-    weight: "250g",
-    price: 2850,
-    priceDisplay: "₦2,850",
+    weight: "500g",
+    price: 10000,
+    priceDisplay: "₦10,000",
     isLive: true,
     isComingSoon: false,
     isPreOrder: false,
@@ -70,22 +70,23 @@ const KABOD_PRODUCTS = [
       }
 ],
     culinaryTip: "For maximum vitality and crunch, never overboil fluted pumpkin leaves on high heat.",
-features: [
-      "100% natural with zero additives or preservatives",
-      "Retains its natural vibrant green color and tender crunch",
+    features: [
+      "100% natural fluted pumpkin leaves with zero additives or preservatives",
+      "Carefully sorted and multi-washed under strict internal quality controls",
+      "Gently dehydrated below 45°C to retain vitamins and vibrant chlorophyll",
       "Rehydrates cleanly in warm water within 3 to 5 minutes",
-      "Sealed fresh in an airtight moisture-barrier pouch"
+      "Sealed fresh in a durable, airtight 500g moisture-barrier pouch"
     ],
-    howToUse: "Let the leaves sit in a bowl of warm water for 3 to 5 minutes to gently wake them up before cooking. Or, simply drop them straight into your soup during the final 3 minutes on the stove so they stay bright and fresh.",
-    howToStore: "Keep your pouch zipped tight and store it in a cool, dry cupboard away from direct sunlight.",
+    howToUse: "Let the leaves sit in a bowl of warm water for 3 to 5 minutes to gently rehydrate before cooking. Or simply fold them straight into your soup during the final 3 minutes on the stove so they remain bright and fresh.",
+    howToStore: "Keep your pouch zipped tightly and store in a cool, dry cupboard away from direct sunlight.",
     faqs: [
       {
-        question: "How do you dry the leaves?",
-        answer: "We wash fresh leaves thoroughly and dry them with warm, gentle air. That protects the color, nutrients, and aroma without ever needing chemical preservatives."
+        question: "How do you dehydrate the leaves?",
+        answer: "We wash fresh leaves thoroughly and dry them with warm, gentle air below 45°C. That protects natural color, vitamins, and aroma without chemical preservatives."
       },
       {
-        question: "When will my order arrive?",
-        answer: "We pack and seal your order right here in Lagos and send it straight to you, whether you are across the street or across the world."
+        question: "How is delivery handled?",
+        answer: "We pack and seal your order at our Lagos facility. Delivery fees vary by your exact address and are paid directly to the courier service upon delivery."
       }
     ]
   },
@@ -199,11 +200,14 @@ features: [
         answer: "Only pure spices and a touch of natural sea salt, so you stay completely in control of your seasoning."
       }
     ]
-  },
+  }
+];
 
-  // ==========================================
-  // IN PREPARATION (Coming Soon | 11 Items)
-  // ==========================================
+// ==========================================
+// UPCOMING / WHOLESALE ALLOCATIONS (11 Items)
+// Preserved for wholesale inquiries and future expansion
+// ==========================================
+const UPCOMING_PRODUCTS = [
   {
     id: "kulikuli-snack",
     name: "Kulikuli",
@@ -746,10 +750,18 @@ features: [
 function getProductById(productId) {
   if (!productId || typeof productId !== 'string') return null;
   const normalized = productId.trim().toLowerCase();
-  return KABOD_PRODUCTS.find(p =>
+  const live = KABOD_PRODUCTS.find(p =>
     p.id.toLowerCase() === normalized ||
     (Array.isArray(p.aliases) && p.aliases.some(a => a.toLowerCase() === normalized))
-  ) || null;
+  );
+  if (live) return live;
+  if (typeof UPCOMING_PRODUCTS !== 'undefined' && Array.isArray(UPCOMING_PRODUCTS)) {
+    return UPCOMING_PRODUCTS.find(p =>
+      p.id.toLowerCase() === normalized ||
+      (Array.isArray(p.aliases) && p.aliases.some(a => a.toLowerCase() === normalized))
+    ) || null;
+  }
+  return null;
 }
 
 // Enhance KABOD_PRODUCTS.find to support alias fallback
@@ -888,24 +900,21 @@ const KABOD_PANTRY_BUNDLES = {
 };
 
 function getBundleForProduct(productId) {
-  if (!productId) return null;
-  const normalized = String(productId).toLowerCase().trim();
-  const bundle = KABOD_PANTRY_BUNDLES[normalized];
-  if (!bundle) return null;
-  const products = bundle.itemIds.map(id => getProductById(id)).filter(Boolean);
-  return {
-    ...bundle,
-    products
-  };
+  // Bundles are deactivated until all component products are live, priced, and ready for dispatch.
+  return null;
 }
+
+const ALL_PRODUCTS = [...KABOD_PRODUCTS, ...UPCOMING_PRODUCTS];
 
 // Export for module or browser window use
 if (typeof window !== 'undefined') {
   window.KABOD_PRODUCTS = KABOD_PRODUCTS;
+  window.UPCOMING_PRODUCTS = UPCOMING_PRODUCTS;
+  window.ALL_PRODUCTS = ALL_PRODUCTS;
   window.getProductById = getProductById;
   window.KABOD_PANTRY_BUNDLES = KABOD_PANTRY_BUNDLES;
   window.getBundleForProduct = getBundleForProduct;
 }
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { KABOD_PRODUCTS, getProductById, KABOD_PANTRY_BUNDLES, getBundleForProduct };
+  module.exports = { KABOD_PRODUCTS, UPCOMING_PRODUCTS, ALL_PRODUCTS, getProductById, KABOD_PANTRY_BUNDLES, getBundleForProduct };
 }
