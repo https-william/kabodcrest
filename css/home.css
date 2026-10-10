@@ -2,14 +2,15 @@
    Kabod Crest - Homepage Styles
    Source of Truth: kabod-crest-brand, frontend-design, brand-guidelines
    Tone: Quiet Authority, editorial elegance with Cormorant Garamond headlines
+   Visual Canvas: Cohesive Dark Obsidian-Aubergine Luxury (#120D16 -> #18121F)
    ========================================================================== */
 
 /* Hero Section */
 .home-hero {
-  background-color: var(--color-obsidian);
+  background-color: var(--color-canvas-bg, #120D16);
   color: var(--color-text-light);
-  padding: var(--space-2xl) 0;
-  border-bottom: 1px solid rgba(200, 164, 93, 0.22);
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
   position: relative;
   overflow: hidden;
 }
@@ -25,7 +26,7 @@
 
 @media (min-width: 992px) {
   .home-hero-inner {
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1.15fr 1fr;
     gap: var(--space-3xl);
   }
 }
@@ -36,8 +37,8 @@
   gap: var(--space-xs);
   padding: 5px 14px;
   border-radius: var(--radius-badge);
-  background-color: rgba(200, 164, 93, 0.16);
-  border: 1px solid rgba(200, 164, 93, 0.45);
+  background-color: rgba(200, 164, 93, 0.14);
+  border: 1px solid rgba(200, 164, 93, 0.42);
   color: var(--color-gold);
   font-family: var(--font-structural);
   font-size: 0.6875rem;
@@ -60,7 +61,7 @@
 
 @media (min-width: 768px) {
   .home-hero-title {
-    font-size: 4rem;
+    font-size: 3.75rem;
   }
 }
 
@@ -73,7 +74,7 @@
 .home-hero-desc {
   font-size: 1.0625rem;
   color: var(--color-text-light-muted);
-  line-height: 1.65;
+  line-height: 1.68;
   margin-bottom: var(--space-xl);
   max-width: 62ch;
 }
@@ -106,6 +107,8 @@
   border-radius: var(--radius-btn);
   border: 1px solid var(--color-gold);
   box-shadow: 0 4px 16px rgba(200, 164, 93, 0.25);
+  text-decoration: none;
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 
@@ -129,20 +132,22 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   border-radius: var(--radius-btn);
-  border: 1px solid rgba(214, 207, 191, 0.35);
+  border: 1px solid rgba(200, 164, 93, 0.35);
+  text-decoration: none;
+  cursor: pointer;
   transition: all var(--transition-fast);
 }
 
 .btn-hero-secondary:hover {
   border-color: var(--color-gold);
   color: var(--color-gold);
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(200, 164, 93, 0.08);
 }
 
-/* Dedicated Full-Width Trust Ribbon (Under Hero per Taste Anti-Slop Directive) */
+/* Dedicated Full-Width Trust Ribbon */
 .hero-trust-ribbon {
-  background: #140E1C;
-  border-bottom: 1px solid rgba(200, 164, 93, 0.22);
+  background: #150E1B;
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
   padding: 14px 0;
 }
 
@@ -170,19 +175,17 @@
   flex-shrink: 0;
 }
 
-
-
 /* Hero Showcase Visual */
 .hero-visual-frame {
   position: relative;
-  background: linear-gradient(180deg, rgba(50, 26, 74, 0.45) 0%, rgba(11, 11, 11, 0.85) 100%);
-  border: 1px solid rgba(200, 164, 93, 0.35);
+  background: linear-gradient(180deg, rgba(32, 23, 41, 0.85) 0%, rgba(18, 13, 22, 0.95) 100%);
+  border: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
   border-radius: var(--radius-card-lg);
   padding: var(--space-md);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
   overflow: hidden;
 }
 
@@ -216,7 +219,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(18, 11, 26, 0.85);
+  background: rgba(18, 13, 22, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--color-gold);
@@ -234,7 +237,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xs);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(200, 164, 93, 0.2);
   border-radius: var(--radius-card-sm);
   padding: 10px 12px;
@@ -270,455 +273,599 @@
 }
 
 /* ==========================================================================
-   Section 2: Who We Are
+   Section 2: The Active Harvest Shelf (Live Produce Cards)
    ========================================================================== */
-.who-section {
+.home-shelf-section {
   padding: var(--space-4xl) 0;
-  background-color: var(--color-ivory);
+  background-color: var(--color-canvas-surface, #18121F);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+}
+
+.section-intro-center {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
 }
 
 .section-eyebrow {
   font-family: var(--font-structural);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-plum);
+  color: var(--color-gold);
   margin-bottom: var(--space-xs);
 }
 
-.section-title {
+.section-heading {
   font-family: var(--font-editorial);
-  font-size: 2.25rem;
+  font-size: 2.35rem;
   font-weight: 600;
-  color: var(--color-text-dark);
+  color: var(--color-text-light);
   line-height: 1.15;
   letter-spacing: -0.015em;
   margin-bottom: var(--space-md);
 }
 
 @media (min-width: 768px) {
-  .section-title {
-    font-size: 2.85rem;
+  .section-heading {
+    font-size: 3rem;
   }
 }
 
-.section-intro-text {
-  font-size: 1.0625rem;
-  color: var(--color-text-muted);
-  line-height: 1.68;
-  max-width: 72ch;
-  margin-bottom: var(--space-2xl);
+.gold-hairline {
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: var(--color-gold);
+  margin-bottom: var(--space-md);
 }
 
-.vmv-triple-grid {
+.gold-hairline.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-subheading {
+  font-size: 1.0625rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.68;
+}
+
+.shelf-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
+  margin-top: var(--space-3xl);
 }
 
 @media (min-width: 768px) {
-  .vmv-triple-grid {
+  .shelf-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.vmv-card {
-  background-color: var(--color-ivory-surface);
-  border: var(--border-ink-crisp);
-  border-top: 3px solid var(--color-plum);
+.shelf-product-card {
+  background-color: var(--color-canvas-card, #201729);
+  border: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
   border-radius: var(--radius-card);
-  padding: var(--space-xl);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+  position: relative;
 }
 
-.vmv-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+.shelf-product-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-canvas-border-active, rgba(200, 164, 93, 0.48));
+  background-color: var(--color-canvas-card-hover, #2B1E38);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
-.vmv-card-tag {
+.shelf-product-card.featured-card {
+  border-color: rgba(200, 164, 93, 0.4);
+}
+
+.shelf-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  padding: 4px 10px;
+  background: rgba(18, 13, 22, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(200, 164, 93, 0.45);
+  border-radius: var(--radius-pill);
   font-family: var(--font-structural);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-plum);
-  margin-bottom: var(--space-xs);
-}
-
-.vmv-card-title {
-  font-family: var(--font-editorial);
-  font-size: 1.35rem;
-  font-weight: 600;
-  color: var(--color-text-dark);
-  margin-bottom: var(--space-xs);
-}
-
-.vmv-card-desc {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.65;
-}
-
-/* ==========================================================================
-   Section 3: Our Businesses (One Vision, Multiple Expressions)
-   ========================================================================== */
-.businesses-section {
-  padding: var(--space-4xl) 0;
-  background-color: var(--color-ivory-warm);
-  border-top: 1px solid var(--color-stone-muted);
-  border-bottom: 1px solid var(--color-stone-muted);
-}
-
-.businesses-grid,
-.businesses-bento-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-top: var(--space-2xl);
-}
-
-@media (min-width: 640px) {
-  .businesses-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 860px) {
-  .businesses-bento-grid {
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: auto;
-  }
-
-  /* Food: Active Vertical - gets primary largest bento cell */
-  .biz-card.biz-bento-food {
-    grid-column: span 7;
-    background: linear-gradient(145deg, #FAF7F2 0%, #F4EFE6 100%);
-    border: 1px solid rgba(50, 26, 74, 0.22);
-    border-left: 6px solid var(--color-plum);
-    padding: var(--space-2xl);
-    box-shadow: 0 6px 20px rgba(50, 26, 74, 0.08);
-  }
-
-  /* Events */
-  .biz-card.biz-bento-events {
-    grid-column: span 5;
-  }
-
-  /* Hospitality */
-  .biz-card.biz-bento-hospitality {
-    grid-column: span 5;
-  }
-
-  /* Business Services */
-  .biz-card.biz-bento-services {
-    grid-column: span 7;
-  }
-}
-
-.biz-card {
-  background-color: var(--color-ivory-surface);
-  border: var(--border-ink-crisp);
-  border-radius: var(--radius-card);
-  padding: var(--space-xl);
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.biz-card.biz-active {
-  border-left: 4px solid var(--color-plum);
-  background-color: #FAF6EE;
-}
-
-.biz-card:hover {
-  border-color: var(--color-plum);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.biz-badge-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--space-sm);
-}
-
-.biz-status-pill {
-  font-family: var(--font-structural);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: var(--radius-badge);
-}
-
-.biz-status-pill.active {
-  background-color: var(--color-plum);
-  color: var(--color-text-light);
-}
-
-.biz-status-pill.future {
-  background-color: rgba(50, 26, 74, 0.06);
-  color: var(--color-text-subtle);
-  border: var(--border-ink-crisp);
-}
-
-.biz-title {
-  font-family: var(--font-editorial);
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--color-text-dark);
-  margin-bottom: var(--space-xs);
-}
-
-.biz-desc {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.65;
-  margin-bottom: var(--space-md);
-  flex-grow: 1;
-}
-
-.biz-link {
-  font-family: var(--font-structural);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--color-plum);
-  text-decoration: underline;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.biz-link:hover {
   color: var(--color-gold);
 }
 
-/* ==========================================================================
-   Section 4: Kabod Crest Foods Spotlight
-   ========================================================================== */
-.foods-spotlight-section {
-  padding: var(--space-4xl) 0;
-  background-color: var(--color-ivory);
-}
-
-.spotlight-categories-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-top: var(--space-2xl);
-}
-
-@media (min-width: 640px) {
-  .spotlight-categories-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .spotlight-categories-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.spotlight-cat-card {
-  background-color: var(--color-ivory-surface);
-  border: var(--border-ink-crisp);
-  border-radius: var(--radius-card);
-  overflow: hidden;
+.shelf-card-thumb-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at center, rgba(50, 26, 74, 0.4) 0%, rgba(18, 13, 22, 0.95) 85%);
   display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.spotlight-cat-card:hover {
-  border-color: var(--color-plum);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-}
-
-.spotlight-thumb-wrap {
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  border-bottom: 1px solid rgba(200, 164, 93, 0.15);
   overflow: hidden;
-  background-color: var(--color-ivory-warm);
 }
 
-.spotlight-thumb-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.shelf-card-img {
+  max-width: 85%;
+  max-height: 85%;
+  object-fit: contain;
   transition: transform var(--transition-smooth);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
 }
 
-.spotlight-cat-card:hover .spotlight-thumb-img {
-  transform: scale(1.05);
+.shelf-product-card:hover .shelf-card-img {
+  transform: scale(1.06);
 }
 
-.spotlight-cat-body {
-  padding: var(--space-md);
+.shelf-card-body {
+  padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.spotlight-cat-title {
-  font-family: var(--font-editorial);
-  font-size: 1.25rem;
+.shelf-card-origin {
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
   font-weight: 600;
-  color: var(--color-text-dark);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gold);
   margin-bottom: var(--space-2xs);
 }
 
-.spotlight-cat-desc {
+.shelf-card-title {
+  font-family: var(--font-editorial);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+
+.shelf-card-subtitle {
   font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
+  color: var(--color-text-light-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.shelf-card-yield-note {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-gold-light);
+  background: rgba(200, 164, 93, 0.08);
+  border: 1px solid rgba(200, 164, 93, 0.22);
+  border-radius: var(--radius-badge);
+  padding: 8px 10px;
   margin-bottom: var(--space-md);
-  flex-grow: 1;
 }
 
-/* Packaging Distinction Spotlight Banner */
-.packaging-spotlight-banner {
-  margin-top: var(--space-2xl);
-  background: var(--color-plum-deep);
-  border: var(--border-gold-rule);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr;
-  box-shadow: var(--shadow-card);
-}
-
-@media (min-width: 900px) {
-  .packaging-spotlight-banner {
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-  }
-}
-
-.packaging-spotlight-img {
-  width: 100%;
-  height: 100%;
-  max-height: 380px;
-  object-fit: cover;
-  display: block;
-}
-
-.packaging-spotlight-caption {
-  padding: var(--space-xl);
+.shelf-card-pricing {
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(200, 164, 93, 0.15);
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.shelf-price-val {
+  font-family: var(--font-structural);
+  font-size: 1.35rem;
+  font-weight: 700;
   color: var(--color-text-light);
 }
 
-.packaging-badge {
+.shelf-price-est {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-gold);
+}
+
+.shelf-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.btn-shelf-add {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  padding: 12px 18px;
+  background-color: var(--color-gold);
+  color: var(--color-obsidian);
+  font-family: var(--font-structural);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--radius-btn);
+  border: 1px solid var(--color-gold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-shelf-add:hover {
+  background-color: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(200, 164, 93, 0.35);
+}
+
+.btn-shelf-detail {
+  width: 100%;
+  text-align: center;
+  font-family: var(--font-structural);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-light-muted);
+  text-decoration: none;
+  padding: 6px 0;
+  transition: color var(--transition-fast);
+}
+
+.btn-shelf-detail:hover {
+  color: var(--color-gold);
+}
+
+.harvest-shelf-note {
+  margin-top: var(--space-2xl);
+  background: rgba(200, 164, 93, 0.06);
+  border: 1px solid rgba(200, 164, 93, 0.25);
+  border-radius: var(--radius-card-sm);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  color: var(--color-gold-light);
+  text-align: center;
+}
+
+/* ==========================================================================
+   Section 3: The 500g Secret / Culinary Yield Module
+   ========================================================================== */
+.home-yield-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-canvas-bg, #120D16);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+}
+
+.yield-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+}
+
+@media (min-width: 768px) {
+  .yield-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.yield-card {
+  background-color: var(--color-canvas-card, #201729);
+  border: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.yield-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-canvas-border-active, rgba(200, 164, 93, 0.48));
+}
+
+.yield-step-num {
+  font-family: var(--font-editorial);
+  font-size: 2.25rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+}
+
+.yield-card-title {
+  font-family: var(--font-editorial);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-xs);
+}
+
+.yield-metric-pill {
   display: inline-block;
+  align-self: flex-start;
+  padding: 4px 10px;
+  background: rgba(46, 139, 87, 0.2);
+  border: 1px solid rgba(46, 139, 87, 0.45);
+  color: #79D69F;
+  border-radius: var(--radius-badge);
   font-family: var(--font-structural);
   font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.yield-card-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.68;
+}
+
+.yield-economics-banner {
+  margin-top: var(--space-2xl);
+  background: linear-gradient(135deg, rgba(32, 23, 41, 0.95) 0%, rgba(22, 56, 33, 0.65) 100%);
+  border: 1px solid rgba(200, 164, 93, 0.35);
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .yield-economics-banner {
+    grid-template-columns: 1.4fr 1fr;
+    padding: var(--space-2xl);
+  }
+}
+
+.yield-banner-content h3 {
+  font-family: var(--font-editorial);
+  font-size: 1.65rem;
+  color: var(--color-text-light);
+  margin-bottom: var(--space-xs);
+}
+
+.yield-banner-content p {
+  font-size: 0.9375rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.65;
+}
+
+.yield-calculator-box {
+  background: rgba(18, 13, 22, 0.85);
+  border: 1px solid rgba(200, 164, 93, 0.3);
+  border-radius: var(--radius-card-sm);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.yield-calc-math {
+  font-family: var(--font-structural);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2xs);
+}
+
+.yield-calc-sub {
+  font-size: 0.8125rem;
+  color: var(--color-text-light-muted);
+}
+
+/* ==========================================================================
+   Section 4: Soil to Seal Craftsmanship
+   ========================================================================== */
+.home-craft-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-canvas-surface, #18121F);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+}
+
+.craft-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-3xl);
+}
+
+@media (min-width: 768px) {
+  .craft-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.craft-card {
+  background-color: var(--color-canvas-card, #201729);
+  border: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+  border-radius: var(--radius-card);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.craft-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-canvas-border-active, rgba(200, 164, 93, 0.48));
+}
+
+.craft-pillar-num {
+  font-family: var(--font-structural);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-gold);
   margin-bottom: var(--space-xs);
 }
 
-.packaging-title {
+.craft-title {
   font-family: var(--font-editorial);
-  font-size: 1.625rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  line-height: 1.25;
+  margin-bottom: var(--space-sm);
+}
+
+.craft-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-light-muted);
+  line-height: 1.68;
+}
+
+/* ==========================================================================
+   Section 5: Diaspora Sourcing Desk Teaser
+   ========================================================================== */
+.diaspora-teaser-section {
+  padding: var(--space-4xl) 0;
+  background-color: var(--color-canvas-bg, #120D16);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+}
+
+.diaspora-teaser-frame {
+  max-width: 860px;
+  margin: 0 auto;
+  background: radial-gradient(circle at top center, rgba(50, 26, 74, 0.6) 0%, rgba(24, 18, 31, 0.95) 70%);
+  border: 1px solid rgba(200, 164, 93, 0.35);
+  border-radius: var(--radius-card-lg);
+  padding: var(--space-2xl);
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+  .diaspora-teaser-frame {
+    padding: var(--space-3xl);
+  }
+}
+
+.diaspora-teaser-title {
+  font-family: var(--font-editorial);
+  font-size: 2.15rem;
   font-weight: 600;
   color: var(--color-text-light);
   line-height: 1.2;
   margin-bottom: var(--space-sm);
 }
 
-.packaging-desc {
-  font-size: 0.875rem;
+@media (min-width: 768px) {
+  .diaspora-teaser-title {
+    font-size: 2.75rem;
+  }
+}
+
+.diaspora-teaser-desc {
+  font-size: 1rem;
   color: var(--color-text-light-muted);
-  line-height: 1.6;
+  line-height: 1.68;
+  max-width: 62ch;
+  margin: 0 auto var(--space-xl);
 }
 
 /* ==========================================================================
-   Section 5: The Kabod Standard (Ethical Commitments)
+   Section 6: Frequently Asked Questions (Dark Luxury Accordion)
    ========================================================================== */
-.standard-section {
+.home-faq-section {
   padding: var(--space-4xl) 0;
-  background-color: var(--color-ivory-warm);
-  border-top: 1px solid var(--color-stone-muted);
-  border-bottom: 1px solid var(--color-stone-muted);
+  background-color: var(--color-canvas-surface, #18121F);
+  border-bottom: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
 }
 
-.standard-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-  margin-top: var(--space-2xl);
-}
-
-@media (min-width: 640px) {
-  .standard-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1024px) {
-  .standard-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.standard-card {
-  background-color: var(--color-ivory-surface);
-  border: var(--border-ink-crisp);
-  border-radius: var(--radius-card);
-  padding: var(--space-lg);
+.faq-accordion-list {
+  max-width: 860px;
+  margin: var(--space-2xl) auto 0;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  gap: var(--space-md);
 }
 
-.standard-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+.faq-accordion-item {
+  border: 1px solid var(--color-canvas-border, rgba(200, 164, 93, 0.22));
+  border-radius: var(--radius-card-sm, 6px);
+  background-color: var(--color-canvas-card, #201729);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  overflow: hidden;
 }
 
-.standard-num {
-  font-family: var(--font-editorial);
-  font-size: 1.625rem;
-  font-style: italic;
-  color: var(--color-gold);
-  margin-bottom: var(--space-xs);
+.faq-accordion-item:hover {
+  border-color: var(--color-canvas-border-active, rgba(200, 164, 93, 0.48));
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
-.standard-title {
-  font-family: var(--font-editorial);
-  font-size: 1.25rem;
+.faq-accordion-item[open] {
+  border-color: var(--color-gold, #C8A45D);
+  background-color: var(--color-canvas-card-hover, #2B1E38);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.faq-accordion-summary {
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-structural, Montserrat, sans-serif);
+  font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--color-text-dark);
-  margin-bottom: var(--space-2xs);
+  color: var(--color-text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  user-select: none;
+  list-style: none;
 }
 
-.standard-desc {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
+.faq-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-summary-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--color-gold, #C8A45D);
+  transition: transform 0.25s ease;
+}
+
+.faq-accordion-item[open] .faq-summary-icon {
+  transform: rotate(180deg);
+}
+
+.faq-accordion-answer {
+  padding: 0 var(--space-lg) var(--space-lg);
+  font-size: 0.875rem;
+  line-height: 1.68;
+  color: var(--color-text-light-muted);
+  border-top: 1px solid rgba(200, 164, 93, 0.12);
+  margin-top: var(--space-2xs);
+  padding-top: var(--space-md);
 }
 
 /* ==========================================================================
-   Section 6: Final Partnership Callout
+   Section 7: Final CTA Callout
    ========================================================================== */
 .final-cta-section {
   padding: var(--space-4xl) 0;
-  background-color: var(--color-obsidian);
+  background-color: var(--color-canvas-bg, #120D16);
   color: var(--color-text-light);
   text-align: center;
   position: relative;
@@ -764,80 +911,3 @@
     flex-direction: row;
   }
 }
-
-/* ==========================================================================
-   Section: Generative & Answer Engine FAQ Section (AEO / GEO)
-   ========================================================================== */
-.home-faq-section {
-  padding: var(--space-3xl) 0;
-  background-color: var(--color-surface, #FDFBF7);
-  border-top: 1px solid rgba(200, 164, 93, 0.2);
-}
-
-.faq-accordion-list {
-  max-width: 860px;
-  margin: var(--space-2xl) auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.faq-accordion-item {
-  border: 1px solid rgba(200, 164, 93, 0.25);
-  border-radius: var(--radius-sm, 6px);
-  background-color: #FFFFFF;
-  transition: border-color var(--transition-fast, 0.2s ease), box-shadow var(--transition-fast, 0.2s ease);
-  overflow: hidden;
-}
-
-.faq-accordion-item:hover {
-  border-color: rgba(200, 164, 93, 0.6);
-  box-shadow: 0 4px 14px rgba(26, 26, 26, 0.04);
-}
-
-.faq-accordion-item[open] {
-  border-color: var(--color-gold, #C8A45D);
-  box-shadow: 0 6px 18px rgba(74, 21, 37, 0.06);
-}
-
-.faq-accordion-summary {
-  padding: var(--space-md) var(--space-lg);
-  font-family: var(--font-structural, Montserrat, sans-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-obsidian, #1a1a1a);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-sm);
-  user-select: none;
-  list-style: none;
-}
-
-.faq-accordion-summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-summary-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  color: var(--color-gold, #C8A45D);
-  transition: transform 0.25s ease;
-}
-
-.faq-accordion-item[open] .faq-summary-icon {
-  transform: rotate(180deg);
-}
-
-.faq-accordion-answer {
-  padding: 0 var(--space-lg) var(--space-lg);
-  font-size: 0.9375rem;
-  line-height: 1.68;
-  color: var(--color-text-muted, #555555);
-  border-top: 1px solid rgba(200, 164, 93, 0.12);
-  margin-top: var(--space-2xs);
-  padding-top: var(--space-md);
-}
-

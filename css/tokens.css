@@ -6,22 +6,37 @@
 
 :root {
   /* Color Palette - Warm-Editorial & Brand Constants */
-  --color-obsidian: #141215;        /* 40% - Deep printer's ink charcoal (softened from stark black) */
+  --color-obsidian: #120D16;        /* 40% - Deepest royal obsidian canvas */
   --color-plum: #321A4A;            /* 25% - Primary identity colour (dominant, royal heritage) */
-  --color-plum-deep: #1E0F2D;       /* Deep Plum for high-contrast dark accents */
+  --color-plum-deep: #1A0D28;       /* Deep Plum for high-contrast dark accents */
   --color-plum-hover: #452467;      /* Interactive hover state for plum elements */
   --color-gold: #C8A45D;            /* 20% - Accent ONLY: dividers, icons, CTA highlights */
+  --color-gold-light: #E0C792;      /* Luminous gold highlight */
   --color-gold-hover: #D8B775;      /* Gold hover highlight */
   --color-gold-tint: rgba(200, 164, 93, 0.12); /* Subtle gold background tint */
   --color-gold-border: rgba(200, 164, 93, 0.35); /* Subtle gold framing */
-  --color-ivory: #F7F4EC;           /* Base warm unbleached paper / cream canvas */
-  --color-ivory-warm: #EFE8DB;      /* Warm tactile flax / soft beige for container contrast */
-  --color-ivory-surface: #FAF6EE;   /* Soft paper sheet tone for cards */
-  --color-paper-pure: #FCFAF6;      /* Fine deckle paper surface replacing clinical pure white */
-  --color-paper-flax: #F2ECE0;      /* Tactile flax for secondary strips and metadata panels */
-  --color-stone: #B8B1A5;           /* Secondary neutral: structural borders and lines */
+
+  /* Cohesive Dark Luxury Canvas Tokens (Unified Experience) */
+  --color-canvas-bg: #120D16;       /* Primary rich dark canvas */
+  --color-canvas-surface: #18121F;  /* Layered section canvas */
+  --color-canvas-card: #201729;     /* Tactile card surface */
+  --color-canvas-card-hover: #2B1E38; /* Card hover state */
+  --color-canvas-border: rgba(200, 164, 93, 0.22);
+  --color-canvas-border-active: rgba(200, 164, 93, 0.48);
+
+  /* Botanical Emerald Accents (Harvest Integrity) */
+  --color-emerald-deep: #163821;
+  --color-emerald-accent: #2E8B57;
+  --color-emerald-glow: rgba(46, 139, 87, 0.2);
+
+  --color-ivory: #F7F4EC;           /* Warm unbleached paper / cream canvas */
+  --color-ivory-warm: #EFE8DB;      /* Warm tactile flax / soft beige */
+  --color-ivory-surface: #FAF6EE;   /* Soft paper sheet tone for placards */
+  --color-paper-pure: #FCFAF6;      /* Fine deckle paper surface */
+  --color-paper-flax: #F2ECE0;      /* Tactile flax for metadata placards */
+  --color-stone: #B8B1A5;           /* Secondary neutral: structural borders */
   --color-stone-muted: rgba(184, 177, 165, 0.35); /* Transparent stone dividers */
-  --color-white: #FCFAF6;           /* Soft unbleached paper replacing #FFFFFF globally */
+  --color-white: #FCFAF6;           /* Soft unbleached paper */
 
   /* Typography Colors - Deep Ink & Warm Charcoal (WCAG AAA/AA Compliant) */
   --color-text-dark: #181517;       /* Deep printer's ink for primary literary headlines */
